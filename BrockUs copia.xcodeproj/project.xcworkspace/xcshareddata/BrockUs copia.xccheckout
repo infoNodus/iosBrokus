@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>78E119BD-E00E-4C04-B0FE-BB6FA40E91BC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BrockUs copia</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7197B880-4685-44BB-BB7A-40B651EA2086</key>
+		<string>https://github.com/EquipoIOS123/brockus.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BrockUs copia.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7197B880-4685-44BB-BB7A-40B651EA2086</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/EquipoIOS123/brockus.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7197B880-4685-44BB-BB7A-40B651EA2086</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7197B880-4685-44BB-BB7A-40B651EA2086</string>
+			<key>IDESourceControlWCCName</key>
+			<string>v</string>
+		</dict>
+	</array>
+</dict>
+</plist>

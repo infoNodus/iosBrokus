@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Circulo" representedClassName="Circulo" syncable="YES">
+        <attribute name="isAceptado" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="toAmigo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Persona" syncable="YES"/>
+        <relationship name="toPersona" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Persona" inverseName="toCirculo" inverseEntity="Persona" syncable="YES"/>
+    </entity>
+    <entity name="Empresa" representedClassName="Empresa" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toPersona" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Persona" inverseName="toEmpresa" inverseEntity="Persona" syncable="YES"/>
+        <relationship name="toSubsector" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subsector" inverseName="toEmpresa" inverseEntity="Subsector" syncable="YES"/>
+    </entity>
+    <entity name="Notificacion" representedClassName="Notificacion" syncable="YES">
+        <attribute name="isRead" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="mensaje" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toPersona" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Persona" inverseName="toNotificaciones" inverseEntity="Persona" syncable="YES"/>
+    </entity>
+    <entity name="Persona" representedClassName="Persona" syncable="YES">
+        <attribute name="contrasena" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="img" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="nameImg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="puesto" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urlPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="usuario" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toCirculo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Circulo" inverseName="toPersona" inverseEntity="Circulo" syncable="YES"/>
+        <relationship name="toEmpresa" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Empresa" inverseName="toPersona" inverseEntity="Empresa" syncable="YES"/>
+        <relationship name="toNotificaciones" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Notificacion" inverseName="toPersona" inverseEntity="Notificacion" syncable="YES"/>
+        <relationship name="toPublicacion" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Publicacion" inverseName="toPersona" inverseEntity="Publicacion" syncable="YES"/>
+    </entity>
+    <entity name="Publicacion" representedClassName="Publicacion" syncable="YES">
+        <attribute name="descripcion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fecha" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="img" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="nameImg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="titulo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urlPath" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toPersona" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Persona" inverseName="toPublicacion" inverseEntity="Persona" syncable="YES"/>
+        <relationship name="toSubsector" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subsector" inverseName="toPublicacion" inverseEntity="Subsector" syncable="YES"/>
+    </entity>
+    <entity name="Sector" representedClassName="Sector" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toSubsector" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Subsector" inverseName="toSector" inverseEntity="Subsector" syncable="YES"/>
+    </entity>
+    <entity name="Subsector" representedClassName="Subsector" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toEmpresa" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Empresa" inverseName="toSubsector" inverseEntity="Empresa" syncable="YES"/>
+        <relationship name="toPublicacion" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Publicacion" inverseName="toSubsector" inverseEntity="Publicacion" syncable="YES"/>
+        <relationship name="toSector" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Sector" inverseName="toSubsector" inverseEntity="Sector" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Circulo" positionX="-1233" positionY="2" width="128" height="88"/>
+        <element name="Empresa" positionX="-1424" positionY="-261" width="128" height="118"/>
+        <element name="Notificacion" positionX="-990" positionY="-225" width="128" height="88"/>
+        <element name="Persona" positionX="-1217" positionY="-265" width="128" height="223"/>
+        <element name="Publicacion" positionX="-1424" positionY="-88" width="128" height="178"/>
+        <element name="Sector" positionX="-1620" positionY="-16" width="128" height="88"/>
+        <element name="Subsector" positionX="-1622" positionY="-225" width="128" height="118"/>
+    </elements>
+</model>

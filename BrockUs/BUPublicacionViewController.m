@@ -42,6 +42,7 @@
 @synthesize subSector;
 @synthesize comboSector;
 @synthesize sectorSeleccionado;
+@synthesize date;
 
 
 
@@ -129,7 +130,45 @@
     subSector.inputAccessoryView = toolbar;
     //subSector.hidden=YES;
     
+    
+    
+    
+    date.delegate=self;
+    datePicker =[[UIDatePicker alloc] init];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    
+    //to make the done button aligned to the right
+    UIToolbar* datetoolbar = [[UIToolbar alloc] init];
+    datetoolbar.barStyle = UIBarStyleBlackTranslucent;
+    [datetoolbar sizeToFit];
+    
+    //to make the done button aligned to the right
+    UIBarButtonItem *dateflexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem* doneDateButton = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar"
+                                                                       style:UIBarButtonItemStyleDone target:self
+                                                                      action:@selector(doneClickedDate:)];
+    NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:0];
+    [datePicker setMinimumDate:currentTime];
+    [datePicker setMaximumDate:[currentTime dateByAddingTimeInterval:400000]];
+    
+    
+    [datetoolbar setItems:[NSArray arrayWithObjects:dateflexibleSpaceLeft, doneDateButton, nil]];
+    
+    //custom input view
+    
+    date.inputView = datePicker;
+    date.inputAccessoryView = datetoolbar;
+    
 
+}
+-(void)doneClickedDate:(id) sender
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"MM/dd/yyyy"];
+    date.text = [NSString stringWithFormat:@"%@",[df stringFromDate:datePicker.date]];
+    [date resignFirstResponder]; //hides the pickerView
+    
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)aTextField
@@ -243,7 +282,9 @@
     }else{
         insertPublicacion.descripcion=self.DescripcionTxt.text;
         insertPublicacion.titulo=self.tituloTxt.text;
-        insertPublicacion.fecha=self.fecha;
+        
+        NSDate *termino=[datePicker date];
+        insertPublicacion.fecha=termino;
         
         
         //insertar imagen en BD

@@ -9,8 +9,8 @@
             <connections>
                 <outlet property="DescripcionTxt" destination="Jn9-1p-2G4" id="uqc-YC-hbi"/>
                 <outlet property="cargarImagenButton" destination="SlL-NP-4Jk" id="3UQ-iC-UBE"/>
+                <outlet property="date" destination="RM7-LS-RJ2" id="gEM-eL-ObS"/>
                 <outlet property="imagenPub" destination="gtO-ou-HNh" id="2Nu-kq-9sw"/>
-                <outlet property="muestrafecha" destination="zUd-4w-7kk" id="tbM-nI-cTj"/>
                 <outlet property="subSector" destination="RBP-av-uB1" id="qIT-08-S3w"/>
                 <outlet property="tituloTxt" destination="rGR-93-cMc" id="NLa-7x-Uuj"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -72,17 +72,6 @@
                                 <action selector="CargarArchivo:" destination="-1" eventType="touchUpInside" id="iYf-xA-d7h"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FY5-XP-hGL">
-                            <rect key="frame" x="51" y="44" width="219" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <state key="normal" title="Fecha Limite de Publicación">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="Fecha:" destination="-1" eventType="touchUpInside" id="DCH-w0-FKU"/>
-                            </connections>
-                        </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Escribe tu publicación:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMc-2p-2F4">
                             <rect key="frame" x="20" y="135" width="185" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -133,14 +122,14 @@
                                 </navigationItem>
                             </items>
                         </navigationBar>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Muestra Fecha" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUd-4w-7kk">
-                            <rect key="frame" x="97" y="70" width="127" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RBP-av-uB1">
                             <rect key="frame" x="20" y="416" width="280" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Fecha de término de la publicacion" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RM7-LS-RJ2">
+                            <rect key="frame" x="20" y="61" width="280" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>

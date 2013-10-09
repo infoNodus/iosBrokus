@@ -37,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *DescripcionTxt;
 @property (weak, nonatomic) IBOutlet UITextField *tituloTxt;
 
+@property (strong, nonatomic) IBOutlet UITextField *date;
 
 
 @property (strong, nonatomic) IBOutlet UIImageView *imagenPub;

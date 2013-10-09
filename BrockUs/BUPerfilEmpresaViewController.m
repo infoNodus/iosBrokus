@@ -180,7 +180,6 @@ NSString *userenterprise;
 {
 
     BUDetallePublicacionViewController *detalle = [[BUDetallePublicacionViewController alloc] initWithPublicacion:self.listaPublicaciones[indexPath.row]];
-    NSLog(@"%@", self.navigationController);
     [self.navigationController pushViewController:detalle animated:YES];
 }
 

@@ -25,3 +25,4 @@
 @property (weak, nonatomic) IBOutlet UIButton *EnviarMensaje;
 @property (weak) id <BUPerfilePersonalViewControllerDelegate> delegate;
 @end
+ 

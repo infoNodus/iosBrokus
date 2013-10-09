@@ -14,7 +14,7 @@
 
 @class ComboSector;
 @interface BUPublicacionViewController : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
-    
+    UIDatePicker *datePicker;
     UIPickerView* pickerView;
     NSArray *dataArray;
   //  IBOutlet UILabel *muestrafecha;

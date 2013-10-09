@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F8B3B7D8-2E41-4344-B690-8AB893B22D27</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BrockUs</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4B53669A-34FC-4B40-8738-491811D65022</key>
+		<string>ssh://192.168.1.100/repos/iosBrokus</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BrockUs.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4B53669A-34FC-4B40-8738-491811D65022</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://192.168.1.100/repos/iosBrokus</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4B53669A-34FC-4B40-8738-491811D65022</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4B53669A-34FC-4B40-8738-491811D65022</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iosBrokus</string>
+		</dict>
+	</array>
+</dict>
+</plist>

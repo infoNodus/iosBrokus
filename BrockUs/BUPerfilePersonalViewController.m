@@ -53,7 +53,9 @@
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
     [UIView commitAnimations];
     self.regresar.delegate =(id)self;
-    [self presentViewController:self.regresar animated:YES completion:nil];
+    UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.regresar];
+    navContr.title=@"Perfil";
+    [self presentViewController:navContr animated:YES completion:nil];
     NSLog(@"hdjfhdjf");
 }
 @end

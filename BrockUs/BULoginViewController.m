@@ -350,8 +350,7 @@
     
     
     
-    //Termina validacion de email correcto y datos llenos enlos textfield
-
+     
 }
 
 

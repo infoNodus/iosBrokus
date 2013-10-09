@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>F8B3B7D8-2E41-4344-B690-8AB893B22D27</string>
+	<string>B9A0809E-6E2E-4133-9619-9A5746445084</string>
 	<key>IDESourceControlProjectName</key>
 	<string>BrockUs</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>4B53669A-34FC-4B40-8738-491811D65022</key>
-		<string>ssh://192.168.1.100/repos/iosBrokus</string>
+		<key>21E3A329-8457-4185-BF80-E765AE137E19</key>
+		<string>ssh://192.168.1.100/repos/iosBrokus.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>BrockUs.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>4B53669A-34FC-4B40-8738-491811D65022</key>
+		<key>21E3A329-8457-4185-BF80-E765AE137E19</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://192.168.1.100/repos/iosBrokus</string>
+	<string>ssh://192.168.1.100/repos/iosBrokus.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>4B53669A-34FC-4B40-8738-491811D65022</string>
+	<string>21E3A329-8457-4185-BF80-E765AE137E19</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>4B53669A-34FC-4B40-8738-491811D65022</string>
+			<string>21E3A329-8457-4185-BF80-E765AE137E19</string>
 			<key>IDESourceControlWCCName</key>
 			<string>iosBrokus</string>
 		</dict>

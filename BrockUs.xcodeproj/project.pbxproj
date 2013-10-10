@@ -102,7 +102,6 @@
 		D166442E18045241002DCF3E /* Persona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Persona.h; sourceTree = "<group>"; };
 		D166442F18045241002DCF3E /* Persona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Persona.m; sourceTree = "<group>"; };
 		D186F4DA17F5DA5900D13B66 /* BrockUs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BrockUs.xcdatamodel; sourceTree = "<group>"; };
-		D18F8DA2180704C500BF9771 /* TESTE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TESTE.h; sourceTree = "<group>"; };
 		D18F8DA3180704C500BF9771 /* TESTE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TESTE.m; sourceTree = "<group>"; };
 		D1AC73D917FDBAF5003D0CE1 /* Sector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sector.h; sourceTree = "<group>"; };
 		D1AC73DA17FDBAF5003D0CE1 /* Sector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sector.m; sourceTree = "<group>"; };
@@ -290,7 +289,6 @@
 				D1AC73DD17FDBAF5003D0CE1 /* Subsector.m */,
 				D1AC73D917FDBAF5003D0CE1 /* Sector.h */,
 				D1AC73DA17FDBAF5003D0CE1 /* Sector.m */,
-				D18F8DA2180704C500BF9771 /* TESTE.h */,
 				D18F8DA3180704C500BF9771 /* TESTE.m */,
 			);
 			name = Model;

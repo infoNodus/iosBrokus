@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B8BA5CA180709AA006928C3 /* TESTE2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8BA5C8180709AA006928C3 /* TESTE2.m */; };
+		1B8BA5CB180709AA006928C3 /* TESTE2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8BA5C9180709AA006928C3 /* TESTE2.xib */; };
 		762670DA17F3458000B5E485 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762670D917F3458000B5E485 /* UIKit.framework */; };
 		762670DC17F3458000B5E485 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762670DB17F3458000B5E485 /* Foundation.framework */; };
 		762670DE17F3458000B5E485 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762670DD17F3458000B5E485 /* CoreGraphics.framework */; };
@@ -73,6 +75,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B8BA5C7180709AA006928C3 /* TESTE2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TESTE2.h; sourceTree = "<group>"; };
+		1B8BA5C8180709AA006928C3 /* TESTE2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TESTE2.m; sourceTree = "<group>"; };
+		1B8BA5C9180709AA006928C3 /* TESTE2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TESTE2.xib; sourceTree = "<group>"; };
 		762670D617F3458000B5E485 /* BrockUs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrockUs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		762670D917F3458000B5E485 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		762670DB17F3458000B5E485 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -287,6 +292,9 @@
 				D1AC73DD17FDBAF5003D0CE1 /* Subsector.m */,
 				D1AC73D917FDBAF5003D0CE1 /* Sector.h */,
 				D1AC73DA17FDBAF5003D0CE1 /* Sector.m */,
+				1B8BA5C7180709AA006928C3 /* TESTE2.h */,
+				1B8BA5C8180709AA006928C3 /* TESTE2.m */,
+				1B8BA5C9180709AA006928C3 /* TESTE2.xib */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -521,6 +529,7 @@
 				D152660F17FC7EB8008B6B7E /* BrockUs.sqlite in Resources */,
 				D726B69817FF0B1D00C38CFF /* BUPublicacionViewController.xib in Resources */,
 				D7837A7517F4A32E007BDD0A /* BUInvitarPersonaViewController.xib in Resources */,
+				1B8BA5CB180709AA006928C3 /* TESTE2.xib in Resources */,
 				DF8884E617FF1C1200683332 /* BUSeleccionaFechaViewController.xib in Resources */,
 				D73D883A180463F900DFD056 /* BrokusLogo.png in Resources */,
 				D7837A7717F4A32E007BDD0A /* BUPanelIzquierdoViewController.xib in Resources */,
@@ -551,6 +560,7 @@
 				DF8884E517FF1C1200683332 /* BUSeleccionaFechaViewController.m in Sources */,
 				762670EC17F3458000B5E485 /* BUAppDelegate.m in Sources */,
 				D1AC73F017FDBC00003D0CE1 /* BUConsultaPublicacion.m in Sources */,
+				1B8BA5CA180709AA006928C3 /* TESTE2.m in Sources */,
 				763CF16517F355BA00A67E61 /* BULoginViewController.m in Sources */,
 				763CF16717F355BA00A67E61 /* BUPerfilEmpresaViewController.m in Sources */,
 				D1AC73ED17FDBAF5003D0CE1 /* Publicacion.m in Sources */,

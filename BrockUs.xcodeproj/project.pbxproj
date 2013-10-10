@@ -26,6 +26,7 @@
 		D152660F17FC7EB8008B6B7E /* BrockUs.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = D152660E17FC7EB8008B6B7E /* BrockUs.sqlite */; };
 		D166443018045241002DCF3E /* Persona.m in Sources */ = {isa = PBXBuildFile; fileRef = D166442F18045241002DCF3E /* Persona.m */; };
 		D186F4DB17F5DA5900D13B66 /* BrockUs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D186F4D917F5DA5900D13B66 /* BrockUs.xcdatamodeld */; };
+		D18F8DA4180704C500BF9771 /* TESTE.m in Sources */ = {isa = PBXBuildFile; fileRef = D18F8DA3180704C500BF9771 /* TESTE.m */; };
 		D1AC73DB17FDBAF5003D0CE1 /* Sector.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AC73DA17FDBAF5003D0CE1 /* Sector.m */; };
 		D1AC73DE17FDBAF5003D0CE1 /* Subsector.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AC73DD17FDBAF5003D0CE1 /* Subsector.m */; };
 		D1AC73E117FDBAF5003D0CE1 /* Empresa.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AC73E017FDBAF5003D0CE1 /* Empresa.m */; };
@@ -101,6 +102,8 @@
 		D166442E18045241002DCF3E /* Persona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Persona.h; sourceTree = "<group>"; };
 		D166442F18045241002DCF3E /* Persona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Persona.m; sourceTree = "<group>"; };
 		D186F4DA17F5DA5900D13B66 /* BrockUs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BrockUs.xcdatamodel; sourceTree = "<group>"; };
+		D18F8DA2180704C500BF9771 /* TESTE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TESTE.h; sourceTree = "<group>"; };
+		D18F8DA3180704C500BF9771 /* TESTE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TESTE.m; sourceTree = "<group>"; };
 		D1AC73D917FDBAF5003D0CE1 /* Sector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sector.h; sourceTree = "<group>"; };
 		D1AC73DA17FDBAF5003D0CE1 /* Sector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sector.m; sourceTree = "<group>"; };
 		D1AC73DC17FDBAF5003D0CE1 /* Subsector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subsector.h; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 				D1AC73DD17FDBAF5003D0CE1 /* Subsector.m */,
 				D1AC73D917FDBAF5003D0CE1 /* Sector.h */,
 				D1AC73DA17FDBAF5003D0CE1 /* Sector.m */,
+				D18F8DA2180704C500BF9771 /* TESTE.h */,
+				D18F8DA3180704C500BF9771 /* TESTE.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -570,6 +575,7 @@
 				D1AC73E717FDBAF5003D0CE1 /* Notificacion.m in Sources */,
 				D1AC73DE17FDBAF5003D0CE1 /* Subsector.m in Sources */,
 				D7837A7817F4A32E007BDD0A /* BUResultadoBusquedaViewController.m in Sources */,
+				D18F8DA4180704C500BF9771 /* TESTE.m in Sources */,
 				D186F4DB17F5DA5900D13B66 /* BrockUs.xcdatamodeld in Sources */,
 				D1AC73DB17FDBAF5003D0CE1 /* Sector.m in Sources */,
 			);

@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *MailUser;
 @property (weak, nonatomic) IBOutlet UILabel *Sector;
 //test
+- (IBAction)Salir:(id)sender;
 
 @end

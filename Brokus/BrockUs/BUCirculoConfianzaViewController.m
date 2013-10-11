@@ -17,7 +17,7 @@
 #import "Circulo.h"
 #import "Publicacion.h"
 #import "BUMinVistaCirculoCell.h"
-#import "BUDetallePublicacionViewController.h"
+#import "BUPerfilEmpresaViewController.h"
 
 
 @interface BUCirculoConfianzaViewController ()
@@ -30,8 +30,10 @@
 @property (strong) Persona *userbrockus;
 @property (strong) BUPublicacionViewController *pub;
 @property (strong) NSArray *listaPublicaciones;
+@property (strong) NSOrderedSet *listaCirculo;
 @property (strong) BUPerfilEmpresaViewController *miperfil;
 @property (strong) BUCirculoConfianzaViewController *circulo;
+@property (strong) BUPerfilEmpresaViewController *salir;
 //test
 @end
 //test
@@ -55,7 +57,7 @@ NSString *userenterprise;
     
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
-    
+     self.salir=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
     //test
     BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];
     NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
@@ -69,16 +71,17 @@ NSString *userenterprise;
     if (self.userbrockus.img != nil) {
         self.ImageUser.image = [[UIImage alloc] initWithData:self.userbrockus.img];
     }
+    
+    self.listaCirculo = [[NSOrderedSet alloc] initWithSet:self.userbrockus.toCirculo];
+    
     self.listaPublicaciones = [[NSArray alloc] init];
-    self.listaPublicaciones = [consulta recuperaPersonasCirculoPorPersona:self.userbrockus toContext:context];
+    //self.listaPublicaciones = [self.userbrockus.toCirculo allObjects];
+    self.listaPublicaciones = [self.listaCirculo copy];
     
-//    self.persona = [consulta recuperaPersona:[[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"] :context];
-//    if(self.persona != nil && self.persona.toPublicacion != nil && [self.persona.toPublicacion count] > 0) {
-//        self.listaPublicaciones = [self.persona.toPublicacion allObjects];
-//    }
-//    self.regresar=[[BUPublicacionViewController alloc] initWithNibName:@"BUPublicacionViewController" bundle:nil];
+//    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"nombre" ascending:YES];
+//    self.listaPublicaciones=[self.listaPublicaciones sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
     
-    self.listaPublicaciones = [self.userbrockus.toCirculo copy];
+    
     //test
     
 }
@@ -109,16 +112,15 @@ NSString *userenterprise;
                                             options:nil] lastObject];
     }
     //Circulo *personaCirculo = self.listaPublicaciones[indexPath.row];
-    Circulo *personaCirculo = self.listaPublicaciones;
-//    NSLog(personaCirculo.isAceptado);
+    Circulo *personaCirculo = self.listaPublicaciones[indexPath.row];
+    NSLog(@"lista %@", personaCirculo.toAmigo.nombre);
     cell.empresaTxt.text = personaCirculo.toAmigo.toEmpresa.nombre;
-//    cell.usuarioTxt.text = personaCirculo.toAmigo.nombre;
-//    cell.sectorTxt.text = personaCirculo.toAmigo.Sector;
-    //cell.subsectorTxt.text = personaCirculo.toAmigo.
+    cell.usuarioTxt.text = personaCirculo.toAmigo.nombre;
+    cell.cargoTxt.text = personaCirculo.toAmigo.puesto;
     
-//    if(personaCirculo.toAmigo.img != nil) {
-//        cell.imgImagen.image = [[UIImage alloc] initWithData:personaCirculo.toAmigo.img];
-//    }
+    if(personaCirculo.toAmigo.img != nil) {
+        cell.imageView.image = [[UIImage alloc] initWithData:personaCirculo.toAmigo.img];
+    }
     
 //    //[cell setSelected:YES animated:YES];
 //    return cell;
@@ -134,9 +136,9 @@ NSString *userenterprise;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    BUDetallePublicacionViewController *detalle = [[BUDetallePublicacionViewController alloc] initWithPublicacion:self.listaPublicaciones[indexPath.row]];
-    NSLog(@"%@", self.navigationController);
-    [self.navigationController pushViewController:detalle animated:YES];
+//    BUDetallePublicacionViewController *detalle = [[BUDetallePublicacionViewController alloc] initWithPublicacion:self.listaPublicaciones[indexPath.row]];
+//    NSLog(@"%@", self.navigationController);
+//    [self.navigationController pushViewController:detalle animated:YES];
 }
 
 /*
@@ -197,4 +199,14 @@ NSString *userenterprise;
  */
 
 
+- (IBAction)Salir:(id)sender {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1.4];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
+    [UIView commitAnimations];
+    
+   self.salir.delegate=(id)self;
+[self presentViewController:self.salir animated:YES completion:nil ];
+
+}
 @end

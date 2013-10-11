@@ -20,6 +20,8 @@
 #import "BUDetallePublicacionViewController.h"
 #import "BUPerfilePersonalViewController.h"
 #import "BUCirculoConfianzaViewController.h"
+#import "BUSeccionPublicacionesViewController.h"
+
 
 @interface BUPerfilEmpresaViewController ()
 {
@@ -35,6 +37,7 @@
 @property (strong) BUCirculoConfianzaViewController *circulo;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *btnCrearPublicacion;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *btnSalir;
+
 @end
 NSString *userenterprise;
 @implementation BUPerfilEmpresaViewController
@@ -70,6 +73,8 @@ NSString *userenterprise;
     self.miperfil=[[BUPerfilePersonalViewController alloc]initWithNibName:@"BUPerfilePersonalViewController" bundle:nil];
     
     self.pub=[[BUPublicacionViewController alloc] initWithNibName:@"BUPublicacionViewController" bundle:nil];
+    
+    
     
     self.circulo=[[BUCirculoConfianzaViewController alloc] initWithNibName:@"BUCirculoConfianzaViewController" bundle:nil];
 
@@ -137,7 +142,9 @@ NSString *userenterprise;
     [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
     [UIView commitAnimations];
      self.miperfil.delegate =(id)self;
-    [self presentViewController:self.miperfil animated:YES completion:nil];
+
+    [self.navigationController pushViewController:self.miperfil animated:YES];
+//    [self presentViewController:self.miperfil animated:YES completion:nil];
     
     UIAlertView *alertafecha =[[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Recuerda que esto es una vista previa de como te ven los demas usuarios." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertafecha show];
@@ -150,8 +157,15 @@ NSString *userenterprise;
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
     [UIView commitAnimations];
     
+    
     self.circulo.delegate=(id)self;
-    [self presentViewController:self.circulo animated:YES completion:nil];
+    UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.self.circulo];
+    navContr.title=@"Perfil";
+    [self.navigationController pushViewController:self.circulo animated:YES];
+//    [self presentViewController:self.circulo animated:YES completion:nil];
+}
+
+- (IBAction)MisPublicacionesTapped:(id)sender {
 }
 
 #pragma mark - TableViewController methods
@@ -184,7 +198,7 @@ NSString *userenterprise;
     [df setDateFormat:@"MM/dd/yyyy"];
     cell.txtFechaInicio.text = [df stringFromDate:publicacion.fechaIni];
     cell.txtFechaFin.text = [df stringFromDate:publicacion.fecha];
-    //NSDate *fecha=[];
+    cell.txtSector.text = publicacion.toSubsector.toSector.nombre;
     if(publicacion.img != nil) {
         cell.imgImagen.image = [[UIImage alloc] initWithData:publicacion.img];
     }

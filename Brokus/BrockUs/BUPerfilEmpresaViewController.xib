@@ -100,6 +100,11 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
                         <navigationItem id="Q6B-V9-Sx4">
+                            <barButtonItem key="leftBarButtonItem" title="Mis Publicaciones" id="zj2-c9-aKN">
+                                <connections>
+                                    <action selector="MisPublicacionesTapped:" destination="-1" id="fCo-BJ-Gyw"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem key="rightBarButtonItem" title="Mi Perfil" id="1nM-QD-m2c">
                                 <connections>
                                     <action selector="miperfil:" destination="-1" id="4gl-K7-4qN"/>

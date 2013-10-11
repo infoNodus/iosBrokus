@@ -28,5 +28,6 @@
 - (IBAction)CrearPublicacionBtn:(id)sender;
 - (IBAction)miperfil:(id)sender;
 - (IBAction)CirculoConfianza:(id)sender;
+- (IBAction)MisPublicacionesTapped:(id)sender;
 
 @end

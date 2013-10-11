@@ -334,7 +334,7 @@
         
         insertPublicacion.toSubsector=subsector;
         NSLog(@"Subsector Seleccionado: %@",subsector);
-        insertPublicacion.status = [[NSNumber alloc] initWithBool:YES];
+        insertPublicacion.status = [[NSNumber alloc] initWithInt:1];
         insertPublicacion.fechaIni = [[NSDate alloc] init];
         BOOL success=[context save:&error];
         if(success==NO || error!=nil){
@@ -416,8 +416,12 @@
 
     
 }
-
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    UITextField *theTextField = [alertView textFieldAtIndex:0];
+    NSString *text = theTextField.text;
+    
+    // ...
+}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];

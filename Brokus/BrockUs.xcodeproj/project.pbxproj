@@ -24,7 +24,6 @@
 		D11797EF17FF1EF9003A2097 /* BUDetallePublicacionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D11797ED17FF1EF9003A2097 /* BUDetallePublicacionViewController.m */; };
 		D11797F017FF1EF9003A2097 /* BUDetallePublicacionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D11797EE17FF1EF9003A2097 /* BUDetallePublicacionViewController.xib */; };
 		D11AE11118084124001BA63E /* BUMinVistaCirculoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D11AE11018084124001BA63E /* BUMinVistaCirculoCell.m */; };
-		D11AE11618084747001BA63E /* Publicacion.m in Sources */ = {isa = PBXBuildFile; fileRef = D11AE11518084747001BA63E /* Publicacion.m */; };
 		D152660F17FC7EB8008B6B7E /* BrockUs.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = D152660E17FC7EB8008B6B7E /* BrockUs.sqlite */; };
 		D166443018045241002DCF3E /* Persona.m in Sources */ = {isa = PBXBuildFile; fileRef = D166442F18045241002DCF3E /* Persona.m */; };
 		D186F4DB17F5DA5900D13B66 /* BrockUs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D186F4D917F5DA5900D13B66 /* BrockUs.xcdatamodeld */; };
@@ -35,6 +34,7 @@
 		D1AC73EA17FDBAF5003D0CE1 /* Circulo.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AC73E917FDBAF5003D0CE1 /* Circulo.m */; };
 		D1AC73F017FDBC00003D0CE1 /* BUConsultaPublicacion.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AC73EF17FDBC00003D0CE1 /* BUConsultaPublicacion.m */; };
 		D1B2D0E5180711F20098B937 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B2D0E4180711F20098B937 /* MessageUI.framework */; };
+		D1F4FBAA180C359C002FC839 /* Publicacion.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F4FBA9180C359C002FC839 /* Publicacion.m */; };
 		D1F8DCB617FF3C3E00133E01 /* BURegistroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1F8DCB517FF3C3E00133E01 /* BURegistroViewController.xib */; };
 		D7093CED17FC60E40024B030 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D7093CEC17FC60E40024B030 /* Default~iphone.png */; };
 		D7093CEF17FC61C30024B030 /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D7093CEE17FC61C30024B030 /* Default-568h@2x~iphone.png */; };
@@ -118,8 +118,6 @@
 		D11797EE17FF1EF9003A2097 /* BUDetallePublicacionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BUDetallePublicacionViewController.xib; sourceTree = "<group>"; };
 		D11AE10F18084124001BA63E /* BUMinVistaCirculoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUMinVistaCirculoCell.h; sourceTree = "<group>"; };
 		D11AE11018084124001BA63E /* BUMinVistaCirculoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUMinVistaCirculoCell.m; sourceTree = "<group>"; };
-		D11AE11418084747001BA63E /* Publicacion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Publicacion.h; sourceTree = "<group>"; };
-		D11AE11518084747001BA63E /* Publicacion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Publicacion.m; sourceTree = "<group>"; };
 		D152660E17FC7EB8008B6B7E /* BrockUs.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = BrockUs.sqlite; sourceTree = "<group>"; };
 		D166442E18045241002DCF3E /* Persona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Persona.h; sourceTree = "<group>"; };
 		D166442F18045241002DCF3E /* Persona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Persona.m; sourceTree = "<group>"; };
@@ -137,6 +135,8 @@
 		D1AC73EE17FDBC00003D0CE1 /* BUConsultaPublicacion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUConsultaPublicacion.h; sourceTree = "<group>"; };
 		D1AC73EF17FDBC00003D0CE1 /* BUConsultaPublicacion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUConsultaPublicacion.m; sourceTree = "<group>"; };
 		D1B2D0E4180711F20098B937 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		D1F4FBA8180C359C002FC839 /* Publicacion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Publicacion.h; sourceTree = "<group>"; };
+		D1F4FBA9180C359C002FC839 /* Publicacion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Publicacion.m; sourceTree = "<group>"; };
 		D1F8DCB517FF3C3E00133E01 /* BURegistroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BURegistroViewController.xib; sourceTree = "<group>"; };
 		D7093CEC17FC60E40024B030 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
 		D7093CEE17FC61C30024B030 /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
@@ -319,8 +319,8 @@
 		D1C4A43817F486630088BE96 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D11AE11418084747001BA63E /* Publicacion.h */,
-				D11AE11518084747001BA63E /* Publicacion.m */,
+				D1F4FBA8180C359C002FC839 /* Publicacion.h */,
+				D1F4FBA9180C359C002FC839 /* Publicacion.m */,
 				D166442E18045241002DCF3E /* Persona.h */,
 				D166442F18045241002DCF3E /* Persona.m */,
 				D1AC73E817FDBAF5003D0CE1 /* Circulo.h */,
@@ -688,12 +688,12 @@
 				D7DCD213180481D500D434F8 /* BUPerfilEmpresaDesconocidoViewController.m in Sources */,
 				DA1F6E85180865850025D317 /* BUPublicacionesInactivasVC.m in Sources */,
 				D7837A7417F4A32E007BDD0A /* BUInvitarPersonaViewController.m in Sources */,
-				D11AE11618084747001BA63E /* Publicacion.m in Sources */,
 				D11797EF17FF1EF9003A2097 /* BUDetallePublicacionViewController.m in Sources */,
 				D726B69717FF0B1D00C38CFF /* BUPublicacionViewController.m in Sources */,
 				D726B6A317FF2A8200C38CFF /* BUPerfilePersonalViewController.m in Sources */,
 				D1AC73E117FDBAF5003D0CE1 /* Empresa.m in Sources */,
 				D7837A7617F4A32E007BDD0A /* BUPanelIzquierdoViewController.m in Sources */,
+				D1F4FBAA180C359C002FC839 /* Publicacion.m in Sources */,
 				DF8899DF1806F7AE00EE6F9D /* BUCirculoConfianzaViewController.m in Sources */,
 				D1AC73E717FDBAF5003D0CE1 /* Notificacion.m in Sources */,
 				D1AC73DE17FDBAF5003D0CE1 /* Subsector.m in Sources */,

@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BUPerfilEmpresaDesconocidoViewController : UIViewController
+@class Persona;
+
+@interface BUPerfilEmpresaDesconocidoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+
+@property (strong) Persona *persona;
+
+@property (strong, nonatomic) IBOutlet UILabel *personaTxt;
+@property (strong, nonatomic) IBOutlet UILabel *empresaTxt;
+@property (strong, nonatomic) IBOutlet UILabel *puestoTxt;
+@property (strong, nonatomic) IBOutlet UILabel *subsectorTxt;
+@property (strong, nonatomic) IBOutlet UILabel *sectorTxt;
+
+-(id) initWithPersona:(Persona *)persona;
+
 
 @end

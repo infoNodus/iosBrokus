@@ -2,7 +2,7 @@
 //  Publicacion.m
 //  BrockUs
 //
-//  Created by Nodus3 on 11/10/13.
+//  Created by Nodus3 on 14/10/13.
 //  Copyright (c) 2013 Nodus. All rights reserved.
 //
 
@@ -15,13 +15,14 @@
 
 @dynamic descripcion;
 @dynamic fecha;
+@dynamic fechaIni;
 @dynamic id;
 @dynamic img;
 @dynamic nameImg;
 @dynamic status;
 @dynamic titulo;
 @dynamic urlPath;
-@dynamic fechaIni;
+@dynamic linkAnexo;
 @dynamic toPersona;
 @dynamic toSubsector;
 

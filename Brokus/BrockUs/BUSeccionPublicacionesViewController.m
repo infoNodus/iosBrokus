@@ -17,7 +17,8 @@
 @end
 
 @implementation BUSeccionPublicacionesViewController
-@synthesize presenterVC;
+@synthesize presentaActivas;
+@synthesize presentaInactivas;
 @synthesize publicacionesActivas;
 @synthesize publicacionesInactivas;
 
@@ -34,7 +35,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    presenterVC=[[BUPublicacionesActivasVC alloc]init];
+    presentaActivas=[[BUPublicacionesActivasVC alloc]init];
+    presentaInactivas=[[BUPublicacionesInactivasVC alloc]init];
     [self presentaPublicacionesActivas];
     self.perfil=[[BUPerfilEmpresaViewController alloc]initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
 }
@@ -47,9 +49,9 @@
 }
 
 -(void)presentaPublicacionesActivas{
-    [self addChildViewController:presenterVC];
-    presenterVC.view.frame=CGRectMake(0, 44, 320, 504);
-    [self.view addSubview:presenterVC.view];
+    [self addChildViewController:presentaActivas];
+    presentaActivas.view.frame=CGRectMake(0, 44, 320, 504);
+    [self.view addSubview:presentaActivas.view];
     /*publicacionesActivas.frame=CGRectMake(0, 44, 320, 504);
      [presenterVC reloadTable];
      [publicacionesActivas addSubview:presenterVC.view];
@@ -58,9 +60,9 @@
 }
 
 -(void)presentaPublicacionesInActivas{
-    publicacionesInactivas.frame=CGRectMake(0, 44, 320, 504);
-    
-    [self.view addSubview:publicacionesInactivas];
+    [self addChildViewController:presentaInactivas];
+    presentaInactivas.view.frame=CGRectMake(0, 44, 320, 504);
+    [self.view addSubview:presentaInactivas.view];
     
 }
 
@@ -70,9 +72,10 @@
 
 - (IBAction)canceltapped:(id)sender {
     self.perfil.delegate=(id)self;
-    [self presentViewController:self.perfil animated:YES completion:nil];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:self.perfil];
+    [self presentViewController:nc animated:YES completion:nil];
     
-      [presenterVC dismissViewControllerAnimated:YES completion:nil];
+      [presentaActivas dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)optionsTapped:(id)sender {

@@ -18,7 +18,7 @@
 
 @synthesize context;
 @synthesize selectedText;
-
+@synthesize textField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,9 +38,10 @@
     [super viewDidLoad];
     Sector *initialize=[dataArray objectAtIndex:0];
     selectedText=initialize.nombre;
-    textField.text=selectedText;
+    //textField.text=selectedText;
     
 }
+
 
 - (void)viewDidUnload
 {

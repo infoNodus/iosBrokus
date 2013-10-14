@@ -50,7 +50,7 @@
     NSEntityDescription *consulta = [NSEntityDescription
                                      entityForName:@"Publicacion" inManagedObjectContext:context];
     
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@" status=%i",1];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@" status=1"];
     [request setPredicate:predicate];
     
     
@@ -61,8 +61,9 @@
     
 }
 -(void)viewDidAppear:(BOOL)animated{
-    [self.tableView reloadData];
+    [self reloadTable];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -77,6 +78,10 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *consulta = [NSEntityDescription
                                      entityForName:@"Publicacion" inManagedObjectContext:context];
+    
+    
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@" status=1"];
+    [request setPredicate:predicate];
     
     [request setEntity:consulta];
     
@@ -136,22 +141,25 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-
-        pub=[fetchedArray objectAtIndex:indexPath.row];
-        pub.status=0;
-        NSLog(@"publicacion inactiva: %@",pub);
-        NSError *error = nil;
-        // Save the object to persistent store
-        if (![context save:&error]) {
-            NSLog(@"Error al desactivar publicacion; %@ %@", error, [error localizedDescription]);
+        if ([fetchedArray count] >= 1) {
+            [tableView beginUpdates];
+            pub=[fetchedArray objectAtIndex:indexPath.row];
+            pub.status=[[NSNumber alloc] initWithInt:0] ;
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [fetchedArray removeObjectAtIndex:[indexPath row]];
+            NSLog(@"PUBLICACION: %@",pub);
+            
+            /*if ([fetchedArray count] == 0) {
+                [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }*/
+            NSError *error = nil;
+            // Save the object to persistent store
+            if (![context save:&error]) {
+                NSLog(@"Error al actualizar los datos: %@ %@", error, [error localizedDescription]);
+            }
+            [tableView endUpdates];
         }
-        [self.tableView reloadData];
     }
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
-    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [fetchedArray removeObjectAtIndex:indexPath.row];
 
 }
 

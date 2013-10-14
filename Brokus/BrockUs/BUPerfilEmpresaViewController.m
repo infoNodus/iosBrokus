@@ -141,8 +141,8 @@ NSString *userenterprise;
     [UIView setAnimationDuration:1.5];
     [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
     [UIView commitAnimations];
+    
      self.miperfil.delegate =(id)self;
-
     [self.navigationController pushViewController:self.miperfil animated:YES];
 //    [self presentViewController:self.miperfil animated:YES completion:nil];
     

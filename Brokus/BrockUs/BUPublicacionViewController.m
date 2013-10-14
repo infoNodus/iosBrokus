@@ -30,6 +30,7 @@
 @property (strong) BUPerfilEmpresaViewController *perfil;
 @property (strong) BUMuroPublicacionesViewController *muro;
 //@property (nonatomic, retain) NSManagedObjectContext *context;
+@property (strong) NSString* link;
 
 @end
 
@@ -332,6 +333,10 @@
 
         }
         
+        if(![self.link isEqualToString:@""]) {
+            insertPublicacion.linkAnexo = self.link;
+        }
+        
         insertPublicacion.toSubsector=subsector;
         NSLog(@"Subsector Seleccionado: %@",subsector);
         insertPublicacion.status = [[NSNumber alloc] initWithInt:1];
@@ -404,15 +409,7 @@
     if (buttonIndex == 1) {
         NSLog(@"Texto: %@",[[alertView textFieldAtIndex:0]text]);
         UITextField *theTextField = [alertView textFieldAtIndex:0];
-        NSString *text = theTextField.text;
-        //realizar insercion de link
-
-        
-        
-        //Terminar codigo para insertar anexo
-        
-       
-       
+        self.link = theTextField.text;
     }
 }
 

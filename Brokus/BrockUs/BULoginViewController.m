@@ -221,7 +221,9 @@
                         [UIView commitAnimations];
                         
                         self.perfil.delegate=(id)self;
-                        [self presentViewController:self.perfil animated:YES completion:nil];
+                        UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.perfil];
+                        navContr.title=@"Perfil";
+                        [self presentViewController:navContr animated:YES completion:nil];
                         
                     }
                 }

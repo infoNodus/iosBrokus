@@ -343,7 +343,7 @@
 
         }else{
             NSLog(@"Datos guardados correctamente");
-            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"INFORMACION" message:@"Publicacion realizada satisfactoriamente" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"INFORMACION" message:@"Publicación realizada satisfactoriamente" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                [alert show];
             
             
@@ -403,6 +403,16 @@
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
         NSLog(@"Texto: %@",[[alertView textFieldAtIndex:0]text]);
+        UITextField *theTextField = [alertView textFieldAtIndex:0];
+        NSString *text = theTextField.text;
+        //realizar insercion de link
+
+        
+        
+        //Terminar codigo para insertar anexo
+        
+       
+       
     }
 }
 
@@ -412,16 +422,8 @@
    [alert show];
     
     
-    
+}
 
-    
-}
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    UITextField *theTextField = [alertView textFieldAtIndex:0];
-    NSString *text = theTextField.text;
-    
-    // ...
-}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];

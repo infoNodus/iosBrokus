@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Circulo" representedClassName="Circulo" syncable="YES">
         <attribute name="isAceptado" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="toAmigo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Persona" syncable="YES"/>
@@ -36,6 +36,7 @@
         <attribute name="fechaIni" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="img" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="linkAnexo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameImg" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="titulo" optional="YES" attributeType="String" syncable="YES"/>
@@ -60,7 +61,7 @@
         <element name="Empresa" positionX="-56" positionY="-123" width="128" height="105"/>
         <element name="Notificacion" positionX="376" positionY="63" width="128" height="90"/>
         <element name="Persona" positionX="162" positionY="-108" width="128" height="225"/>
-        <element name="Publicacion" positionX="-54" positionY="-6" width="128" height="208"/>
+        <element name="Publicacion" positionX="-54" positionY="-6" width="128" height="223"/>
         <element name="Sector" positionX="-459" positionY="-27" width="128" height="90"/>
         <element name="Subsector" positionX="-270" positionY="-30" width="128" height="120"/>
     </elements>

@@ -40,6 +40,11 @@
     self.oEmpresa.text = self.publicacion.toPersona.toEmpresa.nombre;
     //self.oEmail.textInputContextIdentifier = self.publicacion.toPersona.usuario;
     [self.oEmail setTitle:self.publicacion.toPersona.usuario forState:UIControlStateNormal] ;
+    
+    // Si la publicacion no tiene anexos se desahabilita la opcion de descargar anexos.
+    if(self.publicacion.linkAnexo == nil) {
+        [self.oDescarga setEnabled:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,6 +73,10 @@
 
     // Mostramos la ventana para editar el mensaje.
     [self presentViewController:mailer animated:YES completion:nil];
+}
+
+- (IBAction)descargaTapped:(id)sender {
+    
 }
 
 # pragma mark - Metodos del MFMailComposeViewController

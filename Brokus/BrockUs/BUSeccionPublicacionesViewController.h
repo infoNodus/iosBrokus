@@ -10,11 +10,13 @@
 #import "BUPublicacionesActivasVC.h"
 #import "BUPerfilEmpresaViewController.h"
 #import "BUSeccionPublicacionesViewController.h"
+#import "BUPublicacionesInactivasVC.h"
 
 @protocol BUSeccionPublicacionesDelegate;
 
 @interface BUSeccionPublicacionesViewController : UIViewController
-@property (strong, nonatomic) BUPublicacionesActivasVC *presenterVC;
+@property (strong, nonatomic) BUPublicacionesActivasVC *presentaActivas;
+@property (strong) BUPublicacionesInactivasVC *presentaInactivas;
 @property (strong, nonatomic) IBOutlet UIView *publicacionesActivas;
 @property (strong, nonatomic) IBOutlet UIView *publicacionesInactivas;
 @property (weak) id <BUSeccionPublicacionesDelegate> delegate;

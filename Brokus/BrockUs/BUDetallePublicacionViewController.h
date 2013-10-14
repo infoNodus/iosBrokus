@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *oPersona;
 @property (weak, nonatomic) IBOutlet UILabel *oEmpresa;
 @property (weak, nonatomic) IBOutlet UIButton *oEmail;
+@property (weak, nonatomic) IBOutlet UIButton *oDescarga;
 
 -(id) initWithPublicacion:(Publicacion *)publicacion;
 @end

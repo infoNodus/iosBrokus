@@ -21,6 +21,7 @@
     if (self) {
         self.urlStr = urlStr;
         self.title = @"Link Anexo";
+        
     }
     return self;
 }

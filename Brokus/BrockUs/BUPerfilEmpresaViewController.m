@@ -93,6 +93,14 @@ NSString *userenterprise;
     self.listaPublicaciones = [[NSArray alloc] init];
     self.listaPublicaciones = [consulta recuperaPublicacionPorEmpresa:self.userbrockus.toEmpresa toContext:context];
     //NSLog(@"Registros: %d",[self.listaPublicaciones count]);
+    
+    
+    //ordenadas
+    NSSortDescriptor *byFecha = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:YES];
+    NSSortDescriptor *byTitulo = [NSSortDescriptor sortDescriptorWithKey:@"titulo" ascending:YES];
+    NSSortDescriptor *byDescripcion = [NSSortDescriptor sortDescriptorWithKey:@"descripcion" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:byFecha, byTitulo, byDescripcion, nil];
+    self.listaPublicaciones = [self.listaPublicaciones sortedArrayUsingDescriptors:sortDescriptors];
 }
 
 - (void)didReceiveMemoryWarning

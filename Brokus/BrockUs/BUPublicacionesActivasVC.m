@@ -9,12 +9,14 @@
 #import "BUPublicacionesActivasVC.h"
 #import "BUAppDelegate.h"
 #import "Publicacion.h"
+#import "BUConsultaPublicacion.h"
 #import "BUConsultaDetallePubVC.h"
 
 @interface BUPublicacionesActivasVC (){
     NSManagedObjectContext *context;
     NSMutableArray *fetchedArray;
 }
+@property (strong) Persona *userbrockus;
 
 @end
 
@@ -44,13 +46,17 @@
     
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
+    BUConsultaPublicacion *cons=[[BUConsultaPublicacion alloc] init];
+    NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
+    self.userbrockus = [cons recuperaPersona:userStr :context];
     
     NSError *error;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *consulta = [NSEntityDescription
                                      entityForName:@"Publicacion" inManagedObjectContext:context];
     
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@" status=1"];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toPersona=%@ AND status=1",self.userbrockus];
+    NSLog(@"Usuario de consulta: %@",self.userbrockus);
     [request setPredicate:predicate];
     
     
@@ -169,6 +175,9 @@
     [self presentViewController:consultaDetallePub animated:YES completion:nil];
 }
 
+-(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"Desactivar";
+}
 
 /*
  // Override to support rearranging the table view.

@@ -32,7 +32,7 @@
     
     // Filtrando por el sector.
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"toSubsector.toSector = %@", toSector];
+                              @"toSubsector.toSector = %@ AND status=1", toSector];
     
     // En dado caso de que no acepte un objeto para la busqueda....
 //    NSPredicate *predicate = [NSPredicate predicateWithFormat:

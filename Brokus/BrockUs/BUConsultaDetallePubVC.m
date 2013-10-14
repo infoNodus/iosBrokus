@@ -62,7 +62,7 @@
     NSEntityDescription *requestEmpresa=[NSEntityDescription entityForName:@"Subsector" inManagedObjectContext:context];
     [fetchRequest setEntity:requestEmpresa];
     //usamos la propiedad persona para obtener su empresa
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@" nombre=%@",publicacion.toSubsector.nombre];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"nombre=%@",publicacion.toSubsector.nombre];
     [fetchRequest setPredicate:predicate];
     
     
@@ -207,8 +207,9 @@
         publicacion.fecha=[datePicker date];
         publicacion.titulo=self.tituloTxt.text;
         publicacion.descripcion=self.descripcionTxt.text;
-        NSLog(@"subsector editado:%@",nombreSubSector);
+        
         publicacion.toSubsector=nombreSubSector;
+        NSLog(@"Publicacion editada:%@",publicacion);
     }
     
     NSError *error = nil;

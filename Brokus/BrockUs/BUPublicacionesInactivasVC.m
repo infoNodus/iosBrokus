@@ -10,12 +10,14 @@
 #import "BUAppDelegate.h"
 #import "Publicacion.h"
 #import "BUConsultaDetallePubVC.h"
+#import "BUConsultaPublicacion.h"
 
 @interface BUPublicacionesInactivasVC (){
     NSManagedObjectContext *context;
     NSMutableArray *fetchedArray;
     
 }
+@property (strong) Persona *userbrockus;
 
 @end
 
@@ -43,12 +45,17 @@
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
     
+    BUConsultaPublicacion *cons=[[BUConsultaPublicacion alloc] init];
+    NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
+    self.userbrockus = [cons recuperaPersona:userStr :context];
+    
     NSError *error;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *consulta = [NSEntityDescription
                                      entityForName:@"Publicacion" inManagedObjectContext:context];
     
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@" status=0"];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toPersona= %@ AND status=0",self.userbrockus];
+    NSLog(@"Usuario de consulta: %@",self.userbrockus);
     [request setPredicate:predicate];
     
     
@@ -93,9 +100,7 @@
     
     if(cell==nil){
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        [b addTarget:self action:@selector(activarTapped:) forControlEvents:UIControlEventTouchUpInside];
-        cell.accessoryView = b;
+
     }
     // Configure the cell...
     pub=[fetchedArray objectAtIndex:indexPath.row];
@@ -147,6 +152,9 @@
         }
     }
     
+}
+-(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"Reactivar";
 }
 
 

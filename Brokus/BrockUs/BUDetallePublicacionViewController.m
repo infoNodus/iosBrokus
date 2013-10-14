@@ -10,6 +10,7 @@
 #import "Persona.h"
 #import "Empresa.h"
 #import "Publicacion.h"
+#import "BUAnexloLinkVC.h"
 
 @interface BUDetallePublicacionViewController ()
 
@@ -76,6 +77,11 @@
 }
 
 - (IBAction)descargaTapped:(id)sender {
+    BUAnexloLinkVC *anexo = [[BUAnexloLinkVC alloc] initWithURL:self
+                          .publicacion.linkAnexo];
+    [self.navigationController pushViewController:anexo animated:YES];
+    
+//    NSURLConnection
     
 }
 
@@ -93,7 +99,7 @@
             break;
         case MFMailComposeResultSent:
             NSLog(@"Mail send: the email message is queued in the outbox. It is ready to send.");
-            mensaje = [[UIAlertView alloc] initWithTitle:@"Info" message:@"Corrreo enviado" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            mensaje = [[UIAlertView alloc] initWithTitle:@"Información" message:@"Correo enviado" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             break;
         case MFMailComposeResultFailed:
             NSLog(@"Mail failed: the email message was not saved or queued, possibly due to an error.");

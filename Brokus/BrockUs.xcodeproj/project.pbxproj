@@ -27,6 +27,8 @@
 		D152660F17FC7EB8008B6B7E /* BrockUs.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = D152660E17FC7EB8008B6B7E /* BrockUs.sqlite */; };
 		D166443018045241002DCF3E /* Persona.m in Sources */ = {isa = PBXBuildFile; fileRef = D166442F18045241002DCF3E /* Persona.m */; };
 		D186F4DB17F5DA5900D13B66 /* BrockUs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D186F4D917F5DA5900D13B66 /* BrockUs.xcdatamodeld */; };
+		D1A15995180C506500B1566A /* BUAnexloLinkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A15993180C506500B1566A /* BUAnexloLinkVC.m */; };
+		D1A15996180C506500B1566A /* BUAnexloLinkVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1A15994180C506500B1566A /* BUAnexloLinkVC.xib */; };
 		D1AC73DB17FDBAF5003D0CE1 /* Sector.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AC73DA17FDBAF5003D0CE1 /* Sector.m */; };
 		D1AC73DE17FDBAF5003D0CE1 /* Subsector.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AC73DD17FDBAF5003D0CE1 /* Subsector.m */; };
 		D1AC73E117FDBAF5003D0CE1 /* Empresa.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AC73E017FDBAF5003D0CE1 /* Empresa.m */; };
@@ -120,6 +122,9 @@
 		D166442E18045241002DCF3E /* Persona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Persona.h; sourceTree = "<group>"; };
 		D166442F18045241002DCF3E /* Persona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Persona.m; sourceTree = "<group>"; };
 		D186F4DA17F5DA5900D13B66 /* BrockUs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BrockUs.xcdatamodel; sourceTree = "<group>"; };
+		D1A15992180C506500B1566A /* BUAnexloLinkVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUAnexloLinkVC.h; sourceTree = "<group>"; };
+		D1A15993180C506500B1566A /* BUAnexloLinkVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUAnexloLinkVC.m; sourceTree = "<group>"; };
+		D1A15994180C506500B1566A /* BUAnexloLinkVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BUAnexloLinkVC.xib; sourceTree = "<group>"; };
 		D1AC73D917FDBAF5003D0CE1 /* Sector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sector.h; sourceTree = "<group>"; };
 		D1AC73DA17FDBAF5003D0CE1 /* Sector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sector.m; sourceTree = "<group>"; };
 		D1AC73DC17FDBAF5003D0CE1 /* Subsector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subsector.h; sourceTree = "<group>"; };
@@ -307,6 +312,9 @@
 				D11797EC17FF1EF9003A2097 /* BUDetallePublicacionViewController.h */,
 				D11797ED17FF1EF9003A2097 /* BUDetallePublicacionViewController.m */,
 				D11797EE17FF1EF9003A2097 /* BUDetallePublicacionViewController.xib */,
+				D1A15992180C506500B1566A /* BUAnexloLinkVC.h */,
+				D1A15993180C506500B1566A /* BUAnexloLinkVC.m */,
+				D1A15994180C506500B1566A /* BUAnexloLinkVC.xib */,
 			);
 			name = "Detalle de Publicacion";
 			sourceTree = "<group>";
@@ -613,6 +621,7 @@
 				D741418617FB4723008BF181 /* RHTexBW02.jpg in Resources */,
 				D7875D4F1806ECBD001871F8 /* textures-wallpapers-black-metal-texture-backgrounds-wallpaper.jpg in Resources */,
 				D7875D5B1806F4C4001871F8 /* wood-black-1440x900-21.jpg in Resources */,
+				D1A15996180C506500B1566A /* BUAnexloLinkVC.xib in Resources */,
 				762670F217F3458000B5E485 /* Default-568h@2x.png in Resources */,
 				763CF16617F355BA00A67E61 /* BULoginViewController.xib in Resources */,
 				D7DCD214180481D500D434F8 /* BUPerfilEmpresaDesconocidoViewController.xib in Resources */,
@@ -687,6 +696,7 @@
 				DF8899DF1806F7AE00EE6F9D /* BUCirculoConfianzaViewController.m in Sources */,
 				D1AC73E717FDBAF5003D0CE1 /* Notificacion.m in Sources */,
 				D1AC73DE17FDBAF5003D0CE1 /* Subsector.m in Sources */,
+				D1A15995180C506500B1566A /* BUAnexloLinkVC.m in Sources */,
 				D7837A7817F4A32E007BDD0A /* BUResultadoBusquedaViewController.m in Sources */,
 				D186F4DB17F5DA5900D13B66 /* BrockUs.xcdatamodeld in Sources */,
 				D1AC73DB17FDBAF5003D0CE1 /* Sector.m in Sources */,

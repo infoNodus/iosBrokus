@@ -10,6 +10,7 @@
 #import "Persona.h"
 #import "Empresa.h"
 #import "Publicacion.h"
+#import "BUAnexloLinkVC.h"
 
 @interface BUDetallePublicacionViewController ()
 
@@ -76,6 +77,11 @@
 }
 
 - (IBAction)descargaTapped:(id)sender {
+    BUAnexloLinkVC *anexo = [[BUAnexloLinkVC alloc] initWithURL:self
+                          .publicacion.linkAnexo];
+    [self.navigationController pushViewController:anexo animated:YES];
+    
+//    NSURLConnection
     
 }
 

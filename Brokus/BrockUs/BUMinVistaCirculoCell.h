@@ -17,4 +17,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *empresaTxt;
 @property (strong, nonatomic) IBOutlet UILabel *usuarioTxt;
 @property (strong, nonatomic) IBOutlet UILabel *cargoTxt;
+
 @end

@@ -139,6 +139,7 @@
 
         pub=[fetchedArray objectAtIndex:indexPath.row];
         pub.status=0;
+        NSLog(@"publicacion inactiva: %@",pub);
         NSError *error = nil;
         // Save the object to persistent store
         if (![context save:&error]) {

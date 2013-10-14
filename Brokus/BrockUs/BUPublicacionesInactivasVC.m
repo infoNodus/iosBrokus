@@ -47,12 +47,11 @@
     NSEntityDescription *consulta = [NSEntityDescription
                                      entityForName:@"Publicacion" inManagedObjectContext:context];
     
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@" status=%i",0];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@" status=%@",nil];
     [request setPredicate:predicate];
     
     
     [request setEntity:consulta];
-    
     
     fetchedArray = [[context executeFetchRequest:request error:&error]mutableCopy];
 }
@@ -90,15 +89,15 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return [fetchedArray count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    int rows=[fetchedArray count];
-    return rows;
+    
+    return [fetchedArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -134,6 +133,18 @@
     consultaDetallePub.publicacion=[fetchedArray objectAtIndex:indexPath.row];
     [self presentViewController:consultaDetallePub animated:YES completion:nil];
 }
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+
+    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [fetchedArray removeObjectAtIndex:indexPath.row];
+    if ([fetchedArray count]<=0) {
+        fetchedArray=[[NSMutableArray alloc]init];
+    }
+    
+}
+
 
 
 /*

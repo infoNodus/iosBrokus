@@ -18,7 +18,7 @@
 #import "Publicacion.h"
 #import "BUMinVistaCirculoCell.h"
 #import "BUPerfilEmpresaViewController.h"
-#import "BUDetallePublicacionViewController.h"
+#import "BUPerfilEmpresaDesconocidoViewController.h"
 
 
 @interface BUCirculoConfianzaViewController ()
@@ -55,7 +55,7 @@ NSString *userenterprise;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    self.title = @"Circulo de Confianza";
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
      self.salir=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
@@ -148,7 +148,8 @@ NSString *userenterprise;
 //    NSLog(@"%@", self.navigationController);
 //    [self.navigationController pushViewController:detalle animated:YES];
     
-    BUDetallePublicacionViewController *detalle = [[BUDetallePublicacionViewController alloc] initWithPublicacion:self.listaPublicaciones[indexPath.row]];
+    Circulo *personaCirculo = self.listaPublicaciones[indexPath.row];
+    BUPerfilEmpresaDesconocidoViewController *detalle = [[BUPerfilEmpresaDesconocidoViewController alloc] initWithPersona:personaCirculo.toAmigo];
     [self.navigationController pushViewController:detalle animated:YES];
 }
 

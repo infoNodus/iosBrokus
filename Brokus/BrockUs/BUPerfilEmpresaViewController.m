@@ -96,10 +96,11 @@ NSString *userenterprise;
     
     
     //ordenadas
+    NSSortDescriptor *byFechaInicio = [NSSortDescriptor sortDescriptorWithKey:@"fechaIni" ascending:YES];
     NSSortDescriptor *byFecha = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:YES];
     NSSortDescriptor *byTitulo = [NSSortDescriptor sortDescriptorWithKey:@"titulo" ascending:YES];
     NSSortDescriptor *byDescripcion = [NSSortDescriptor sortDescriptorWithKey:@"descripcion" ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:byFecha, byTitulo, byDescripcion, nil];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:byFechaInicio, byFecha, byTitulo, byDescripcion, nil];
     self.listaPublicaciones = [self.listaPublicaciones sortedArrayUsingDescriptors:sortDescriptors];
 }
 

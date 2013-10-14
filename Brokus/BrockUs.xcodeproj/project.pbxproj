@@ -66,8 +66,6 @@
 		D7837A7717F4A32E007BDD0A /* BUPanelIzquierdoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7837A5F17F4A32D007BDD0A /* BUPanelIzquierdoViewController.xib */; };
 		D7837A7817F4A32E007BDD0A /* BUResultadoBusquedaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7837A6117F4A32D007BDD0A /* BUResultadoBusquedaViewController.m */; };
 		D7837A7917F4A32E007BDD0A /* BUResultadoBusquedaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7837A6217F4A32D007BDD0A /* BUResultadoBusquedaViewController.xib */; };
-		D7845F701806F9E000F5BD70 /* BUTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7845F6E1806F9E000F5BD70 /* BUTestViewController.m */; };
-		D7845F711806F9E000F5BD70 /* BUTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7845F6F1806F9E000F5BD70 /* BUTestViewController.xib */; };
 		D7875D491806EB34001871F8 /* Textures_wallpapers_39.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D7875D481806EB34001871F8 /* Textures_wallpapers_39.jpg */; };
 		D7875D4B1806EBD4001871F8 /* 1363744.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D7875D4A1806EBD4001871F8 /* 1363744.jpg */; };
 		D7875D4D1806EC59001871F8 /* black-textures_00244335.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D7875D4C1806EC59001871F8 /* black-textures_00244335.jpg */; };
@@ -179,9 +177,6 @@
 		D7837A6017F4A32D007BDD0A /* BUResultadoBusquedaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUResultadoBusquedaViewController.h; sourceTree = "<group>"; };
 		D7837A6117F4A32D007BDD0A /* BUResultadoBusquedaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUResultadoBusquedaViewController.m; sourceTree = "<group>"; };
 		D7837A6217F4A32D007BDD0A /* BUResultadoBusquedaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BUResultadoBusquedaViewController.xib; sourceTree = "<group>"; };
-		D7845F6D1806F9E000F5BD70 /* BUTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUTestViewController.h; sourceTree = "<group>"; };
-		D7845F6E1806F9E000F5BD70 /* BUTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUTestViewController.m; sourceTree = "<group>"; };
-		D7845F6F1806F9E000F5BD70 /* BUTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BUTestViewController.xib; sourceTree = "<group>"; };
 		D7875D481806EB34001871F8 /* Textures_wallpapers_39.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Textures_wallpapers_39.jpg; sourceTree = "<group>"; };
 		D7875D4A1806EBD4001871F8 /* 1363744.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1363744.jpg; sourceTree = "<group>"; };
 		D7875D4C1806EC59001871F8 /* black-textures_00244335.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "black-textures_00244335.jpg"; sourceTree = "<group>"; };
@@ -430,9 +425,6 @@
 				DF8899DC1806F7AE00EE6F9D /* BUCirculoConfianzaViewController.h */,
 				DF8899DD1806F7AE00EE6F9D /* BUCirculoConfianzaViewController.m */,
 				DF8899DE1806F7AE00EE6F9D /* BUCirculoConfianzaViewController.xib */,
-				D7845F6D1806F9E000F5BD70 /* BUTestViewController.h */,
-				D7845F6E1806F9E000F5BD70 /* BUTestViewController.m */,
-				D7845F6F1806F9E000F5BD70 /* BUTestViewController.xib */,
 			);
 			name = "Circulo de Confianza";
 			sourceTree = "<group>";
@@ -633,7 +625,6 @@
 				762670F217F3458000B5E485 /* Default-568h@2x.png in Resources */,
 				763CF16617F355BA00A67E61 /* BULoginViewController.xib in Resources */,
 				D7DCD214180481D500D434F8 /* BUPerfilEmpresaDesconocidoViewController.xib in Resources */,
-				D7845F711806F9E000F5BD70 /* BUTestViewController.xib in Resources */,
 				D7093CF117FC70F60024B030 /* 765-default-avatar.png in Resources */,
 				763CF16817F355BA00A67E61 /* BUPerfilEmpresaViewController.xib in Resources */,
 				DF8773E918083F6800806959 /* noimagen.png in Resources */,
@@ -681,7 +672,6 @@
 				762670E817F3458000B5E485 /* main.m in Sources */,
 				762670EC17F3458000B5E485 /* BUAppDelegate.m in Sources */,
 				D1AC73F017FDBC00003D0CE1 /* BUConsultaPublicacion.m in Sources */,
-				D7845F701806F9E000F5BD70 /* BUTestViewController.m in Sources */,
 				763CF16517F355BA00A67E61 /* BULoginViewController.m in Sources */,
 				763CF16717F355BA00A67E61 /* BUPerfilEmpresaViewController.m in Sources */,
 				D11AE11118084124001BA63E /* BUMinVistaCirculoCell.m in Sources */,

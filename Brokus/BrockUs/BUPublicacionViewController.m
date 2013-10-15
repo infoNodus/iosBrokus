@@ -399,21 +399,17 @@
     NSLog(@"fuera del for");
 }
 
-//Hacer alertview con texto
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        NSLog(@"Texto: %@",[[alertView textFieldAtIndex:0]text]);
-        UITextField *theTextField = [alertView textFieldAtIndex:0];
-        self.link = theTextField.text;
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    UITextField *theTextField = [alertView textFieldAtIndex:0];
+    NSString *text = theTextField.text;
+    self.link = theTextField.text;
     }
-}
 
 - (IBAction)CargarArchivo:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Proporciona un link donde se encuentra tu archivo (Dropbox, Mega, etc)." delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"OK", nil];
-    alert.alertViewStyle=UIAlertViewStylePlainTextInput;
-   [alert show];
-    
-    
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Proporciona un link donde se encuentra tu archivo (Dropbox, Mega, etc). No Olvides poner al principio http:// "  delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"OK", nil];
+            alert.alertViewStyle= UIAlertViewStylePlainTextInput;
+            [alert show];
 }
 
 

@@ -39,10 +39,10 @@
 - (IBAction)cargarNuevaTapped:(id)sender;
 - (IBAction)cancelarTapped:(id)sender;
 - (IBAction)editarTapped:(id)sender;
-
 - (IBAction)sectorTapped:(id)sender;
-
 - (IBAction)subSectorTapped:(id)sender;
+
+
 
 
 

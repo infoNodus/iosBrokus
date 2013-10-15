@@ -46,10 +46,11 @@
             mensajeError = @"No existe conección a iternet";
         }
         NSLog(@"%@",error);
+        NSString *titleError = [NSString stringWithFormat:@"Error %i",error.code];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:titleError message:mensajeError delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
-    NSString *titleError = [NSString stringWithFormat:@"Error %i",error.code];
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:titleError message:mensajeError delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
+    
 
     [self.oAnexo loadData:responseData MIMEType:[response MIMEType]
           textEncodingName:[response textEncodingName]

@@ -125,9 +125,9 @@
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    Publicacion *pub=[fetchedArray objectAtIndex:indexPath.row];
-    NSString *publicacion=pub.titulo;
-    cell.textLabel.text = publicacion;
+    Publicacion *publicacion=[fetchedArray objectAtIndex:indexPath.row];
+    NSString *titulo=publicacion.titulo;
+    cell.textLabel.text = titulo;
     
     return cell;
 }

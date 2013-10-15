@@ -164,10 +164,7 @@
     [fetchRequest setPredicate:predicate];
     
     NSArray *fetchedSubSector= [context executeFetchRequest:fetchRequest error:&error];
-    for (int i=0; i<[fetchedSubSector count]; i++) {
-        Subsector *sub=[fetchedSubSector objectAtIndex:i];
-        //NSLog(@"SUBSECTORES A MOSTRAR %@",sub.nombre);
-    }
+
     
     return fetchedSubSector;
     

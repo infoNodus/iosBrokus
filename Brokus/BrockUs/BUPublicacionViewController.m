@@ -217,11 +217,6 @@
 }
 
 
-
-
-
-
-
 //ocultar teclado
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if([textField.text length] == 0) {

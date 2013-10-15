@@ -126,6 +126,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
 - (IBAction)editarTapped:(id)sender {
     if (publicacion) {
         // Update existing device

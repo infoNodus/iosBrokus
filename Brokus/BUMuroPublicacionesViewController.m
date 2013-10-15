@@ -52,6 +52,16 @@
     self.persona = [consulta recuperaPersona:[[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"] :context];
     if(self.persona != nil && self.persona.toPublicacion != nil && [self.persona.toPublicacion count] > 0) {
         self.listaPublicaciones = [self.persona.toPublicacion allObjects];
+        
+//        //ordenadas
+//        NSSortDescriptor *byFechaIni = [NSSortDescriptor sortDescriptorWithKey:@"fechaIni" ascending:YES];
+//        NSSortDescriptor *byFechaFin = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:YES];
+//        NSSortDescriptor *byTitulo = [NSSortDescriptor sortDescriptorWithKey:@"titulo" ascending:YES];
+//        NSSortDescriptor *byDescripcion = [NSSortDescriptor sortDescriptorWithKey:@"descripcion" ascending:YES];
+//        NSArray *sortDescriptors = [NSArray arrayWithObjects:byFechaFin, byFechaIni, byTitulo,byDescripcion, nil];
+//        self.listaPublicaciones = [self.listaPublicaciones sortedArrayUsingDescriptors:sortDescriptors];
+
+
     }
         self.regresar=[[BUPublicacionViewController alloc] initWithNibName:@"BUPublicacionViewController" bundle:nil];
 }

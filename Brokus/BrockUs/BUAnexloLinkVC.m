@@ -57,7 +57,6 @@
         [self.oAnexo loadData:responseData MIMEType:[response MIMEType]
           textEncodingName:[response textEncodingName]
                    baseURL:[response URL]];
-        //[self setView:webView_];
     }
 }
 

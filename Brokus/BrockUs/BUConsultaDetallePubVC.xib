@@ -26,9 +26,6 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <action selector="fechsTerminoTapped:" destination="-1" eventType="editingDidEnd" id="VNQ-uP-GjN"/>
-                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Título" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jj9-Cz-0pV">
                     <rect key="frame" x="20" y="115" width="280" height="30"/>
@@ -85,7 +82,8 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
-                        <action selector="sectorTapped:" destination="-1" eventType="editingDidEnd" id="d56-8W-9eR"/>
+                        <action selector="sectorTapped:" destination="-1" eventType="touchDown" id="RiI-7g-ebi"/>
+                        <outlet property="delegate" destination="-1" id="hBb-KD-R7Q"/>
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subsector" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="637-80-JiF">
@@ -94,7 +92,8 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
-                        <action selector="subSectorTapped:" destination="-1" eventType="editingDidEnd" id="j9M-ZZ-wF1"/>
+                        <action selector="subSectorTapped:" destination="-1" eventType="touchDown" id="kqs-fH-9Zy"/>
+                        <outlet property="delegate" destination="-1" id="Arp-gA-Zk9"/>
                     </connections>
                 </textField>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSy-4B-91L">

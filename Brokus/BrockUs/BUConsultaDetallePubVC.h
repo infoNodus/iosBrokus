@@ -10,7 +10,14 @@
 #import "Publicacion.h"
 
 @class ComboSector;
-@interface BUConsultaDetallePubVC : UIViewController<UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface BUConsultaDetallePubVC : UIViewController<UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
+    UIPickerView* pickerView;
+    UIPickerView* pickerSectores;
+    NSArray *dataArray;
+    NSArray *arraySectores;
+    NSArray *arraySubsectores;
+
+}
 
 @property (strong)Publicacion *publicacion;
 @property (strong) NSManagedObjectContext *context;
@@ -28,13 +35,14 @@
 
 
 //EVENTOS
-- (IBAction)fechsTerminoTapped:(id)sender;
-- (IBAction)sectorTapped:(id)sender;
-- (IBAction)subSectorTapped:(id)sender;
+
 - (IBAction)cargarNuevaTapped:(id)sender;
 - (IBAction)cancelarTapped:(id)sender;
 - (IBAction)editarTapped:(id)sender;
 
+- (IBAction)sectorTapped:(id)sender;
+
+- (IBAction)subSectorTapped:(id)sender;
 
 
 

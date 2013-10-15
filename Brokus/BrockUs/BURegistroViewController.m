@@ -149,10 +149,6 @@ self.subSector.text=@"Edificacion Residencial";
     sub=[[NSArray alloc]init];
     cadena=sectorSeleccionado.selectedText;
     sub=[sectorSeleccionado loadSubsector:cadena];
-    for (int i=0; i<[sub count]; i++) {
-        Subsector *sect=[sub objectAtIndex:i];
-        //NSLog(@"SUBSECTORES A MOSTRAR %@",sect.nombre);
-    }
     [self setComboData:sub];
     [pickerView reloadAllComponents];
     return YES;

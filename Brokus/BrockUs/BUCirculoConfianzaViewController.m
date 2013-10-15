@@ -221,4 +221,28 @@ NSString *userenterprise;
 [self presentViewController:self.salir animated:YES completion:nil ];
 
 }
+
+
+
+//agregar al circulo de confiansa
+/*
+ *cuando una persona solicite la agregacion de otra a su circulo de confianza primero debemos saber si no ha llegado al limite de personas permitidas,
+ *para esto contaremos las personas de la base de datos y dependiendo de la respuesta permitiremos o no la incercion
+ *
+ *este es un posible metodo para contarlos pero no ha sido testeado aun
+ *
+ int entityCount = 0;
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"YourEntity" inManagedObjectContext:_managedObjectContext];
+ NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ [fetchRequest setEntity:entity];
+ [fetchRequest setIncludesPropertyValues:NO];
+ [fetchRequest setIncludesSubentities:NO];
+ NSError *error = nil;
+ NSUInteger count = [_managedObjectContext countForFetchRequest: fetchRequest error: &error];
+ if(error == nil){
+ entityCount = count;
+ }
+ *
+ *
+ */
 @end

@@ -8,6 +8,7 @@
 
 #import "BUSeccionPublicacionesViewController.h"
 #import "BUPerfilEmpresaViewController.h"
+
 @interface BUSeccionPublicacionesViewController (){
     
 }
@@ -52,10 +53,6 @@
     [self addChildViewController:presentaActivas];
     presentaActivas.view.frame=CGRectMake(0, 44, 320, 504);
     [self.view addSubview:presentaActivas.view];
-    /*publicacionesActivas.frame=CGRectMake(0, 44, 320, 504);
-     [presenterVC reloadTable];
-     [publicacionesActivas addSubview:presenterVC.view];
-     [self.view addSubview:publicacionesActivas];*/
     
 }
 
@@ -81,12 +78,15 @@
 - (IBAction)optionsTapped:(id)sender {
     UISegmentedControl *segmentedc=(UISegmentedControl *)sender;
     if(segmentedc.selectedSegmentIndex==0){
+        [presentaActivas reloadTable];
         [self presentaPublicacionesActivas];
     }else{
-        
+        [presentaInactivas reloadTable];
         [self presentaPublicacionesInActivas];
     }
 }
+
+
 
 @end
 

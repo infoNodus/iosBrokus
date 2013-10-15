@@ -217,11 +217,6 @@
 }
 
 
-
-
-
-
-
 //ocultar teclado
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if([textField.text length] == 0) {
@@ -284,7 +279,7 @@
         NSString *stringA = @"/";
         NSString *stringB = self.tituloTxt.text;//agregar parametros para hacer nom de imagen unico
         NSString *stringC = @".jpg";
-        NSString *finalString = [NSString stringWithFormat:@"%@%@%", stringA, stringB, stringC]; //agregar random
+        NSString *finalString = [NSString stringWithFormat:@"%@%@%@", stringA, stringB, stringC]; //agregar random
         NSData *imageData = UIImageJPEGRepresentation(self.imagenPub.image, 1);
         NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         path = [path stringByAppendingString:finalString];

@@ -49,16 +49,16 @@
         [alert show];
         NSLog(@"%@",error);
     }
-//    NSLog(@"%i",[response statusCode]);
-//    if ([response statusCode] >= 400 || error)
-//    {
-//        NSLog(@"%d",[response statusCode]);
-//    } else {
-//        [self.oAnexo loadData:responseData MIMEType:[response MIMEType]
-//          textEncodingName:[response textEncodingName]
-//                   baseURL:[response URL]];
-//        //[self setView:webView_];
-//    }
+    NSLog(@"%i",[response statusCode]);
+    if ([response statusCode] >= 400 || error)
+    {
+        NSLog(@"%d",[response statusCode]);
+    } else {
+        [self.oAnexo loadData:responseData MIMEType:[response MIMEType]
+          textEncodingName:[response textEncodingName]
+                   baseURL:[response URL]];
+        //[self setView:webView_];
+    }
 }
 
 @end

@@ -54,6 +54,7 @@
     self.descripcionTxt.text=publicacion.descripcion;
     self.subSectorTxt.text=publicacion.toSubsector.nombre;
     self.linkanexo.text = publicacion.linkAnexo;
+    
     self.imagenPub.image=[[UIImage alloc] initWithData:publicacion.img];
     
     
@@ -351,11 +352,13 @@
     UITextField *theTextField = [alertView textFieldAtIndex:0];
     NSString *text = theTextField.text;
     self.link = theTextField.text;
+     self.linkanexo.text =  [[alertView textFieldAtIndex:0]text];
 }
 
 - (IBAction)AnexoBtn:(id)sender {
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Proporciona un link donde se encuentra tu archivo (Dropbox, Mega, etc). No Olvides poner al principio http:// "  delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"OK", nil];
     alert.alertViewStyle= UIAlertViewStylePlainTextInput;
+    [alert textFieldAtIndex:0].text = @"http://";
     [alert show];
     
     BUConsultaPublicacion *consulta = [[BUConsultaPublicacion alloc] init];

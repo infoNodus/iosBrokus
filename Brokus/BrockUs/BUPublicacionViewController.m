@@ -409,6 +409,7 @@
 - (IBAction)CargarArchivo:(id)sender {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Proporciona un link donde se encuentra tu archivo (Dropbox, Mega, etc). No Olvides poner al principio http:// "  delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"OK", nil];
             alert.alertViewStyle= UIAlertViewStylePlainTextInput;
+    [alert textFieldAtIndex:0].text = @"http://";
             [alert show];
 }
 

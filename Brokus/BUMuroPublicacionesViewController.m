@@ -53,6 +53,7 @@
     if(self.persona != nil && self.persona.toPublicacion != nil && [self.persona.toPublicacion count] > 0) {
         self.listaPublicaciones = [self.persona.toPublicacion allObjects];
     }
+
         self.regresar=[[BUPublicacionViewController alloc] initWithNibName:@"BUPublicacionViewController" bundle:nil];
 }
 

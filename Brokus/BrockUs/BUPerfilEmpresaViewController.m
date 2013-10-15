@@ -32,7 +32,7 @@
 @property (strong) BURegistroViewController*publicaciones;
 @property (strong) Persona *userbrockus;
 @property (strong) BUPublicacionViewController *pub;
-@property (strong) NSArray *listaPublicaciones;
+@property (strong) NSMutableArray *listaPublicaciones;
 @property (strong)BUPerfilEmpresaViewController *miperfil;
 @property (strong) BUCirculoConfianzaViewController *circulo;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *btnCrearPublicacion;
@@ -73,7 +73,8 @@ NSString *userenterprise;
     self.miperfil=[[BUPerfilePersonalViewController alloc]initWithNibName:@"BUPerfilePersonalViewController" bundle:nil];
     
     self.pub=[[BUPublicacionViewController alloc] initWithNibName:@"BUPublicacionViewController" bundle:nil];
-    
+
+
     
     
     self.circulo=[[BUCirculoConfianzaViewController alloc] initWithNibName:@"BUCirculoConfianzaViewController" bundle:nil];
@@ -90,8 +91,39 @@ NSString *userenterprise;
     if (self.userbrockus.img != nil) {
         self.ImageUser.image = [[UIImage alloc] initWithData:self.userbrockus.img];
     }
-    self.listaPublicaciones = [[NSArray alloc] init];
-    self.listaPublicaciones = [consulta recuperaPublicacionPorEmpresa:self.userbrockus.toEmpresa toContext:context];
+    self.listaPublicaciones = [[NSMutableArray alloc] init];
+    //self.listaPublicaciones = [consulta recuperaPublicacionPorEmpresa:self.userbrockus.toEmpresa toContext:context];
+    self.listaPublicaciones = [consulta recuperaPublicacionPor:self.userbrockus.toEmpresa.toSubsector.toSector context:context];
+    
+    NSDate *today=[NSDate date];
+    NSLog(@"######today#######: %@",today);
+    NSMutableArray *discardedItems = [NSMutableArray array];
+    Publicacion *pub;
+    
+    for (pub in self.listaPublicaciones) {
+        NSComparisonResult result = [today compare:pub.fecha];
+        
+        if(result==NSOrderedAscending)
+            NSLog(@"publicacion activa");
+        else if(result==NSOrderedDescending){
+            NSLog(@"publicacion inactiva");
+            pub.status=[[NSNumber alloc]initWithInt:0];
+            NSError
+            
+            
+            *error = nil;
+            // Save the object to persistent store
+            if (![context save:&error]) {
+                NSLog(@"Error al actualizar los datos: %@ %@", error, [error localizedDescription]);
+            }
+            
+            NSLog(@"publicacion desactivada: %@",pub);
+        }else
+            NSLog(@"Both dates are the same");
+    }
+    
+    self.listaPublicaciones = [consulta recuperaPublicacionPor:self.userbrockus.toEmpresa.toSubsector.toSector context:context];
+
     //NSLog(@"Registros: %d",[self.listaPublicaciones count]);
 }
 

@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BUConsultaDetallePubVC">
             <connections>
                 <outlet property="descripcionTxt" destination="Qn4-R8-j6U" id="m5g-jW-l7D"/>
-                <outlet property="fechaTermino" destination="Tvz-eF-1r8" id="cpM-Hj-8NT"/>
+                <outlet property="fechaTermino" destination="Tvz-eF-1r8" id="JqR-lg-bMC"/>
                 <outlet property="imagenPub" destination="NSy-4B-91L" id="AEi-p6-55d"/>
                 <outlet property="sectorTxt" destination="ds3-mt-1kO" id="h7g-K7-KTf"/>
                 <outlet property="subSectorTxt" destination="637-80-JiF" id="cBS-qd-POd"/>
@@ -26,19 +26,12 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <action selector="fechsTerminoTapped:" destination="-1" eventType="editingDidEnd" id="VNQ-uP-GjN"/>
-                        <action selector="toggleBoldface:" destination="jj9-Cz-0pV" eventType="editingDidEndOnExit" id="HqW-Ar-XTF"/>
-                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Título" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jj9-Cz-0pV">
                     <rect key="frame" x="20" y="115" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                    <connections>
-                        <action selector="toggleBoldface:" destination="Tvz-eF-1r8" eventType="editingDidEndOnExit" id="FUs-mT-btn"/>
-                    </connections>
                 </textField>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qn4-R8-j6U">
                     <rect key="frame" x="17" y="163" width="280" height="168"/>

@@ -89,8 +89,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                     <connections>
-                        <action selector="sectorTapped:" destination="-1" eventType="editingDidEnd" id="d56-8W-9eR"/>
-                        <action selector="toggleBoldface:" destination="637-80-JiF" eventType="editingDidEndOnExit" id="nCD-bF-XAM"/>
+                        <action selector="sectorTapped:" destination="-1" eventType="touchDown" id="rX6-jX-EUb"/>
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subsector" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="637-80-JiF">
@@ -99,8 +98,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                     <connections>
-                        <action selector="subSectorTapped:" destination="-1" eventType="editingDidEnd" id="j9M-ZZ-wF1"/>
-                        <action selector="toggleBoldface:" destination="ds3-mt-1kO" eventType="editingDidEndOnExit" id="Y6G-bs-u1H"/>
+                        <action selector="subSectorTapped:" destination="-1" eventType="touchDown" id="lw5-69-uOe"/>
                     </connections>
                 </textField>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSy-4B-91L">

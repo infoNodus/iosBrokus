@@ -284,8 +284,8 @@
     arraySubsectores= [context executeFetchRequest:fetchRequest error:&error];
     dataArray=arraySubsectores;
     [pickerView reloadAllComponents];
-    
 }
+
 
 
 

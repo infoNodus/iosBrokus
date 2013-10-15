@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BUAnexloLinkVC : UIViewController
+@interface BUAnexloLinkVC : UIViewController 
 
 - (id)initWithURL:(NSString *)urlStr;
 

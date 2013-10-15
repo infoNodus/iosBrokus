@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Publicacion.h"
 
 @interface BUPublicacionesInactivasVC : UITableViewController
 
+@property (strong) Publicacion *pub;
 -(void)reloadTable;
 
 @end

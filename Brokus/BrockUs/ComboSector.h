@@ -11,14 +11,14 @@
 @interface ComboSector : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 {
     UIPickerView* pickerView;
-    IBOutlet UITextField* textField;
+    
     NSArray *dataArray;
 }
 
 -(void) setComboData:(NSArray*) data; //set the picker view items
 -(NSArray*)loadSubsector:(NSString *)textfield;
 
-
+@property(strong)IBOutlet UITextField* textField;
 @property (strong) NSManagedObjectContext *context;
 
 @property (strong) ComboSector *combo;

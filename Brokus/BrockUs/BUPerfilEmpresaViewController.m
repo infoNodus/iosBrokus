@@ -91,6 +91,7 @@ NSString *userenterprise;
     if (self.userbrockus.img != nil) {
         self.ImageUser.image = [[UIImage alloc] initWithData:self.userbrockus.img];
     }
+<<<<<<< HEAD
     self.listaPublicaciones = [[NSMutableArray alloc] init];
     //self.listaPublicaciones = [consulta recuperaPublicacionPorEmpresa:self.userbrockus.toEmpresa toContext:context];
     self.listaPublicaciones = [consulta recuperaPublicacionPor:self.userbrockus.toEmpresa.toSubsector.toSector context:context];
@@ -124,6 +125,20 @@ NSString *userenterprise;
     
     self.listaPublicaciones = [consulta recuperaPublicacionPor:self.userbrockus.toEmpresa.toSubsector.toSector context:context];
 
+=======
+    self.listaPublicaciones = [[NSArray alloc] init];
+    self.listaPublicaciones = [consulta recuperaPublicacionPorEmpresa:self.userbrockus.toEmpresa toContext:context];
+    
+    
+    //ordenadas
+    NSSortDescriptor *byFechaIni = [NSSortDescriptor sortDescriptorWithKey:@"fechaIni" ascending:NO];
+    NSSortDescriptor *byFechaFin = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:NO];
+    NSSortDescriptor *byTitulo = [NSSortDescriptor sortDescriptorWithKey:@"titulo" ascending:NO];
+    NSSortDescriptor *byDescripcion = [NSSortDescriptor sortDescriptorWithKey:@"descripcion" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:byFechaIni, byFechaFin, byTitulo,byDescripcion, nil];
+    self.listaPublicaciones = [self.listaPublicaciones sortedArrayUsingDescriptors:sortDescriptors];
+    
+>>>>>>> d3de0efdc9c06275f96a4196e91033d2f58d5114
     //NSLog(@"Registros: %d",[self.listaPublicaciones count]);
 }
 

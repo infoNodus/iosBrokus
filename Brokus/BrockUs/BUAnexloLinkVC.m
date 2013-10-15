@@ -31,13 +31,30 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]];
-    [self.oAnexo loadRequest:request];
-}
+    
+    NSHTTPURLResponse *response;
+    NSError *error;
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request
+                                                 returningResponse:&response
+                                                             error:&error];
+    NSString *mensajeError = @"";
+    if(error) {
+        mensajeError = error.description;
+        if (error.code == -1002) {
+            mensajeError = [NSString stringWithFormat:@"Error de la peticion a la pagina: %@", self.urlStr];
+        } else if (error.code == -1009) {
+            mensajeError = @"No existe conección a iternet";
+        }
+        NSLog(@"%@",error);
+        NSString *titleError = [NSString stringWithFormat:@"Error %i",error.code];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:titleError message:mensajeError delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.oAnexo loadData:responseData MIMEType:[response MIMEType]
+          textEncodingName:[response textEncodingName]
+                   baseURL:[response URL]];
 }
 
 @end

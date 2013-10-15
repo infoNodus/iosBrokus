@@ -26,12 +26,19 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="fechsTerminoTapped:" destination="-1" eventType="editingDidEnd" id="VNQ-uP-GjN"/>
+                        <action selector="toggleBoldface:" destination="jj9-Cz-0pV" eventType="editingDidEndOnExit" id="HqW-Ar-XTF"/>
+                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Título" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jj9-Cz-0pV">
                     <rect key="frame" x="20" y="115" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                    <connections>
+                        <action selector="toggleBoldface:" destination="Tvz-eF-1r8" eventType="editingDidEndOnExit" id="FUs-mT-btn"/>
+                    </connections>
                 </textField>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qn4-R8-j6U">
                     <rect key="frame" x="17" y="163" width="280" height="168"/>
@@ -80,20 +87,18 @@
                     <rect key="frame" x="19" y="352" width="277" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                     <connections>
-                        <action selector="sectorTapped:" destination="-1" eventType="touchDown" id="RiI-7g-ebi"/>
-                        <outlet property="delegate" destination="-1" id="hBb-KD-R7Q"/>
+                        <action selector="sectorTapped:" destination="-1" eventType="touchDown" id="rX6-jX-EUb"/>
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subsector" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="637-80-JiF">
                     <rect key="frame" x="20" y="405" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                     <connections>
-                        <action selector="subSectorTapped:" destination="-1" eventType="touchDown" id="kqs-fH-9Zy"/>
-                        <outlet property="delegate" destination="-1" id="Arp-gA-Zk9"/>
+                        <action selector="subSectorTapped:" destination="-1" eventType="touchDown" id="lw5-69-uOe"/>
                     </connections>
                 </textField>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSy-4B-91L">

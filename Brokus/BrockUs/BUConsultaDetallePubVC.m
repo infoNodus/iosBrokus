@@ -195,6 +195,30 @@
 
 
 - (IBAction)cargarNuevaTapped:(id)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:picker animated:YES completion:NULL];
+    //[self.cargarImagenButton setBackgroundColor:[UIColor blueColor]]; //mejorar el diseño
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    CGSize newSize = CGSizeMake(100.0,100.0);
+    UIGraphicsBeginImageContext(newSize);
+    [chosenImage drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.imagenPub.image = newImage;
+    self.imagenPub.contentMode = UIViewContentModeScaleAspectFit;
+    self.imagenPub.frame = CGRectMake(110, 10, 100, 100);
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    //[self.cargarImagenButton setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (IBAction)cancelarTapped:(id)sender {
@@ -211,6 +235,13 @@
         publicacion.descripcion=self.descripcionTxt.text;
         
         publicacion.toSubsector=nombreSubSector;
+        
+        
+        NSData *imageData = UIImageJPEGRepresentation(self.imagenPub.image, 1);
+        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        path = [path stringByAppendingString:publicacion.nameImg];
+        publicacion.img = imageData;
+        
         NSLog(@"Publicacion editada:%@",publicacion);
     }
     

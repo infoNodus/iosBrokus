@@ -86,7 +86,7 @@
                                      entityForName:@"Publicacion" inManagedObjectContext:context];
     
     
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@" status=1"];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toPersona= %@ AND status=1",self.userbrockus];
     [request setPredicate:predicate];
     
     [request setEntity:consulta];

@@ -16,7 +16,7 @@
 @implementation BUConsultaPublicacion
 
 /* recupera las publicaciones segun un sector especifico */
-- (NSArray*) recuperaPublicacionPor:(Sector*)toSector :(NSManagedObjectContext*) context {
+- (NSMutableArray*) recuperaPublicacionPor:(Sector*)toSector context:(NSManagedObjectContext*) context {
     
     NSEntityDescription *entityDescription = [NSEntityDescription
                                               entityForName:@"Publicacion" inManagedObjectContext:context];
@@ -31,8 +31,9 @@
     [request setSortDescriptors:@[sortDescriptor]];
     
     // Filtrando por el sector.
+    NSNumber *status=[[NSNumber alloc]initWithInt:1];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"toSubsector.toSector = %@ AND status=1", toSector];
+                              @"toSubsector.toSector = %@ AND status=%@", toSector,status];
     
     // En dado caso de que no acepte un objeto para la busqueda....
 //    NSPredicate *predicate = [NSPredicate predicateWithFormat:
@@ -41,7 +42,8 @@
     [request setPredicate:predicate];
     
     NSError *error;
-    NSArray *array = [context executeFetchRequest:request error:&error];
+    NSMutableArray *array=[[NSMutableArray alloc]init];
+    array = [[context executeFetchRequest:request error:&error]mutableCopy];
     if(error!=nil){
         NSLog(@"Regresando nil. Error al realizar consulta: %@", [error description]);
         return nil;
@@ -162,5 +164,6 @@
     
     return [listaPersonasCirculo copy];
 }
+
 
 @end

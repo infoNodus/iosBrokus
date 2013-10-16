@@ -63,6 +63,7 @@
 
 
     }
+
         self.regresar=[[BUPublicacionViewController alloc] initWithNibName:@"BUPublicacionViewController" bundle:nil];
 }
 

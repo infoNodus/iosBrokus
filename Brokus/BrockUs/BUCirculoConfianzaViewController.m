@@ -103,6 +103,13 @@ NSString *userenterprise;
 #pragma mark - TableViewController methods
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if ([self.listaPublicaciones count] <= 10) {
+        return [self.listaPublicaciones count];
+    }else{
+        return 10;
+    }
+    
     return [self.listaPublicaciones count];
 }
 

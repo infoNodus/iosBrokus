@@ -26,6 +26,7 @@
 @property (strong) ComboSector *sectorSeleccionado;
 //PROPERTIES DEL XIB
 @property (strong, nonatomic) IBOutlet UITextField *fechaTermino;
+
 @property (strong, nonatomic) IBOutlet UITextField *tituloTxt;
 @property (strong, nonatomic) IBOutlet UITextView *descripcionTxt;
 @property (strong, nonatomic) IBOutlet UITextField *sectorTxt;

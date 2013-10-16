@@ -32,6 +32,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *sectorTxt;
 @property (strong, nonatomic) IBOutlet UITextField *subSectorTxt;
 @property (strong, nonatomic) IBOutlet UIImageView *imagenPub;
+@property (weak, nonatomic) IBOutlet UILabel *linkanexo;
+
 
 
 
@@ -40,6 +42,9 @@
 - (IBAction)cargarNuevaTapped:(id)sender;
 - (IBAction)cancelarTapped:(id)sender;
 - (IBAction)editarTapped:(id)sender;
+
+- (IBAction)AnexoBtn:(id)sender;
+
 - (IBAction)sectorTapped:(id)sender;
 - (IBAction)subSectorTapped:(id)sender;
 

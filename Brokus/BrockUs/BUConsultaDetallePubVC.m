@@ -233,12 +233,27 @@
 
 - (IBAction)editarTapped:(id)sender {
     if (publicacion) {
-        // Update existing device
-        publicacion.fecha=[datePicker date];
+        NSDate *today=[NSDate date];
+        NSComparisonResult result = [today compare:[datePicker date]];
+        
+        if(result==NSOrderedAscending)
+            publicacion.fecha=[datePicker date];
+        else if(result==NSOrderedDescending){
+            NSLog(@"Seleccionar una fecha superior");
+        }
+        
         publicacion.titulo=self.tituloTxt.text;
         publicacion.descripcion=self.descripcionTxt.text;
+
         publicacion.linkAnexo=self.link;
         publicacion.toSubsector=nombreSubSector;
+
+        
+        if (nombreSubSector!=nil) {
+            publicacion.toSubsector=nombreSubSector;
+        }
+        
+
         
         
         NSData *imageData = UIImageJPEGRepresentation(self.imagenPub.image, 1);

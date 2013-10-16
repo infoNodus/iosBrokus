@@ -402,9 +402,21 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     UITextField *theTextField = [alertView textFieldAtIndex:0];
-    NSString *text = theTextField.text;
-    self.link = theTextField.text;
+    if(buttonIndex == 1) {
+        NSString *urlRegEx =
+        @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+        NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
+        if(![urlTest evaluateWithObject:theTextField.text]){
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error Link invalido" message:@"Proporciona un link donde se encuentra tu archivo (Dropbox, Mega, etc). No Olvides poner al principio http:// "  delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"OK", nil];
+            
+            alert.alertViewStyle=UIAlertViewStylePlainTextInput;
+            [alert textFieldAtIndex:0].text = theTextField.text;
+            [alert show];
+            return;
+        }
+        self.link = theTextField.text;
     }
+}
 
 - (IBAction)CargarArchivo:(id)sender {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Proporciona un link donde se encuentra tu archivo (Dropbox, Mega, etc). No Olvides poner al principio http:// "  delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"OK", nil];

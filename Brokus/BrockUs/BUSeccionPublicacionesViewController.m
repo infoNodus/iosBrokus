@@ -8,6 +8,8 @@
 
 #import "BUSeccionPublicacionesViewController.h"
 #import "BUPerfilEmpresaViewController.h"
+#import "BUConsultaPublicacion.h"
+#import "BUAppDelegate.h"
 
 @interface BUSeccionPublicacionesViewController (){
     
@@ -69,6 +71,9 @@
 
 - (IBAction)canceltapped:(id)sender {
     self.perfil.delegate=(id)self;
+    BUAppDelegate *buappdelegate=[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context =[buappdelegate managedObjectContext];
+    [[[BUConsultaPublicacion alloc] init] desactivaPublicacionesCaducadastoContext:context];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:self.perfil];
     [self presentViewController:nc animated:YES completion:nil];
     

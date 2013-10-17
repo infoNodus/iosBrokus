@@ -56,7 +56,6 @@
                                      entityForName:@"Publicacion" inManagedObjectContext:context];
     
     NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toPersona=%@ AND status=1",self.userbrockus];
-    NSLog(@"Usuario de consulta: %@",self.userbrockus);
     [request setPredicate:predicate];
     
     
@@ -86,7 +85,7 @@
                                      entityForName:@"Publicacion" inManagedObjectContext:context];
     
     
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toPersona= %@ AND status=1",self.userbrockus];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toPersona= %@ AND status=%@",self.userbrockus,[[NSNumber alloc]initWithInt:1]];
     [request setPredicate:predicate];
     
     [request setEntity:consulta];
@@ -153,7 +152,6 @@
             pub.status=[[NSNumber alloc] initWithInt:0] ;
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [fetchedArray removeObjectAtIndex:[indexPath row]];
-            NSLog(@"PUBLICACION: %@",pub);
             
             /*if ([fetchedArray count] == 0) {
                 [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];

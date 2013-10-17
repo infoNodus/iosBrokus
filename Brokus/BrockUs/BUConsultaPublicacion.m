@@ -111,7 +111,9 @@
             continue;
         }
         for (Publicacion *pb in p.toPublicacion) {
-            [listaPublicaciones addObject:pb];
+            if([pb.status isEqualToNumber:[[NSNumber alloc] initWithInt:1]]) {
+                [listaPublicaciones addObject:pb];
+            }
         }
     }
     

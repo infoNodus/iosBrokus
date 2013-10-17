@@ -11,9 +11,9 @@
 #import "Empresa.h"
 #import "Publicacion.h"
 #import "BUAnexloLinkVC.h"
-
+#import "BUPerfilEmpresaDesconocidoViewController.h"
 @interface BUDetallePublicacionViewController ()
-
+@property BOOL esNavegable;
 @end
 
 @implementation BUDetallePublicacionViewController
@@ -23,11 +23,19 @@
     if (self) {
         // Custom initialization
         self.publicacion = publicacion;
+        self.esNavegable = YES;
         self.title=self.publicacion.titulo;
         //self.oEmail.titleLabel.text = self.publicacion.toPersona.usuario;
     }
     return self;
 }
+-(id) initWithPublicacion:(Publicacion *)publicacion navegacionAlPerfil:(BOOL)isNavegable
+{
+    self = [self initWithPublicacion:publicacion];
+    self.esNavegable = isNavegable;
+    return self;
+}
+
 
 - (void)viewDidLoad
 {
@@ -37,7 +45,7 @@
     if(self.publicacion.img != nil) {
         self.oImagen.image = [[UIImage alloc] initWithData:self.publicacion.img];
     }
-    self.oPersona.text = self.publicacion.toPersona.nombre;
+    [self.oPersona setTitle:self.publicacion.toPersona.nombre forState:UIControlStateNormal];
     self.oEmpresa.text = self.publicacion.toPersona.toEmpresa.nombre;
     //self.oEmail.textInputContextIdentifier = self.publicacion.toPersona.usuario;
     [self.oEmail setTitle:self.publicacion.toPersona.usuario forState:UIControlStateNormal] ;
@@ -83,6 +91,12 @@
     
 //    NSURLConnection
     
+}
+- (IBAction)openPerfilPersona:(id)sender {
+    if (self.esNavegable) {
+        BUPerfilEmpresaDesconocidoViewController *perfil = [[BUPerfilEmpresaDesconocidoViewController alloc] initWithPersona:self.publicacion.toPersona];
+        [self.navigationController pushViewController:perfil animated:YES];
+    }
 }
 
 # pragma mark - Metodos del MFMailComposeViewController

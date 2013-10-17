@@ -59,7 +59,7 @@ NSString *userenterprise;
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
      self.salir=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
-    //test
+    
     BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];
     NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
     self.userbrockus = [consulta recuperaPersona:userStr :context];
@@ -80,6 +80,8 @@ NSString *userenterprise;
 
     self.listaPublicaciones = [[NSArray alloc] init];
     self.listaPublicaciones = [self.userbrockus.toCirculo allObjects];
+    NSUInteger numeroPersonasCirculo = [self.userbrockus.toCirculo count];
+    NSLog(@"numero de personas %lu", (unsigned long)numeroPersonasCirculo);//contando la cantidad de personas en mi circulo
     
     //ordenadas
     NSSortDescriptor *byName = [NSSortDescriptor sortDescriptorWithKey:@"toAmigo.nombre" ascending:YES];
@@ -89,8 +91,9 @@ NSString *userenterprise;
     self.listaPublicaciones = [self.listaPublicaciones sortedArrayUsingDescriptors:sortDescriptors];
     
     
+    //contar amigos en el circulo
     
-    //test
+
     
 }
 

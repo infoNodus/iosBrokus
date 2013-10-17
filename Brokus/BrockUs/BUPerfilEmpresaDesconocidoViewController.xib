@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BUPerfilEmpresaDesconocidoViewController">
             <connections>
                 <outlet property="empresaTxt" destination="B3e-ci-d3f" id="bcf-Pn-CLR"/>
+                <outlet property="oImagen" destination="BpW-tu-efu" id="Cid-vC-nLH"/>
                 <outlet property="personaTxt" destination="vRy-EM-sDk" id="ef9-e4-pdV"/>
                 <outlet property="puestoTxt" destination="A2G-cV-TNs" id="fhE-6n-khR"/>
                 <outlet property="sectorTxt" destination="gLv-ln-iSP" id="guQ-Zb-ZpF"/>
@@ -88,7 +89,7 @@
                                     <rect key="frame" x="16" y="5" width="85" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <state key="normal" title="Enviar Email">
+                                    <state key="normal" title="Invitar">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>

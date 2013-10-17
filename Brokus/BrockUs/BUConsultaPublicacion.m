@@ -199,4 +199,15 @@
     }
 }
 
+- (NSArray*) recuperaConsultasPorPersona:(Persona*)toPersona {
+    NSSet *listaCopia = [toPersona.toPublicacion copy];
+    NSMutableSet *lista = [toPersona.toPublicacion copy];
+    for (Publicacion *p in listaCopia) {
+        if([p.status isEqualToNumber:[[NSNumber alloc] initWithInt:0]]) {
+            [lista removeObject:p];
+        }
+    }
+    return [lista allObjects];
+}
+
 @end

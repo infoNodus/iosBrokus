@@ -48,7 +48,7 @@
     if (self) {
         // Custom initialization
         self.persona = persona;
-        //self.title=self.persona.titulo;
+        self.title=self.persona.nombre;
         //self.oEmail.titleLabel.text = self.publicacion.toPersona.usuario;
     }
     return self;
@@ -71,14 +71,14 @@
     self.empresaTxt.text = self.persona.toEmpresa.nombre;
     self.sectorTxt.text = self.persona.toEmpresa.toSubsector.toSector.nombre;
     self.subsectorTxt.text = self.persona.toEmpresa.toSubsector.nombre;
-//    if(self.publicacion.img != nil) {
-//        self.oImagen.image = [[UIImage alloc] initWithData:self.publicacion.img];
-//    }
+    if(self.persona.img != nil) {
+        self.oImagen.image = [[UIImage alloc] initWithData:self.persona.img];
+    }
     //self.oEmail.textInputContextIdentifier = self.publicacion.toPersona.usuario;
     
     
     self.listaPublicaciones = [[NSArray alloc] init];
-    self.listaPublicaciones = [consulta recuperaPublicacionPorEmpresa:self.userbrockus.toEmpresa toContext:context];
+    self.listaPublicaciones = [consulta recuperaConsultasPorPersona:self.persona];
     
     
     //ordenadas

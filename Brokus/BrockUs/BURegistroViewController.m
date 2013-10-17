@@ -302,6 +302,7 @@ self.subSector.text=@"Edificacion Residencial";
                 NSLog(@"SELECCIONADO: %@",seleccionado.nombre);
             }
         }
+        
         insertaEmpresa.toSubsector=seleccionado;
         
         
@@ -316,6 +317,12 @@ self.subSector.text=@"Edificacion Residencial";
         BOOL success=[context save:&error];
         if(success==NO || error!=nil){
             NSLog(@"Error al guardar consulta: %@", [error description]);
+            UIAlertView *alerta = [[UIAlertView alloc] initWithTitle:@"Correcto" message:@"Usuario Registrado Procede a Logearte" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alerta show];
+            
+            self.log.delegate=(id)self;
+            [self presentViewController:self.log animated:YES completion:nil ];
+
         }else{
             NSLog(@"Datos guardados correctamente");
             

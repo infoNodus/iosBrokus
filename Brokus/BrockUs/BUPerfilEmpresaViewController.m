@@ -165,7 +165,7 @@ NSString *userenterprise;
     [UIView commitAnimations];
     
     self.pub.delegate=(id)self;
-    [self presentViewController:self.pub animated:YES completion:nil];
+    [self.navigationController pushViewController:self.pub animated:YES];
     UIAlertView *alertafecha =[[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Antes de publicar selecciona la fecha límite de duración (recuerda seleccionar entre 1 y 5 días máximo, toma encuenta que el día seleccionado será cuando se eliminará la publicación." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertafecha show];
 }

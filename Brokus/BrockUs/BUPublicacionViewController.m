@@ -31,6 +31,7 @@
 @property (strong) BUMuroPublicacionesViewController *muro;
 //@property (nonatomic, retain) NSManagedObjectContext *context;
 @property (strong) NSString* link;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *oAceptar;
 
 @end
 
@@ -49,6 +50,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = @"Nueva publicacón";
     }
     return self;
 }
@@ -58,6 +60,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationItem.rightBarButtonItem = self.oAceptar;
+    
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
 
@@ -138,7 +142,7 @@
                                                                        style:UIBarButtonItemStyleDone target:self
                                                                       action:@selector(doneClickedDate:)];
     NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:0];//fecha actual
-    [datePicker setMinimumDate:currentTime];
+    [datePicker setMinimumDate:[currentTime dateByAddingTimeInterval:100000]];
     [datePicker setMaximumDate:[currentTime dateByAddingTimeInterval:400000]];
     
     

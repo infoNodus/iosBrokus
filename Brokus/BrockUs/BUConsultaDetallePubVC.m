@@ -247,7 +247,6 @@
         publicacion.descripcion=self.descripcionTxt.text;
 
         publicacion.linkAnexo=self.link;
-        publicacion.toSubsector=nombreSubSector;
 
         
         if (nombreSubSector!=nil) {

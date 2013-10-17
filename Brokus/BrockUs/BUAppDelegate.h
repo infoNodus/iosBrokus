@@ -6,7 +6,6 @@
 #import <UIKit/UIKit.h>
 #import "BULoginViewController.h"
 #import "BURegistroViewController.h"
-
 @interface BUAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

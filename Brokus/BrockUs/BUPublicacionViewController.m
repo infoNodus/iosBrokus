@@ -141,8 +141,8 @@
     UIBarButtonItem* doneDateButton = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar"
                                                                        style:UIBarButtonItemStyleDone target:self
                                                                       action:@selector(doneClickedDate:)];
-    NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:0];//fecha actual
-    [datePicker setMinimumDate:[currentTime dateByAddingTimeInterval:100000]];
+    NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:100000];//fecha actual
+    [datePicker setMinimumDate:currentTime];
     [datePicker setMaximumDate:[currentTime dateByAddingTimeInterval:400000]];
     
     

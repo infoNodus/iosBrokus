@@ -10,16 +10,28 @@
 #import "BUAppDelegate.h"
 #import "Publicacion.h"
 #import "BUConsultaDetallePubVC.h"
+<<<<<<< HEAD
+=======
+#import "BUConsultaPublicacion.h"
+>>>>>>> master
 
 @interface BUPublicacionesInactivasVC (){
     NSManagedObjectContext *context;
     NSMutableArray *fetchedArray;
     
 }
+<<<<<<< HEAD
+=======
+@property (strong) Persona *userbrockus;
+>>>>>>> master
 
 @end
 
 @implementation BUPublicacionesInactivasVC
+<<<<<<< HEAD
+=======
+@synthesize pub;
+>>>>>>> master
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -42,12 +54,24 @@
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
     
+<<<<<<< HEAD
+=======
+    BUConsultaPublicacion *cons=[[BUConsultaPublicacion alloc] init];
+    NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
+    self.userbrockus = [cons recuperaPersona:userStr :context];
+    
+>>>>>>> master
     NSError *error;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *consulta = [NSEntityDescription
                                      entityForName:@"Publicacion" inManagedObjectContext:context];
     
+<<<<<<< HEAD
     NSPredicate *predicate=[NSPredicate predicateWithFormat:@" status=%@",nil];
+=======
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toPersona= %@ AND status=0",self.userbrockus];
+    NSLog(@"Usuario de consulta: %@",self.userbrockus);
+>>>>>>> master
     [request setPredicate:predicate];
     
     
@@ -65,6 +89,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+<<<<<<< HEAD
 -(void)reloadTable{
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
@@ -81,6 +106,8 @@
     [self.tableView reloadData];
     
 }
+=======
+>>>>>>> master
 
 
 #pragma mark - Table view data source
@@ -89,7 +116,11 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
+<<<<<<< HEAD
     return [fetchedArray count];
+=======
+    return 1;
+>>>>>>> master
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -108,11 +139,21 @@
     
     if(cell==nil){
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+<<<<<<< HEAD
     }
     // Configure the cell...
     Publicacion *pub=[fetchedArray objectAtIndex:indexPath.row];
     NSString *publicacion=pub.titulo;
     cell.textLabel.text = publicacion;
+=======
+
+    }
+    // Configure the cell...
+    pub=[fetchedArray objectAtIndex:indexPath.row];
+    NSString *publicacion=pub.titulo;
+    cell.textLabel.text = publicacion;
+
+>>>>>>> master
     
     return cell;
 }
@@ -125,6 +166,7 @@
  return YES;
  }
  */
+<<<<<<< HEAD
 
 
 
@@ -132,11 +174,19 @@
     BUConsultaDetallePubVC *consultaDetallePub=[[BUConsultaDetallePubVC alloc]init];
     consultaDetallePub.publicacion=[fetchedArray objectAtIndex:indexPath.row];
     [self presentViewController:consultaDetallePub animated:YES completion:nil];
+=======
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+}
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+>>>>>>> master
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
 
+<<<<<<< HEAD
     [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [fetchedArray removeObjectAtIndex:indexPath.row];
     if ([fetchedArray count]<=0) {
@@ -144,6 +194,35 @@
     }
     
 }
+=======
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        if ([fetchedArray count] >= 1) {
+            [tableView beginUpdates];
+            pub=[fetchedArray objectAtIndex:indexPath.row];
+            pub.status=[[NSNumber alloc] initWithInt:1] ;
+            NSLog(@"PUBLICACION: %@",pub);
+            
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [fetchedArray removeObjectAtIndex:[indexPath row]];
+            NSError *error = nil;
+            // Save the object to persistent store
+            if (![context save:&error]) {
+                NSLog(@"Error al actualizar los datos: %@ %@", error, [error localizedDescription]);
+            }
+            
+            /*if ([fetchedArray count] == 0) {
+                [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }*/
+            [tableView endUpdates];
+        }
+    }
+    
+}
+-(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"Reactivar";
+}
+>>>>>>> master
 
 
 
@@ -175,5 +254,29 @@
  
  */
 
+<<<<<<< HEAD
+=======
+-(void)reloadTable{
+    BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
+    context =[buappdelegate managedObjectContext];
+    
+    NSError *error;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *consulta = [NSEntityDescription
+                                     entityForName:@"Publicacion" inManagedObjectContext:context];
+    
+    
+    
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@" status=0"];
+    [request setPredicate:predicate];
+    
+    [request setEntity:consulta];
+    
+    fetchedArray = [[context executeFetchRequest:request error:&error]mutableCopy];
+    [self.tableView reloadData];
+    
+}
+
+>>>>>>> master
 @end
 

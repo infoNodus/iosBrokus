@@ -8,8 +8,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BUConsultaDetallePubVC">
             <connections>
                 <outlet property="descripcionTxt" destination="Qn4-R8-j6U" id="m5g-jW-l7D"/>
+<<<<<<< HEAD
                 <outlet property="fechaTermino" destination="Tvz-eF-1r8" id="cpM-Hj-8NT"/>
                 <outlet property="imagenPub" destination="NSy-4B-91L" id="AEi-p6-55d"/>
+=======
+                <outlet property="fechaTermino" destination="Tvz-eF-1r8" id="JqR-lg-bMC"/>
+                <outlet property="imagenPub" destination="NSy-4B-91L" id="AEi-p6-55d"/>
+                <outlet property="linkanexo" destination="0Qc-oo-Efw" id="7KI-gG-0Gz"/>
+>>>>>>> master
                 <outlet property="sectorTxt" destination="ds3-mt-1kO" id="h7g-K7-KTf"/>
                 <outlet property="subSectorTxt" destination="637-80-JiF" id="cBS-qd-POd"/>
                 <outlet property="tituloTxt" destination="jj9-Cz-0pV" id="rOS-Se-8G3"/>
@@ -26,18 +32,28 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+<<<<<<< HEAD
                     <connections>
                         <action selector="fechsTerminoTapped:" destination="-1" eventType="editingDidEnd" id="VNQ-uP-GjN"/>
                     </connections>
+=======
+>>>>>>> master
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Título" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jj9-Cz-0pV">
                     <rect key="frame" x="20" y="115" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
+<<<<<<< HEAD
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qn4-R8-j6U">
                     <rect key="frame" x="17" y="163" width="280" height="168"/>
+=======
+                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                </textField>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qn4-R8-j6U">
+                    <rect key="frame" x="17" y="163" width="280" height="133"/>
+>>>>>>> master
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -83,18 +99,30 @@
                     <rect key="frame" x="19" y="352" width="277" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
+<<<<<<< HEAD
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <action selector="sectorTapped:" destination="-1" eventType="editingDidEnd" id="d56-8W-9eR"/>
+=======
+                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                    <connections>
+                        <action selector="sectorTapped:" destination="-1" eventType="touchDown" id="rX6-jX-EUb"/>
+>>>>>>> master
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subsector" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="637-80-JiF">
                     <rect key="frame" x="20" y="405" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
+<<<<<<< HEAD
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <action selector="subSectorTapped:" destination="-1" eventType="editingDidEnd" id="j9M-ZZ-wF1"/>
+=======
+                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                    <connections>
+                        <action selector="subSectorTapped:" destination="-1" eventType="touchDown" id="lw5-69-uOe"/>
+>>>>>>> master
                     </connections>
                 </textField>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSy-4B-91L">
@@ -130,6 +158,26 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
+<<<<<<< HEAD
+=======
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ql6-ED-JXp">
+                    <rect key="frame" x="12" y="304" width="166" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Modificar Anexo">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="AnexoBtn:" destination="-1" eventType="touchUpInside" id="HY6-f8-J6F"/>
+                    </connections>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Link" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Qc-oo-Efw">
+                    <rect key="frame" x="134" y="308" width="163" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+>>>>>>> master
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -142,5 +190,15 @@
             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
             <nil key="highlightedColor"/>
         </label>
+<<<<<<< HEAD
+=======
+        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sector:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lY5-bt-6I3">
+            <rect key="frame" x="0.0" y="0.0" width="56" height="21"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+            <nil key="highlightedColor"/>
+        </label>
+>>>>>>> master
     </objects>
 </document>

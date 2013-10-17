@@ -14,8 +14,9 @@
 
 @interface BUConsultaPublicacion : NSObject
 
-- (NSArray*) recuperaPublicacionPor:(Sector*)toSector :(NSManagedObjectContext*) context;
+- (NSMutableArray*) recuperaPublicacionPor:(Sector*)toSector context:(NSManagedObjectContext*) context;
 - (Persona*) recuperaPersona:(NSString*)toUsuario :(NSManagedObjectContext*) context;
 - (NSArray*) recuperaPublicacionPorEmpresa:(Empresa*)toEmpresa toContext:(NSManagedObjectContext*) context;
 - (NSArray*) recuperaPersonasCirculoPorPersona:(Persona*)toCirculo toContext:(NSManagedObjectContext*) context;
+- (void) desactivaPublicacionesCaducadastoContext:(NSManagedObjectContext*) context;
 @end

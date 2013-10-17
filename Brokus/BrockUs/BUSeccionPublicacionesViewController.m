@@ -4,10 +4,13 @@
 //
 //  Created by Nodus5 on 10/10/13.
 //  Copyright (c) 2013 Nodus. All rights reserved.
-//
+// proyecto
 
 #import "BUSeccionPublicacionesViewController.h"
 #import "BUPerfilEmpresaViewController.h"
+#import "BUConsultaPublicacion.h"
+#import "BUAppDelegate.h"
+
 @interface BUSeccionPublicacionesViewController (){
     
 }
@@ -52,10 +55,13 @@
     [self addChildViewController:presentaActivas];
     presentaActivas.view.frame=CGRectMake(0, 44, 320, 504);
     [self.view addSubview:presentaActivas.view];
+<<<<<<< HEAD
     /*publicacionesActivas.frame=CGRectMake(0, 44, 320, 504);
      [presenterVC reloadTable];
      [publicacionesActivas addSubview:presenterVC.view];
      [self.view addSubview:publicacionesActivas];*/
+=======
+>>>>>>> master
     
 }
 
@@ -72,6 +78,12 @@
 
 - (IBAction)canceltapped:(id)sender {
     self.perfil.delegate=(id)self;
+<<<<<<< HEAD
+=======
+    BUAppDelegate *buappdelegate=[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context =[buappdelegate managedObjectContext];
+    [[[BUConsultaPublicacion alloc] init] desactivaPublicacionesCaducadastoContext:context];
+>>>>>>> master
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:self.perfil];
     [self presentViewController:nc animated:YES completion:nil];
     
@@ -81,12 +93,18 @@
 - (IBAction)optionsTapped:(id)sender {
     UISegmentedControl *segmentedc=(UISegmentedControl *)sender;
     if(segmentedc.selectedSegmentIndex==0){
+        [presentaActivas reloadTable];
         [self presentaPublicacionesActivas];
     }else{
-        
+        [presentaInactivas reloadTable];
         [self presentaPublicacionesInActivas];
     }
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
 @end
 

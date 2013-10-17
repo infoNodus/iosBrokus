@@ -9,12 +9,20 @@
 #import "BUPublicacionesActivasVC.h"
 #import "BUAppDelegate.h"
 #import "Publicacion.h"
+<<<<<<< HEAD
+=======
+#import "BUConsultaPublicacion.h"
+>>>>>>> master
 #import "BUConsultaDetallePubVC.h"
 
 @interface BUPublicacionesActivasVC (){
     NSManagedObjectContext *context;
     NSMutableArray *fetchedArray;
 }
+<<<<<<< HEAD
+=======
+@property (strong) Persona *userbrockus;
+>>>>>>> master
 
 @end
 
@@ -44,13 +52,24 @@
     
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
+<<<<<<< HEAD
+=======
+    BUConsultaPublicacion *cons=[[BUConsultaPublicacion alloc] init];
+    NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
+    self.userbrockus = [cons recuperaPersona:userStr :context];
+>>>>>>> master
     
     NSError *error;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *consulta = [NSEntityDescription
                                      entityForName:@"Publicacion" inManagedObjectContext:context];
     
+<<<<<<< HEAD
     NSPredicate *predicate=[NSPredicate predicateWithFormat:@" status=%i",1];
+=======
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toPersona=%@ AND status=1",self.userbrockus];
+    NSLog(@"Usuario de consulta: %@",self.userbrockus);
+>>>>>>> master
     [request setPredicate:predicate];
     
     
@@ -61,8 +80,14 @@
     
 }
 -(void)viewDidAppear:(BOOL)animated{
+<<<<<<< HEAD
     [self.tableView reloadData];
 }
+=======
+    [self reloadTable];
+}
+
+>>>>>>> master
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -78,6 +103,13 @@
     NSEntityDescription *consulta = [NSEntityDescription
                                      entityForName:@"Publicacion" inManagedObjectContext:context];
     
+<<<<<<< HEAD
+=======
+    
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toPersona= %@ AND status=1",self.userbrockus];
+    [request setPredicate:predicate];
+    
+>>>>>>> master
     [request setEntity:consulta];
     
     
@@ -114,9 +146,15 @@
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
+<<<<<<< HEAD
     Publicacion *pub=[fetchedArray objectAtIndex:indexPath.row];
     NSString *publicacion=pub.titulo;
     cell.textLabel.text = publicacion;
+=======
+    Publicacion *publicacion=[fetchedArray objectAtIndex:indexPath.row];
+    NSString *titulo=publicacion.titulo;
+    cell.textLabel.text = titulo;
+>>>>>>> master
     
     return cell;
 }
@@ -136,6 +174,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+<<<<<<< HEAD
 
         pub=[fetchedArray objectAtIndex:indexPath.row];
         pub.status=0;
@@ -152,6 +191,27 @@
     }
     [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [fetchedArray removeObjectAtIndex:indexPath.row];
+=======
+        if ([fetchedArray count] >= 1) {
+            [tableView beginUpdates];
+            pub=[fetchedArray objectAtIndex:indexPath.row];
+            pub.status=[[NSNumber alloc] initWithInt:0] ;
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [fetchedArray removeObjectAtIndex:[indexPath row]];
+            NSLog(@"PUBLICACION: %@",pub);
+            
+            /*if ([fetchedArray count] == 0) {
+                [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }*/
+            NSError *error = nil;
+            // Save the object to persistent store
+            if (![context save:&error]) {
+                NSLog(@"Error al actualizar los datos: %@ %@", error, [error localizedDescription]);
+            }
+            [tableView endUpdates];
+        }
+    }
+>>>>>>> master
 
 }
 
@@ -161,6 +221,12 @@
     [self presentViewController:consultaDetallePub animated:YES completion:nil];
 }
 
+<<<<<<< HEAD
+=======
+-(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"Desactivar";
+}
+>>>>>>> master
 
 /*
  // Override to support rearranging the table view.

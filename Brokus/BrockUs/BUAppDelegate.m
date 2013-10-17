@@ -91,7 +91,6 @@ BULoginViewController *lista=[[BULoginViewController alloc] initWithNibName:@"BU
     }
     return _managedObjectContext;
 }
-
 // Returns the managed object model for the application.
 // If the model doesn't already exist, it is created from the application's model.
 - (NSManagedObjectModel *)managedObjectModel

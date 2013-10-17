@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<<<<<<< HEAD
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+=======
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3400" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+>>>>>>> master
     <entity name="Circulo" representedClassName="Circulo" syncable="YES">
         <attribute name="isAceptado" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="toAmigo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Persona" syncable="YES"/>
@@ -57,6 +61,7 @@
         <relationship name="toSector" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Sector" inverseName="toSubsector" inverseEntity="Sector" syncable="YES"/>
     </entity>
     <elements>
+<<<<<<< HEAD
         <element name="Circulo" positionX="369" positionY="-54" width="128" height="90"/>
         <element name="Empresa" positionX="-56" positionY="-123" width="128" height="105"/>
         <element name="Notificacion" positionX="376" positionY="63" width="128" height="90"/>
@@ -64,5 +69,14 @@
         <element name="Publicacion" positionX="-54" positionY="-6" width="128" height="223"/>
         <element name="Sector" positionX="-459" positionY="-27" width="128" height="90"/>
         <element name="Subsector" positionX="-270" positionY="-30" width="128" height="120"/>
+=======
+        <element name="Circulo" positionX="187" positionY="-108" width="128" height="90"/>
+        <element name="Empresa" positionX="-261" positionY="-204" width="128" height="105"/>
+        <element name="Notificacion" positionX="126" positionY="117" width="128" height="90"/>
+        <element name="Persona" positionX="-45" positionY="-108" width="128" height="225"/>
+        <element name="Publicacion" positionX="-236" positionY="11" width="128" height="223"/>
+        <element name="Sector" positionX="-567" positionY="-198" width="128" height="90"/>
+        <element name="Subsector" positionX="-405" positionY="-93" width="128" height="120"/>
+>>>>>>> master
     </elements>
 </model>

@@ -12,9 +12,20 @@
 #import "Sector.h"
 #import "ComboSector.h"
 #import "BUPublicacionesActivasVC.h"
+<<<<<<< HEAD
 
 @interface BUConsultaDetallePubVC ()
 
+=======
+#import "BUConsultaPublicacion.h"
+
+@interface BUConsultaDetallePubVC (){
+    BOOL *isSector;
+    Sector *nombreSector;
+    Subsector *nombreSubSector;
+}
+@property (strong) NSString* link;
+>>>>>>> master
 @end
 
 @implementation BUConsultaDetallePubVC
@@ -23,6 +34,10 @@
 @synthesize datePicker;
 @synthesize fechaTermino;
 @synthesize sectorSeleccionado;
+<<<<<<< HEAD
+=======
+@synthesize linkanexo;
+>>>>>>> master
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,6 +62,12 @@
     self.tituloTxt.text=publicacion.titulo;
     self.descripcionTxt.text=publicacion.descripcion;
     self.subSectorTxt.text=publicacion.toSubsector.nombre;
+<<<<<<< HEAD
+=======
+    self.linkanexo.text = publicacion.linkAnexo;
+    self.link = publicacion.linkAnexo;
+    
+>>>>>>> master
     self.imagenPub.image=[[UIImage alloc] initWithData:publicacion.img];
     
     
@@ -58,18 +79,31 @@
     NSEntityDescription *requestEmpresa=[NSEntityDescription entityForName:@"Subsector" inManagedObjectContext:context];
     [fetchRequest setEntity:requestEmpresa];
     //usamos la propiedad persona para obtener su empresa
+<<<<<<< HEAD
     NSPredicate *predicate=[NSPredicate predicateWithFormat:@" nombre=%@",publicacion.toSubsector.nombre];
+=======
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"nombre=%@",publicacion.toSubsector.nombre];
+>>>>>>> master
     [fetchRequest setPredicate:predicate];
     
     
     NSArray *fetchedSector=[context executeFetchRequest:fetchRequest error:&error];
     //Creamos la variable empresa y en el for le asignamos la empresa obtenida
+<<<<<<< HEAD
     Subsector *sector;
     for (int i=0; i<[fetchedSector count]; i++) {
         sector=[fetchedSector objectAtIndex:i];
         //NSLog(@"Empresa: %@",[fetchedSubSector objectAtIndex:i]);
     }
     self.sectorTxt.text=sector.toSector.nombre;
+=======
+    Subsector *subsector;
+    for (int i=0; i<[fetchedSector count]; i++) {
+        subsector=[fetchedSector objectAtIndex:i];
+        //NSLog(@"Empresa: %@",[fetchedSubSector objectAtIndex:i]);
+    }
+    self.sectorTxt.text=subsector.toSector.nombre;
+>>>>>>> master
     
     
     fechaTermino.delegate=self;
@@ -100,6 +134,87 @@
     fechaTermino.inputAccessoryView = datetoolbar;
     
     
+<<<<<<< HEAD
+=======
+    ////ponemos el picker para el sector
+    ////////
+    ////////
+    
+    NSFetchRequest *requestSector = [[NSFetchRequest alloc] init];
+    NSEntityDescription *selectSector = [NSEntityDescription
+                                         entityForName:@"Sector" inManagedObjectContext:context];
+    
+    [requestSector setEntity:selectSector];
+    arraySectores=[[NSArray alloc]init];
+    
+    arraySectores= [context executeFetchRequest:requestSector error:&error];
+    
+    self.subSectorTxt.delegate=self;
+    pickerSectores = [[UIPickerView alloc] init];
+    pickerSectores.showsSelectionIndicator = YES;
+    pickerSectores.dataSource = self;
+    pickerSectores.delegate = self;
+    
+    UIToolbar* toolbarSectores = [[UIToolbar alloc] init];
+    toolbarSectores.barStyle = UIBarStyleBlackTranslucent;
+    [toolbarSectores sizeToFit];
+    
+    //to make the done button aligned to the right
+    UIBarButtonItem *flexibleSpaceLeftSectores = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    
+    UIBarButtonItem* aceptar = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar"
+                                                                   style:UIBarButtonItemStyleDone target:self
+                                                                  action:@selector(doneClickedSectores:)];
+    
+    
+    [toolbarSectores setItems:[NSArray arrayWithObjects:flexibleSpaceLeftSectores, aceptar, nil]];
+    
+    //custom input view
+    
+    self.sectorTxt.inputView = pickerSectores;
+    self.sectorTxt.inputAccessoryView = toolbarSectores;
+    
+    
+    ///inicializamos el picker con los subsectores y se lo cargamos al textview
+    
+    NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+    NSEntityDescription *selectSubSector = [NSEntityDescription
+                                            entityForName:@"Subsector" inManagedObjectContext:context];
+    
+    [fetch setEntity:selectSubSector];
+    
+    arraySubsectores=[[NSArray alloc]init];
+    arraySubsectores=[context executeFetchRequest:fetch error:&error];
+    
+    self.subSectorTxt.delegate=self;
+    pickerView = [[UIPickerView alloc] init];
+    pickerView.showsSelectionIndicator = YES;
+    pickerView.dataSource = self;
+    pickerView.delegate = self;
+    
+    UIToolbar* toolbar = [[UIToolbar alloc] init];
+    toolbar.barStyle = UIBarStyleBlackTranslucent;
+    [toolbar sizeToFit];
+    
+    //to make the done button aligned to the right
+    UIBarButtonItem *flexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar"
+                                                                   style:UIBarButtonItemStyleDone target:self
+                                                                  action:@selector(doneClicked:)];
+    
+    
+    [toolbar setItems:[NSArray arrayWithObjects:flexibleSpaceLeft, doneButton, nil]];
+    
+    //custom input view
+    
+    self.subSectorTxt.inputView = pickerView;
+    self.subSectorTxt.inputAccessoryView = toolbar;
+
+    
+>>>>>>> master
     
 }
 
@@ -109,6 +224,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+<<<<<<< HEAD
 - (IBAction)fechsTerminoTapped:(id)sender {
 }
 
@@ -120,10 +236,41 @@
 }
 
 - (IBAction)cargarNuevaTapped:(id)sender {
+=======
+
+
+
+- (IBAction)cargarNuevaTapped:(id)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:picker animated:YES completion:NULL];
+    //[self.cargarImagenButton setBackgroundColor:[UIColor blueColor]]; //mejorar el diseño
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    CGSize newSize = CGSizeMake(100.0,100.0);
+    UIGraphicsBeginImageContext(newSize);
+    [chosenImage drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.imagenPub.image = newImage;
+    self.imagenPub.contentMode = UIViewContentModeScaleAspectFit;
+    self.imagenPub.frame = CGRectMake(110, 10, 100, 100);
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    //[self.cargarImagenButton setBackgroundColor:[UIColor whiteColor]];
+>>>>>>> master
 }
 
 - (IBAction)cancelarTapped:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+<<<<<<< HEAD
 }
 
 - (IBAction)editarTapped:(id)sender {
@@ -134,6 +281,43 @@
         publicacion.descripcion=self.descripcionTxt.text;
         
         
+=======
+    
+}
+
+
+- (IBAction)editarTapped:(id)sender {
+    if (publicacion) {
+        NSDate *today=[NSDate date];
+        NSComparisonResult result = [today compare:[datePicker date]];
+        
+        if(result==NSOrderedAscending)
+            publicacion.fecha=[datePicker date];
+        else if(result==NSOrderedDescending){
+            NSLog(@"Seleccionar una fecha superior");
+        }
+        
+        publicacion.titulo=self.tituloTxt.text;
+        publicacion.descripcion=self.descripcionTxt.text;
+
+        publicacion.linkAnexo=self.link;
+        publicacion.toSubsector=nombreSubSector;
+
+        
+        if (nombreSubSector!=nil) {
+            publicacion.toSubsector=nombreSubSector;
+        }
+        
+
+        
+        
+        NSData *imageData = UIImageJPEGRepresentation(self.imagenPub.image, 1);
+        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        path = [path stringByAppendingString:publicacion.nameImg];
+        publicacion.img = imageData;
+        
+        NSLog(@"Publicacion editada:%@",publicacion);
+>>>>>>> master
     }
     
     NSError *error = nil;
@@ -144,6 +328,45 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+<<<<<<< HEAD
+=======
+- (IBAction)sectorTapped:(id)sender {
+    isSector=YES;
+    self.subSectorTxt.text=@"";
+    dataArray=arraySectores;
+    [pickerView reloadAllComponents];
+}
+
+- (IBAction)subSectorTapped:(id)sender {
+    isSector=NO;
+    //filtramos el picker de subsectores segun el sector seleccionado
+    Sector *seleccionado;
+    for (int i=0; i<[arraySectores count]; i++) {
+        Sector *forsector=[arraySectores objectAtIndex:i];
+        if([forsector.nombre isEqualToString:self.sectorTxt.text]){
+            seleccionado=[arraySectores objectAtIndex:i];
+        }
+    }
+    
+    NSError *error;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *selectSubSector = [NSEntityDescription
+                                            entityForName:@"Subsector" inManagedObjectContext:context];
+    
+    [fetchRequest setEntity:selectSubSector];
+    
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toSector = %@",seleccionado];
+    [fetchRequest setPredicate:predicate];
+    
+    arraySubsectores= [context executeFetchRequest:fetchRequest error:&error];
+    dataArray=arraySubsectores;
+    [pickerView reloadAllComponents];
+}
+
+
+
+
+>>>>>>> master
 -(void)doneClickedDate:(id) sender
 {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -152,6 +375,93 @@
     [fechaTermino resignFirstResponder]; //hides the pickerView
     
 }
+<<<<<<< HEAD
 
 
+=======
+-(void)doneClickedSectores:(id) sender
+{
+
+    [self.sectorTxt resignFirstResponder]; //hides the pickerView
+    
+}
+-(void)doneClicked:(id) sender
+{
+    
+    [self.subSectorTxt resignFirstResponder]; //hides the pickerView
+    
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView;
+{
+    return 1;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if(isSector){
+        nombreSector=[dataArray objectAtIndex:row];
+        self.sectorTxt.text=nombreSector.nombre;
+    }else{
+        nombreSubSector=[dataArray objectAtIndex:row];
+        self.subSectorTxt.text =nombreSubSector.nombre;
+    }
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
+{
+    return [dataArray count];
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
+{
+    if(isSector){
+        nombreSector=[dataArray objectAtIndex:row];
+        return nombreSector.nombre;
+    }else{
+        nombreSubSector=[dataArray objectAtIndex:row];
+        return nombreSubSector.nombre;
+    }
+    
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex == 1) {
+        UITextField *theTextField = [alertView textFieldAtIndex:0];
+                NSString *urlRegEx =
+        @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+        NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
+        if(![urlTest evaluateWithObject:theTextField.text]){
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error Link invalido" message:@"Proporciona un link donde se encuentra tu archivo (Dropbox, Mega, etc). No Olvides poner al principio http:// "  delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"OK", nil];
+            
+            alert.alertViewStyle=UIAlertViewStylePlainTextInput;
+            [alert textFieldAtIndex:0].text = theTextField.text;
+            [alert show];
+            return;
+        }
+        self.link = theTextField.text;
+        self.linkanexo.text =  [[alertView textFieldAtIndex:0]text];
+    }
+    
+}
+
+- (IBAction)AnexoBtn:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Proporciona un link donde se encuentra tu archivo (Dropbox, Mega, etc). No Olvides poner al principio http:// "  delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"OK", nil];
+    alert.alertViewStyle= UIAlertViewStylePlainTextInput;
+    if(self.link == nil || [self.link isEqualToString:@""]) {
+        [alert textFieldAtIndex:0].text = @"http://";
+    } else {
+        [alert textFieldAtIndex:0].text = self.link;
+    }
+    [alert show];
+    
+    BUConsultaPublicacion *consulta = [[BUConsultaPublicacion alloc] init];
+    Persona *persona = [consulta recuperaPersona:[[NSUserDefaults standardUserDefaults] objectForKey:@"UserBrockus"] :context];
+    Publicacion *insertPublicacion=[NSEntityDescription insertNewObjectForEntityForName:@"Publicacion" inManagedObjectContext:context];
+    if(![self.link isEqualToString:@""]) {
+        insertPublicacion.linkAnexo = self.link;
+    }
+}
+>>>>>>> master
 @end

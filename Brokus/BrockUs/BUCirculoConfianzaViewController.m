@@ -59,7 +59,7 @@ NSString *userenterprise;
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
      self.salir=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
-    //test
+    
     BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];
     NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
     self.userbrockus = [consulta recuperaPersona:userStr :context];
@@ -80,6 +80,12 @@ NSString *userenterprise;
 
     self.listaPublicaciones = [[NSArray alloc] init];
     self.listaPublicaciones = [self.userbrockus.toCirculo allObjects];
+<<<<<<< HEAD
+=======
+    NSUInteger numeroPersonasCirculo = [self.userbrockus.toCirculo count];
+    NSLog(@"numero de personas %lu", (unsigned long)numeroPersonasCirculo);//contar personas en el circulo de amigos
+    
+>>>>>>> master
     
     //ordenadas
     NSSortDescriptor *byName = [NSSortDescriptor sortDescriptorWithKey:@"toAmigo.nombre" ascending:YES];
@@ -90,7 +96,8 @@ NSString *userenterprise;
     
     
     
-    //test
+    
+
     
 }
 
@@ -103,6 +110,13 @@ NSString *userenterprise;
 #pragma mark - TableViewController methods
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if ([self.listaPublicaciones count] <= 10) {
+        return [self.listaPublicaciones count];
+    }else{
+        return 10;
+    }
+    
     return [self.listaPublicaciones count];
 }
 
@@ -221,4 +235,28 @@ NSString *userenterprise;
 [self presentViewController:self.salir animated:YES completion:nil ];
 
 }
+
+
+
+//agregar al circulo de confiansa
+/*
+ *cuando una persona solicite la agregacion de otra a su circulo de confianza primero debemos saber si no ha llegado al limite de personas permitidas,
+ *para esto contaremos las personas de la base de datos y dependiendo de la respuesta permitiremos o no la incercion
+ *
+ *este es un posible metodo para contarlos pero no ha sido testeado aun
+ *
+ int entityCount = 0;
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"YourEntity" inManagedObjectContext:_managedObjectContext];
+ NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ [fetchRequest setEntity:entity];
+ [fetchRequest setIncludesPropertyValues:NO];
+ [fetchRequest setIncludesSubentities:NO];
+ NSError *error = nil;
+ NSUInteger count = [_managedObjectContext countForFetchRequest: fetchRequest error: &error];
+ if(error == nil){
+ entityCount = count;
+ }
+ *
+ *
+ */
 @end

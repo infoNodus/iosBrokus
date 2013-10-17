@@ -16,7 +16,7 @@
 @implementation BUConsultaPublicacion
 
 /* recupera las publicaciones segun un sector especifico */
-- (NSArray*) recuperaPublicacionPor:(Sector*)toSector :(NSManagedObjectContext*) context {
+- (NSMutableArray*) recuperaPublicacionPor:(Sector*)toSector context:(NSManagedObjectContext*) context {
     
     NSEntityDescription *entityDescription = [NSEntityDescription
                                               entityForName:@"Publicacion" inManagedObjectContext:context];
@@ -31,8 +31,9 @@
     [request setSortDescriptors:@[sortDescriptor]];
     
     // Filtrando por el sector.
+    NSNumber *status=[[NSNumber alloc]initWithInt:1];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"toSubsector.toSector = %@", toSector];
+                              @"toSubsector.toSector = %@ AND status=%@", toSector,status];
     
     // En dado caso de que no acepte un objeto para la busqueda....
 //    NSPredicate *predicate = [NSPredicate predicateWithFormat:
@@ -41,7 +42,8 @@
     [request setPredicate:predicate];
     
     NSError *error;
-    NSArray *array = [context executeFetchRequest:request error:&error];
+    NSMutableArray *array=[[NSMutableArray alloc]init];
+    array = [[context executeFetchRequest:request error:&error]mutableCopy];
     if(error!=nil){
         NSLog(@"Regresando nil. Error al realizar consulta: %@", [error description]);
         return nil;
@@ -161,6 +163,39 @@
     }
     
     return [listaPersonasCirculo copy];
+}
+
+- (void) desactivaPublicacionesCaducadastoContext:(NSManagedObjectContext*) context{
+    NSEntityDescription *entityDescription = [NSEntityDescription
+                                              entityForName:@"Publicacion" inManagedObjectContext:context];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+    [request setEntity:entityDescription];
+    
+    // Filtrando por el sector.
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"status = 1 and fecha <= %@", [NSDate date] ];
+                              NSLog(@"Predicado: %@",predicate.description);
+    [request setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *array = [context executeFetchRequest:request error:&error];
+    if(error!=nil){
+        NSLog(@"Error al realizar consulta: %@", [error description]);
+    }
+    error = nil;
+    NSLog(@"Total: %i", [array count]);
+    for (Publicacion *p in array) {
+        p.status = [[NSNumber alloc] initWithInt:0];
+        NSLog(@"fecha: %@", p.fecha);
+        NSLog(@"status: %@", p.status);
+    }
+    
+    [context save:&error];
+    if(error!=nil){
+        NSLog(@"Error al guardar la informacion: %@", [error description]);
+    }
 }
 
 @end

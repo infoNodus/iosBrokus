@@ -4,7 +4,7 @@
 //
 //  Created by Nodus9 on 04/10/13.
 //  Copyright (c) 2013 Nodus. All rights reserved.
-//
+
 
 #import "BUPublicacionViewController.h"
 #import "BUPerfilEmpresaViewController.h"
@@ -66,7 +66,7 @@
 
     self.muestrafecha =[[UILabel alloc] init];
     self.subSector.text=@"Edificacion Residencial";
-    
+    self.mostrarpublicacion = [[BUPublicacionViewController alloc]initWithNibName:@"BUPublicacionViewController" bundle:nil];
     self.perfil=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
  
     self.muro=[[BUMuroPublicacionesViewController alloc]initWithNibName:@"BUMuroPublicacionesViewController" bundle:nil];
@@ -140,7 +140,7 @@
     UIBarButtonItem* doneDateButton = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar"
                                                                        style:UIBarButtonItemStyleDone target:self
                                                                       action:@selector(doneClickedDate:)];
-    NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:0];//fecha actual
     [datePicker setMinimumDate:currentTime];
     [datePicker setMaximumDate:[currentTime dateByAddingTimeInterval:400000]];
     
@@ -217,11 +217,6 @@
 }
 
 
-
-
-
-
-
 //ocultar teclado
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if([textField.text length] == 0) {
@@ -284,7 +279,7 @@
         NSString *stringA = @"/";
         NSString *stringB = self.tituloTxt.text;//agregar parametros para hacer nom de imagen unico
         NSString *stringC = @".jpg";
-        NSString *finalString = [NSString stringWithFormat:@"%@%@%", stringA, stringB, stringC]; //agregar random
+        NSString *finalString = [NSString stringWithFormat:@"%@%@%@", stringA, stringB, stringC]; //agregar random
         NSData *imageData = UIImageJPEGRepresentation(self.imagenPub.image, 1);
         NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         path = [path stringByAppendingString:finalString];
@@ -355,7 +350,7 @@
         }
     }
 
-    self.perfil.delegate=(id)self;
+   self.perfil.delegate=(id)self;
     UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.perfil];
     navContr.title=@"Perfil";
     [self presentViewController:navContr animated:YES completion:nil];
@@ -404,21 +399,47 @@
     NSLog(@"fuera del for");
 }
 
+<<<<<<< HEAD
 //Hacer alertview con texto
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
         NSLog(@"Texto: %@",[[alertView textFieldAtIndex:0]text]);
         UITextField *theTextField = [alertView textFieldAtIndex:0];
+=======
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if(buttonIndex == 1) {
+        UITextField *theTextField = [alertView textFieldAtIndex:0];
+        NSString *urlRegEx =
+        @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+        NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
+        if(![urlTest evaluateWithObject:theTextField.text]){
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error Link invalido" message:@"Proporciona un link donde se encuentra tu archivo (Dropbox, Mega, etc). No Olvides poner al principio http:// "  delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"OK", nil];
+            
+            alert.alertViewStyle=UIAlertViewStylePlainTextInput;
+            [alert textFieldAtIndex:0].text = theTextField.text;
+            [alert show];
+            return;
+        }
+>>>>>>> master
         self.link = theTextField.text;
     }
 }
 
 - (IBAction)CargarArchivo:(id)sender {
+<<<<<<< HEAD
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Proporciona un link donde se encuentra tu archivo (Dropbox, Mega, etc)." delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"OK", nil];
     alert.alertViewStyle=UIAlertViewStylePlainTextInput;
    [alert show];
     
     
+=======
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Proporciona un link donde se encuentra tu archivo (Dropbox, Mega, etc). No Olvides poner al principio http:// "  delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"OK", nil];
+            alert.alertViewStyle= UIAlertViewStylePlainTextInput;
+    [alert textFieldAtIndex:0].text = @"http://";
+            [alert show];
+>>>>>>> master
 }
 
 

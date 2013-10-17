@@ -10,7 +10,7 @@
 #import "BUAppDelegate.h"
 #import "BUPerfilEmpresaViewController.h"
 #import "BURegistroViewController.h"
-
+#import "BUConsultaPublicacion.h"
 
 @interface BULoginViewController (){
     NSManagedObjectContext *context;
@@ -42,6 +42,9 @@
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
 
+    BUConsultaPublicacion *consulta = [[BUConsultaPublicacion alloc] init];
+    [consulta desactivaPublicacionesCaducadastoContext:context];
+    
     self.perfil=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
     self.registro=[[BURegistroViewController alloc] initWithNibName:@"BURegistroViewController" bundle:nil];
    // self.publicacion=[[BURealizarPublicacionViewController alloc] initWithNibName:@"BURealizarPublicacionViewController" bundle:nil];
@@ -221,7 +224,9 @@
                         [UIView commitAnimations];
                         
                         self.perfil.delegate=(id)self;
-                        [self presentViewController:self.perfil animated:YES completion:nil];
+                        UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.perfil];
+                        navContr.title=@"Perfil";
+                        [self presentViewController:navContr animated:YES completion:nil];
                         
                     }
                 }
@@ -336,6 +341,12 @@
                      self.perfil.delegate=(id)self;
                     UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.perfil];
                     navContr.title=@"Perfil";
+                    
+                   // self.navigationItem.leftBarButtonItem = self.btnSalir;
+                   // self.navigationItem.rightBarButtonItem = self.btnCrearPublicacion;
+                    self.title = @"Perfil";
+
+
                     [self presentViewController:navContr animated:YES completion:nil];
                     
                                          }

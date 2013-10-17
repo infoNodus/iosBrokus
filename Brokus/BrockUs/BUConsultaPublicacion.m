@@ -207,18 +207,6 @@
             [lista removeObject:p];
         }
     }
-//    int i=0;
-//    for (i=0; i<[lista count]; i++) {
-//        if( [[[lista objectAtIndex:i] status] isEqualToNumber:[[NSNumber alloc] initWithInt:0]] ) {
-//            [lista removeObjectAtIndex:(NSUInteger)i];
-//            
-//        }
-//    }
-//    for (Publicacion *p in lista) {
-//        if([p.status isEqualToNumber:[[NSNumber alloc] initWithInt:0]]) {
-//            [lista remove:p];
-//        }
-//    }
     return [lista allObjects];
 }
 

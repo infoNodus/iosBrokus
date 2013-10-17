@@ -66,7 +66,7 @@
 
     self.muestrafecha =[[UILabel alloc] init];
     self.subSector.text=@"Edificacion Residencial";
-    
+    self.mostrarpublicacion = [[BUPublicacionViewController alloc]initWithNibName:@"BUPublicacionViewController" bundle:nil];
     self.perfil=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
  
     self.muro=[[BUMuroPublicacionesViewController alloc]initWithNibName:@"BUMuroPublicacionesViewController" bundle:nil];
@@ -350,7 +350,7 @@
         }
     }
 
-    self.perfil.delegate=(id)self;
+   self.perfil.delegate=(id)self;
     UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.perfil];
     navContr.title=@"Perfil";
     [self presentViewController:navContr animated:YES completion:nil];

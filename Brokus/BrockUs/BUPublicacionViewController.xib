@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -11,6 +11,7 @@
                 <outlet property="cargarImagenButton" destination="SlL-NP-4Jk" id="3UQ-iC-UBE"/>
                 <outlet property="date" destination="YfS-31-fyx" id="1Vo-zY-Iz7"/>
                 <outlet property="imagenPub" destination="gtO-ou-HNh" id="2Nu-kq-9sw"/>
+                <outlet property="oAceptar" destination="4Ag-tA-amk" id="gFa-bf-kxi"/>
                 <outlet property="subSector" destination="RBP-av-uB1" id="qIT-08-S3w"/>
                 <outlet property="tituloTxt" destination="rGR-93-cMc" id="NLa-7x-Uuj"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -30,7 +31,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Titulo" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rGR-93-cMc">
-                            <rect key="frame" x="20" y="97" width="280" height="30"/>
+                            <rect key="frame" x="20" y="56" width="280" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
@@ -40,7 +41,7 @@
                             </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ydx-OT-gpY">
-                            <rect key="frame" x="116" y="497" width="108" height="30"/>
+                            <rect key="frame" x="116" y="456" width="108" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="Recomendar">
@@ -51,7 +52,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SlL-NP-4Jk">
-                            <rect key="frame" x="20" y="447" width="114" height="30"/>
+                            <rect key="frame" x="20" y="406" width="114" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="Cargar Imagen">
@@ -62,7 +63,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l9y-du-9Dz">
-                            <rect key="frame" x="180" y="447" width="120" height="30"/>
+                            <rect key="frame" x="180" y="406" width="120" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="Cargar Archivo">
@@ -73,13 +74,13 @@
                             </connections>
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Escribe tu publicación:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMc-2p-2F4">
-                            <rect key="frame" x="20" y="135" width="185" height="21"/>
+                            <rect key="frame" x="20" y="94" width="185" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z4L-Ko-fea">
-                            <rect key="frame" x="20" y="155" width="280" height="191"/>
+                            <rect key="frame" x="20" y="114" width="280" height="191"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Escribe tu Publicacion Aqui" translatesAutoresizingMaskIntoConstraints="NO" id="Jn9-1p-2G4">
@@ -96,40 +97,14 @@
                                 </textView>
                             </subviews>
                         </scrollView>
-                        <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dGf-5j-kJ8">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Nueva Publicación" id="8wm-c5-dHL">
-                                    <barButtonItem key="leftBarButtonItem" style="plain" id="EEE-GW-Zkf">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nlc-bG-raP">
-                                            <rect key="frame" x="16" y="5" width="71" height="33"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <state key="normal" title="Cancelar">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="cancelar:" destination="-1" eventType="touchUpInside" id="nn5-g2-lQq"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem key="rightBarButtonItem" title="Aceptar" id="4Ag-tA-amk">
-                                        <connections>
-                                            <action selector="Aceptar:" destination="-1" id="vUr-PN-L22"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RBP-av-uB1">
-                            <rect key="frame" x="20" y="416" width="280" height="30"/>
+                            <rect key="frame" x="20" y="375" width="280" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Fecha de término de publicación" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YfS-31-fyx">
-                            <rect key="frame" x="20" y="61" width="280" height="30"/>
+                            <rect key="frame" x="20" y="20" width="280" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
@@ -145,6 +120,24 @@
             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
         </imageView>
+        <barButtonItem title="Aceptar" id="4Ag-tA-amk">
+            <connections>
+                <action selector="Aceptar:" destination="-1" id="vUr-PN-L22"/>
+            </connections>
+        </barButtonItem>
+        <barButtonItem style="plain" id="EEE-GW-Zkf">
+            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nlc-bG-raP">
+                <rect key="frame" x="16" y="5" width="71" height="33"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                <state key="normal" title="Cancelar">
+                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                </state>
+                <connections>
+                    <action selector="cancelar:" destination="-1" eventType="touchUpInside" id="nn5-g2-lQq"/>
+                </connections>
+            </button>
+        </barButtonItem>
     </objects>
     <resources>
         <image name="LT_WhiteGrunge_06.jpg" width="4500" height="3000"/>

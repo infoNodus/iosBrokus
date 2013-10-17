@@ -38,8 +38,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    presentaActivas=[[BUPublicacionesActivasVC alloc]init];
-    presentaInactivas=[[BUPublicacionesInactivasVC alloc]init];
+    
+    
     [self presentaPublicacionesActivas];
     self.perfil=[[BUPerfilEmpresaViewController alloc]initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
 }
@@ -52,10 +52,18 @@
 }
 
 -(void)presentaPublicacionesActivas{
+    presentaActivas=[[BUPublicacionesActivasVC alloc]init];
     [self addChildViewController:presentaActivas];
     presentaActivas.view.frame=CGRectMake(0, 44, 320, 504);
     [self.view addSubview:presentaActivas.view];
     
+}
+
+-(void)presentaPublicacionesInactivas{
+    presentaInactivas=[[BUPublicacionesInactivasVC alloc]init];
+    [self addChildViewController:presentaInactivas];
+    presentaInactivas.view.frame=CGRectMake(0, 44, 320, 504);
+    [self.view addSubview:presentaInactivas.view];
 }
 
 -(void)presentaPublicacionesInActivas{
@@ -65,9 +73,6 @@
     
 }
 
--(void)presentaPublicacionesInactivas{
-    
-}
 
 - (IBAction)canceltapped:(id)sender {
     self.perfil.delegate=(id)self;
@@ -87,7 +92,7 @@
         [self presentaPublicacionesActivas];
     }else{
         [presentaInactivas reloadTable];
-        [self presentaPublicacionesInActivas];
+        [self presentaPublicacionesInactivas];
     }
 }
 

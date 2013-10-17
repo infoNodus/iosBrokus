@@ -54,8 +54,9 @@
     NSEntityDescription *consulta = [NSEntityDescription
                                      entityForName:@"Publicacion" inManagedObjectContext:context];
     
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toPersona= %@ AND status=0",self.userbrockus];
-    NSLog(@"Usuario de consulta: %@",self.userbrockus);
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toPersona= %@ AND status=%@",self.userbrockus,[[NSNumber alloc]initWithInt:0]];
+    NSLog(@"predicate: %@",predicate);
+    
     [request setPredicate:predicate];
     
     
@@ -65,7 +66,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    [self.tableView reloadData];
+    [self reloadTable];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -135,8 +136,6 @@
             [tableView beginUpdates];
             pub=[fetchedArray objectAtIndex:indexPath.row];
             pub.status=[[NSNumber alloc] initWithInt:1] ;
-            NSLog(@"PUBLICACION: %@",pub);
-            
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [fetchedArray removeObjectAtIndex:[indexPath row]];
             NSError *error = nil;
@@ -148,6 +147,8 @@
             /*if ([fetchedArray count] == 0) {
                 [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             }*/
+            UIAlertView *alertafecha =[[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Ahora podrás ver tu publicación en la sección 'Activas', si la publicación esta caducada debes modificar la fecha, de lo contrario se inactivará automáticamente,." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertafecha show];
             [tableView endUpdates];
         }
     }
@@ -198,7 +199,7 @@
     
     
     
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@" status=0"];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toPersona= %@ AND status=%@",self.userbrockus,[[NSNumber alloc]initWithInt:0]];
     [request setPredicate:predicate];
     
     [request setEntity:consulta];

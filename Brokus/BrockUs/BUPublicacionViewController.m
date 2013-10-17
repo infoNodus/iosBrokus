@@ -31,6 +31,7 @@
 @property (strong) BUMuroPublicacionesViewController *muro;
 //@property (nonatomic, retain) NSManagedObjectContext *context;
 @property (strong) NSString* link;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *oAceptar;
 
 @end
 
@@ -49,6 +50,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = @"Nueva publicacón";
     }
     return self;
 }
@@ -58,6 +60,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationItem.rightBarButtonItem = self.oAceptar;
+    
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
 
@@ -93,7 +97,7 @@
     sectorSeleccionado = [[ComboSector alloc] init];
     [sectorSeleccionado setComboData:fetchedSector];
     [self.view addSubview:sectorSeleccionado.view];
-    sectorSeleccionado.view.frame = CGRectMake(10, 370, 302, 31);
+    sectorSeleccionado.view.frame = CGRectMake(10, 390, 285, 31);
     
     
     subSector.delegate=self;
@@ -137,7 +141,8 @@
     UIBarButtonItem* doneDateButton = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar"
                                                                        style:UIBarButtonItemStyleDone target:self
                                                                       action:@selector(doneClickedDate:)];
-    NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:0];//fecha actual
+    
+    NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:100000];//fecha actual
     [datePicker setMinimumDate:currentTime];
     [datePicker setMaximumDate:[currentTime dateByAddingTimeInterval:400000]];
     

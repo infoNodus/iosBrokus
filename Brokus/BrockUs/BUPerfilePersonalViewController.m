@@ -49,12 +49,30 @@
     NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
     self.userbrockus = [consulta recuperaPersona:userStr :context];
     //NSLog(@"%@",self.userbrockus);
-    self.NombrePersonaLabel.text =self.userbrockus.usuario;
-    self.EmpresaLabel.text = self.userbrockus.toEmpresa.nombre;
-    self.puestoPersonaLabel.text = self.userbrockus.puesto;
-    self.CorreoLabel.text = self.userbrockus.nombre;
-    self.PersonaSectorLabel.text = self.userbrockus.toEmpresa.toSubsector.toSector.nombre;
-    self.PersonaSubsectorLabel.text=self.userbrockus.toEmpresa.toSubsector.nombre;
+    if (self.userbrockus.usuario != nil) {
+        self.NombrePersonaLabel.text =self.userbrockus.usuario;
+    }
+    //self.NombrePersonaLabel.text =self.userbrockus.usuario;
+    if (self.userbrockus.toEmpresa.nombre != nil) {
+        self.EmpresaLabel.text = self.userbrockus.toEmpresa.nombre;
+    }
+    //self.EmpresaLabel.text = self.userbrockus.toEmpresa.nombre;
+    if (self.userbrockus.puesto != nil) {
+        self.puestoPersonaLabel.text = self.userbrockus.puesto;
+    }
+    //self.puestoPersonaLabel.text = self.userbrockus.puesto;
+    if (self.userbrockus.nombre != nil) {
+        self.CorreoLabel.text = self.userbrockus.nombre;
+    }
+    //self.CorreoLabel.text = self.userbrockus.nombre;
+    if (self.userbrockus.toEmpresa.toSubsector.toSector.nombre != nil) {
+        self.PersonaSectorLabel.text = self.userbrockus.toEmpresa.toSubsector.toSector.nombre;
+    }
+    //self.PersonaSectorLabel.text = self.userbrockus.toEmpresa.toSubsector.toSector.nombre;
+    if (self.userbrockus.toEmpresa.toSubsector.nombre != nil) {
+        self.PersonaSubsectorLabel.text=self.userbrockus.toEmpresa.toSubsector.nombre;
+    }
+    //self.PersonaSubsectorLabel.text=self.userbrockus.toEmpresa.toSubsector.nombre;
     if (self.userbrockus.img != nil) {
         self.ImagePerfil.image = [[UIImage alloc] initWithData:self.userbrockus.img];
     }

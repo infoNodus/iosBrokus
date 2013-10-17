@@ -92,7 +92,7 @@ NSString *userenterprise;
     self.listaPublicaciones = [self.listaPublicaciones sortedArrayUsingDescriptors:sortDescriptors];
     
     
-    //contar amigos en el circulo
+    
     
 
     

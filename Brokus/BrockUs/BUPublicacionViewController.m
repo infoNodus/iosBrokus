@@ -97,7 +97,7 @@
     sectorSeleccionado = [[ComboSector alloc] init];
     [sectorSeleccionado setComboData:fetchedSector];
     [self.view addSubview:sectorSeleccionado.view];
-    sectorSeleccionado.view.frame = CGRectMake(10, 370, 302, 31);
+    sectorSeleccionado.view.frame = CGRectMake(20, 390, 280, 31);
     
     
     subSector.delegate=self;
@@ -141,6 +141,7 @@
     UIBarButtonItem* doneDateButton = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar"
                                                                        style:UIBarButtonItemStyleDone target:self
                                                                       action:@selector(doneClickedDate:)];
+    
     NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:100000];//fecha actual
     [datePicker setMinimumDate:currentTime];
     [datePicker setMaximumDate:[currentTime dateByAddingTimeInterval:400000]];

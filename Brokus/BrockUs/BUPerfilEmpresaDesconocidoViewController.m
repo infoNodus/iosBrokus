@@ -66,7 +66,10 @@
     NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
     self.userbrockus = [consulta recuperaPersona:userStr :context];
     
-    self.personaTxt.text = self.persona.nombre;
+    if (self.persona.nombre) {
+        self.personaTxt.text = self.persona.nombre;
+    }
+    //self.personaTxt.text = self.persona.nombre;
     self.puestoTxt.text = self.persona.puesto;
     self.empresaTxt.text = self.persona.toEmpresa.nombre;
     self.sectorTxt.text = self.persona.toEmpresa.toSubsector.toSector.nombre;

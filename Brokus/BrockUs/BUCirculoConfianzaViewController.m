@@ -64,11 +64,26 @@ NSString *userenterprise;
     NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
     self.userbrockus = [consulta recuperaPersona:userStr :context];
     //NSLog(@"%@",self.userbrockus);
-    self.MailUser.text =self.userbrockus.usuario;
-    self.EnterpriseUser.text = self.userbrockus.toEmpresa.nombre;
-    self.PuestoUser.text = self.userbrockus.puesto;
-    self.UserNameBrockus.text = self.userbrockus.nombre;
-    self.Sector.text = self.userbrockus.toEmpresa.toSubsector.toSector.nombre;
+    if (self.userbrockus.usuario != nil) {
+        self.MailUser.text =self.userbrockus.usuario;
+    }
+    //self.MailUser.text =self.userbrockus.usuario;
+    if (self.userbrockus.toEmpresa.nombre != nil) {
+        self.EnterpriseUser.text = self.userbrockus.toEmpresa.nombre;
+    }
+    //self.EnterpriseUser.text = self.userbrockus.toEmpresa.nombre;
+    if (self.userbrockus.puesto != nil) {
+        self.PuestoUser.text = self.userbrockus.puesto;
+    }//else cambiar el texto en caso de q exista un campo vacio para q pongo la etiqueta "puesto"
+    //self.PuestoUser.text = self.userbrockus.puesto;
+    if (self.userbrockus.nombre != nil) {
+        self.UserNameBrockus.text = self.userbrockus.nombre;
+    }
+    //self.UserNameBrockus.text = self.userbrockus.nombre;
+    if (self.userbrockus.toEmpresa.toSubsector.toSector.nombre != nil) {
+        self.Sector.text = self.userbrockus.toEmpresa.toSubsector.toSector.nombre;
+    }
+    //self.Sector.text = self.userbrockus.toEmpresa.toSubsector.toSector.nombre;
     if (self.userbrockus.img != nil) {
         self.ImageUser.image = [[UIImage alloc] initWithData:self.userbrockus.img];
     }

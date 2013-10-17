@@ -160,7 +160,7 @@ NSString *userenterprise;
 //    [self.navigationController pushViewController:detalle animated:YES];
     
     Circulo *personaCirculo = self.listaPublicaciones[indexPath.row];
-    BUPerfilEmpresaDesconocidoViewController *detalle = [[BUPerfilEmpresaDesconocidoViewController alloc] initWithPersona:personaCirculo.toAmigo];
+    BUPerfilEmpresaDesconocidoViewController *detalle = [[BUPerfilEmpresaDesconocidoViewController alloc] initWithPersona:personaCirculo.toAmigo ];
     [self.navigationController pushViewController:detalle animated:YES];
 }
 

@@ -142,7 +142,7 @@
                                                                        style:UIBarButtonItemStyleDone target:self
                                                                       action:@selector(doneClickedDate:)];
     NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:0];//fecha actual
-    [datePicker setMinimumDate:currentTime];
+    [datePicker setMinimumDate:[currentTime dateByAddingTimeInterval:100000]];
     [datePicker setMaximumDate:[currentTime dateByAddingTimeInterval:400000]];
     
     

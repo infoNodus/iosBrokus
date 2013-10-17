@@ -1,8 +1,7 @@
 //
 //  Combo.m
 //
-//  Created by Dor Alon on 12/17/11.
-//
+
 
 #import "ComboSector.h"
 #import "Subsector.h"

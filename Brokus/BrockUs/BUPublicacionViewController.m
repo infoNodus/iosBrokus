@@ -53,9 +53,6 @@
     return self;
 }
 
-//VALIDACIONES
-
-//Termina validacion
 
 - (void)viewDidLoad
 {
@@ -248,115 +245,149 @@
 
 }
 
-- (IBAction)Aceptar:(id)sender{
-    
-    BUConsultaPublicacion *consulta = [[BUConsultaPublicacion alloc] init];
-    Persona *persona = [consulta recuperaPersona:[[NSUserDefaults standardUserDefaults] objectForKey:@"UserBrockus"] :context];
-    Publicacion *insertPublicacion=[NSEntityDescription insertNewObjectForEntityForName:@"Publicacion" inManagedObjectContext:context];
-    
-    if([_tituloTxt.text length]==0 || [_DescripcionTxt.text length]==0)
-    {
-        UIAlertView *vacio=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Llene el titulo o la descripcion" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-        [vacio show];
-        self.tituloTxt.clearButtonMode=YES;
-        
-        //self.DescripcionTxt.clearsOnBeginEditing=YES;
-    }else if ([_tituloTxt.text length]>60)
-    {
-        UIAlertView *descriplarga=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Titulo demasiado largo" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-        [descriplarga show];
-        self.tituloTxt.clearButtonMode=YES;
-    }else{
-        insertPublicacion.descripcion=self.DescripcionTxt.text;
-        insertPublicacion.titulo=self.tituloTxt.text;
-        
-        //inserta fecha
-        NSDate *termino=[datePicker date];
-        insertPublicacion.fecha=termino;
-        
-        
-        //insertar imagen en BD
-        NSString *stringA = @"/";
-        NSString *stringB = self.tituloTxt.text;//agregar parametros para hacer nom de imagen unico
-        NSString *stringC = @".jpg";
-        NSString *finalString = [NSString stringWithFormat:@"%@%@%@", stringA, stringB, stringC]; //agregar random
-        NSData *imageData = UIImageJPEGRepresentation(self.imagenPub.image, 1);
-        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        path = [path stringByAppendingString:finalString];
-        insertPublicacion.urlPath = path; //getPath:fileName
-        //[persona setValue:[self getImageBinary:fileName] forKey:@"img"];
-        insertPublicacion.img = imageData;
-        //[persona setValue:fileName forKey:@"nameImg"];
-        insertPublicacion.nameImg = finalString;
-        [imageData writeToFile:path atomically:YES];
-        insertPublicacion.toPersona=persona;
-        
-        //obtener subsector para la perosona
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSError *error;
-        
-        //obtenemos la empresa para la que se hace la publicacion
-        /*NSEntityDescription *requestEmpresa=[NSEntityDescription entityForName:@"Empresa" inManagedObjectContext:context];
-        [fetchRequest setEntity:requestEmpresa];
-        //usamos la propiedad persona para obtener su empresa
-        NSPredicate *predicate=[NSPredicate predicateWithFormat:@"ANY toPersona IN %@",[NSArray arrayWithObject:persona]];
-        [fetchRequest setPredicate:predicate];
-        
-        
-        NSArray *fetchedEmpresa=[context executeFetchRequest:fetchRequest error:&error];
-        //Creamos la variable empresa y en el for le asignamos la empresa obtenida
-        Empresa *empresa;
-        for (int i=0; i<[fetchedEmpresa count]; i++) {
-            empresa=[fetchedEmpresa objectAtIndex:i];
-            //NSLog(@"Empresa: %@",[fetchedSubSector objectAtIndex:i]);
-        }*/
-        
-        
-        //Obtenemos el subsector para el cual se realiza la publicacion
-        NSEntityDescription *requestSubsector=[NSEntityDescription entityForName:@"Subsector" inManagedObjectContext:context];
-        [fetchRequest setEntity:requestSubsector];
-        
-        
-        NSArray *fetchedSubSector=[context executeFetchRequest:fetchRequest error:&error];
-        Subsector *subsector;
-        for (int i=0; i<[fetchedSubSector count]; i++) {
-            Subsector *x=[fetchedSubSector objectAtIndex:i];
-            if ([subSector.text isEqualToString:x.nombre]) {
-                subsector=[fetchedSubSector objectAtIndex:i];
-                //NSLog(@"Subsector: %@",[fetchedSubSector objectAtIndex:i]);
-            }
-
-        }
-        
-        if(![self.link isEqualToString:@""]) {
-            insertPublicacion.linkAnexo = self.link;
-        }
-        
-        insertPublicacion.toSubsector=subsector;
-        NSLog(@"Subsector Seleccionado: %@",subsector);
-        insertPublicacion.status = [[NSNumber alloc] initWithInt:1];
-        insertPublicacion.fechaIni = [[NSDate alloc] init];
-        BOOL success=[context save:&error];
-        if(success==NO || error!=nil){
-            NSLog(@"Error al guardar consulta: %@", [error description]);
-           
-
-        }else{
-            NSLog(@"Datos guardados correctamente");
-            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"INFORMACION" message:@"Publicación realizada satisfactoriamente" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-               [alert show];
-            
-            
-        }
+// Valida que las cajas de texto no esten vacias.
+- (BOOL) entradasVacias{
+    if([self.tituloTxt.text isEqualToString:@""]) {
+        //[self.nombreEmpresaTxt becomeFirstResponder];
+        return YES;
     }
-
-   //self.perfil.delegate=(id)self;
-    UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.mostrarpublicacion];
-    navContr.title=@"Perfil";
-    [self presentViewController:navContr animated:YES completion:nil];
-   
+    if([self.DescripcionTxt.text isEqualToString:@""]) {
+        //[self.nombrePersonaTxt becomeFirstResponder];
+        return YES;
+    }
+    if([self.date.text isEqualToString:@""]) {
+        return YES;
+    }
+    if([self.comboSector.text isEqualToString:@""]) {
+        return YES;
+    }
+    return NO;
 }
 
+//Validacion de texto vacio
+-(BOOL)validar{
+    if ([self entradasVacias]) {
+        self.mostrarpublicacion.delegate=(id)self;
+        UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.mostrarpublicacion];
+        navContr.title=@"mostrarpublicacion";
+        [self presentViewController:navContr animated:YES completion:nil];
+    }else{
+        self.perfil.delegate=(id)self;
+        UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.perfil];
+        navContr.title=@"Perfil";
+        [self presentViewController:navContr animated:YES completion:nil];
+    }
+}
+
+- (IBAction)Aceptar:(id)sender{
+    if ([self validar]) {
+        BUConsultaPublicacion *consulta = [[BUConsultaPublicacion alloc] init];
+        Persona *persona = [consulta recuperaPersona:[[NSUserDefaults standardUserDefaults] objectForKey:@"UserBrockus"] :context];
+        Publicacion *insertPublicacion=[NSEntityDescription insertNewObjectForEntityForName:@"Publicacion" inManagedObjectContext:context];
+        
+        
+        if([_tituloTxt.text length]==0 || [_DescripcionTxt.text length]==0)
+        {
+            UIAlertView *vacio=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Llene el titulo o la descripcion" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [vacio show];
+            self.tituloTxt.clearButtonMode=YES;
+            
+            //self.DescripcionTxt.clearsOnBeginEditing=YES;
+        }else if ([_tituloTxt.text length]>60)
+        {
+            UIAlertView *descriplarga=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Titulo demasiado largo" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [descriplarga show];
+            self.tituloTxt.clearButtonMode=YES;
+        }else{
+            insertPublicacion.descripcion=self.DescripcionTxt.text;
+            insertPublicacion.titulo=self.tituloTxt.text;
+            
+            //inserta fecha
+            NSDate *termino=[datePicker date];
+            insertPublicacion.fecha=termino;
+            
+            
+            //insertar imagen en BD
+            NSString *stringA = @"/";
+            NSString *stringB = self.tituloTxt.text;//agregar parametros para hacer nom de imagen unico
+            NSString *stringC = @".jpg";
+            NSString *finalString = [NSString stringWithFormat:@"%@%@%@", stringA, stringB, stringC]; //agregar random
+            NSData *imageData = UIImageJPEGRepresentation(self.imagenPub.image, 1);
+            NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+            path = [path stringByAppendingString:finalString];
+            insertPublicacion.urlPath = path; //getPath:fileName
+            //[persona setValue:[self getImageBinary:fileName] forKey:@"img"];
+            insertPublicacion.img = imageData;
+            //[persona setValue:fileName forKey:@"nameImg"];
+            insertPublicacion.nameImg = finalString;
+            [imageData writeToFile:path atomically:YES];
+            insertPublicacion.toPersona=persona;
+            
+            //obtener subsector para la perosona
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+            NSError *error;
+            
+            //obtenemos la empresa para la que se hace la publicacion
+            /*NSEntityDescription *requestEmpresa=[NSEntityDescription entityForName:@"Empresa" inManagedObjectContext:context];
+             [fetchRequest setEntity:requestEmpresa];
+             //usamos la propiedad persona para obtener su empresa
+             NSPredicate *predicate=[NSPredicate predicateWithFormat:@"ANY toPersona IN %@",[NSArray arrayWithObject:persona]];
+             [fetchRequest setPredicate:predicate];
+             
+             
+             NSArray *fetchedEmpresa=[context executeFetchRequest:fetchRequest error:&error];
+             //Creamos la variable empresa y en el for le asignamos la empresa obtenida
+             Empresa *empresa;
+             for (int i=0; i<[fetchedEmpresa count]; i++) {
+             empresa=[fetchedEmpresa objectAtIndex:i];
+             //NSLog(@"Empresa: %@",[fetchedSubSector objectAtIndex:i]);
+             }*/
+            
+            
+            //Obtenemos el subsector para el cual se realiza la publicacion
+            NSEntityDescription *requestSubsector=[NSEntityDescription entityForName:@"Subsector" inManagedObjectContext:context];
+            [fetchRequest setEntity:requestSubsector];
+            
+            
+            NSArray *fetchedSubSector=[context executeFetchRequest:fetchRequest error:&error];
+            Subsector *subsector;
+            for (int i=0; i<[fetchedSubSector count]; i++) {
+                Subsector *x=[fetchedSubSector objectAtIndex:i];
+                if ([subSector.text isEqualToString:x.nombre]) {
+                    subsector=[fetchedSubSector objectAtIndex:i];
+                    //NSLog(@"Subsector: %@",[fetchedSubSector objectAtIndex:i]);
+                }
+                
+            }
+            
+            if(![self.link isEqualToString:@""]) {
+                insertPublicacion.linkAnexo = self.link;
+            }
+            
+            insertPublicacion.toSubsector=subsector;
+            NSLog(@"Subsector Seleccionado: %@",subsector);
+            insertPublicacion.status = [[NSNumber alloc] initWithInt:1];
+            insertPublicacion.fechaIni = [[NSDate alloc] init];
+            BOOL success=[context save:&error];
+            if(success==NO || error!=nil){
+                NSLog(@"Error al guardar consulta: %@", [error description]);
+                
+                
+            }else{
+                NSLog(@"Datos guardados correctamente");
+                UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"INFORMACION" message:@"Publicación realizada satisfactoriamente" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+                
+                
+            }
+        }
+        
+        //aki va el link
+        
+    }
+
+    }
+    
 - (IBAction)cargarImagen:(id)sender {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;

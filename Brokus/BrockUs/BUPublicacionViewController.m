@@ -97,7 +97,7 @@
     sectorSeleccionado = [[ComboSector alloc] init];
     [sectorSeleccionado setComboData:fetchedSector];
     [self.view addSubview:sectorSeleccionado.view];
-    sectorSeleccionado.view.frame = CGRectMake(10, 390, 285, 31);
+    sectorSeleccionado.view.frame = CGRectMake(20, 390, 280, 31);
     
     
     subSector.delegate=self;

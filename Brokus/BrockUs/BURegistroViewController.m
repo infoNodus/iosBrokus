@@ -96,6 +96,7 @@
     
     self.log=[[BULoginViewController alloc] initWithNibName:@"BULoginViewController" bundle:nil];
     self.perfil=[[BUPerfilEmpresaViewController alloc]initWithNibName:@"BUPerfilEmpresaViewController " bundle:nil];
+    self.sectorSeleccionado.textField.text=@"Contruccion";
 self.subSector.text=@"Edificacion Residencial";
     
     

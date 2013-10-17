@@ -367,8 +367,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if(buttonIndex == 1) {
         UITextField *theTextField = [alertView textFieldAtIndex:0];
-        NSString *text = theTextField.text;
-        NSString *urlRegEx =
+                NSString *urlRegEx =
         @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
         NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
         if(![urlTest evaluateWithObject:theTextField.text]){

@@ -263,25 +263,18 @@
     }
     return NO;
 }
-
+- (void) alertaerror:(NSString *)mensaje {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:mensaje delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    [alert show];
+}
 //Validacion de texto vacio
 -(BOOL)validar{
     if ([self entradasVacias]) {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"CAMPOS VACIOS" message:@"Favor de llenar todos los campos" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-
-        self.mostrarpublicacion.delegate=(id)self;
-        UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.mostrarpublicacion];
-        navContr.title=@"mostrarpublicacion";
-        [self presentViewController:navContr animated:YES completion:nil];
-    }else{
-        self.perfil.delegate=(id)self;
-        UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.perfil];
-        navContr.title=@"Perfil";
-        [self presentViewController:navContr animated:YES completion:nil];
-    }
+        [self alertaerror:@" Cajas de texto no deben estar vacias"];
+        return NO;
 }
-
+}
+  
 - (IBAction)Aceptar:(id)sender{
     if ([self validar]) {
         BUConsultaPublicacion *consulta = [[BUConsultaPublicacion alloc] init];
@@ -386,6 +379,10 @@
         }
         
         //aki va el link
+        self.perfil.delegate=(id)self;
+        UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.perfil];
+        navContr.title=@"Perfil";
+        [self presentViewController:navContr animated:YES completion:nil];
         
     }
 

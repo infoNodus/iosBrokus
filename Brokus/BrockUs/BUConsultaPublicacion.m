@@ -30,12 +30,11 @@
     
     [request setSortDescriptors:@[sortDescriptor]];
     
-    // Filtrando por el sector.
-    NSNumber *status=[[NSNumber alloc]initWithInt:1];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"toSubsector.toSector = %@ AND status=%@", toSector,status];
     
-    // En dado caso de que no acepte un objeto para la busqueda....
+    NSNumber *status=[[NSNumber alloc]initWithInt:1];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"toSubsector.toSector = %@ AND status=%@", toSector,status];
+    
+     //En dado caso de que no acepte un objeto para la busqueda....
 //    NSPredicate *predicate = [NSPredicate predicateWithFormat:
 //                              @"toSubsector.toSector.id = %i", [toSector.id intValue]];
     

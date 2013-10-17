@@ -12,13 +12,14 @@
 #import "Sector.h"
 #import "ComboSector.h"
 #import "BUPublicacionesActivasVC.h"
+#import "BUConsultaPublicacion.h"
 
 @interface BUConsultaDetallePubVC (){
     BOOL *isSector;
     Sector *nombreSector;
     Subsector *nombreSubSector;
 }
-
+@property (strong) NSString* link;
 @end
 
 @implementation BUConsultaDetallePubVC
@@ -27,6 +28,7 @@
 @synthesize datePicker;
 @synthesize fechaTermino;
 @synthesize sectorSeleccionado;
+@synthesize linkanexo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,6 +53,9 @@
     self.tituloTxt.text=publicacion.titulo;
     self.descripcionTxt.text=publicacion.descripcion;
     self.subSectorTxt.text=publicacion.toSubsector.nombre;
+    self.linkanexo.text = publicacion.linkAnexo;
+    self.link = publicacion.linkAnexo;
+    
     self.imagenPub.image=[[UIImage alloc] initWithData:publicacion.img];
     
     
@@ -240,11 +245,16 @@
         
         publicacion.titulo=self.tituloTxt.text;
         publicacion.descripcion=self.descripcionTxt.text;
+
+        publicacion.linkAnexo=self.link;
+        publicacion.toSubsector=nombreSubSector;
+
         
         if (nombreSubSector!=nil) {
             publicacion.toSubsector=nombreSubSector;
         }
         
+
         
         
         NSData *imageData = UIImageJPEGRepresentation(self.imagenPub.image, 1);
@@ -354,12 +364,43 @@
 }
 
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    UITextField *theTextField = [alertView textFieldAtIndex:0];
+    NSString *text = theTextField.text;
+    
+    if(buttonIndex == 1) {
+        NSString *urlRegEx =
+        @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+        NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
+        if(![urlTest evaluateWithObject:theTextField.text]){
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error Link invalido" message:@"Proporciona un link donde se encuentra tu archivo (Dropbox, Mega, etc). No Olvides poner al principio http:// "  delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"OK", nil];
+            
+            alert.alertViewStyle=UIAlertViewStylePlainTextInput;
+            [alert textFieldAtIndex:0].text = theTextField.text;
+            [alert show];
+            return;
+        }
+        self.link = theTextField.text;
+        self.linkanexo.text =  [[alertView textFieldAtIndex:0]text];
+    }
+    
+}
 
-
-
-
-
-
-
-
+- (IBAction)AnexoBtn:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Proporciona un link donde se encuentra tu archivo (Dropbox, Mega, etc). No Olvides poner al principio http:// "  delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"OK", nil];
+    alert.alertViewStyle= UIAlertViewStylePlainTextInput;
+    if(self.link == nil || [self.link isEqualToString:@""]) {
+        [alert textFieldAtIndex:0].text = @"http://";
+    } else {
+        [alert textFieldAtIndex:0].text = self.link;
+    }
+    [alert show];
+    
+    BUConsultaPublicacion *consulta = [[BUConsultaPublicacion alloc] init];
+    Persona *persona = [consulta recuperaPersona:[[NSUserDefaults standardUserDefaults] objectForKey:@"UserBrockus"] :context];
+    Publicacion *insertPublicacion=[NSEntityDescription insertNewObjectForEntityForName:@"Publicacion" inManagedObjectContext:context];
+    if(![self.link isEqualToString:@""]) {
+        insertPublicacion.linkAnexo = self.link;
+    }
+}
 @end

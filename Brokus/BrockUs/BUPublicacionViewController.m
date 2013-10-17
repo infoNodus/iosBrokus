@@ -267,6 +267,9 @@
 //Validacion de texto vacio
 -(BOOL)validar{
     if ([self entradasVacias]) {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"CAMPOS VACIOS" message:@"Favor de llenar todos los campos" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+
         self.mostrarpublicacion.delegate=(id)self;
         UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.mostrarpublicacion];
         navContr.title=@"mostrarpublicacion";

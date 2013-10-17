@@ -147,6 +147,8 @@
             /*if ([fetchedArray count] == 0) {
                 [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             }*/
+            UIAlertView *alertafecha =[[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Ahora podrás ver tu publicación en la sección 'Activas', si la publicación esta caducada debes modificar la fecha, de lo contrario se inactivará automáticamente,." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertafecha show];
             [tableView endUpdates];
         }
     }

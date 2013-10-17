@@ -19,4 +19,5 @@
 - (NSArray*) recuperaPublicacionPorEmpresa:(Empresa*)toEmpresa toContext:(NSManagedObjectContext*) context;
 - (NSArray*) recuperaPersonasCirculoPorPersona:(Persona*)toCirculo toContext:(NSManagedObjectContext*) context;
 - (void) desactivaPublicacionesCaducadastoContext:(NSManagedObjectContext*) context;
+- (NSArray*) recuperaConsultasPorPersona:(Persona*)toPersona;
 @end

@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BUPerfilEmpresaDesconocidoViewController">
             <connections>
                 <outlet property="empresaTxt" destination="B3e-ci-d3f" id="bcf-Pn-CLR"/>
+                <outlet property="oImagen" destination="BpW-tu-efu" id="Cid-vC-nLH"/>
                 <outlet property="personaTxt" destination="vRy-EM-sDk" id="ef9-e4-pdV"/>
                 <outlet property="puestoTxt" destination="A2G-cV-TNs" id="fhE-6n-khR"/>
                 <outlet property="sectorTxt" destination="gLv-ln-iSP" id="guQ-Zb-ZpF"/>

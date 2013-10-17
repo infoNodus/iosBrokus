@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *puestoTxt;
 @property (strong, nonatomic) IBOutlet UILabel *subsectorTxt;
 @property (strong, nonatomic) IBOutlet UILabel *sectorTxt;
+@property (weak, nonatomic) IBOutlet UIImageView *oImagen;
 
 -(id) initWithPersona:(Persona *)persona;
 

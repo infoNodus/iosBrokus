@@ -81,7 +81,8 @@ NSString *userenterprise;
     self.listaPublicaciones = [[NSArray alloc] init];
     self.listaPublicaciones = [self.userbrockus.toCirculo allObjects];
     NSUInteger numeroPersonasCirculo = [self.userbrockus.toCirculo count];
-    NSLog(@"numero de personas %lu", (unsigned long)numeroPersonasCirculo);//contando la cantidad de personas en mi circulo
+    NSLog(@"numero de personas %lu", (unsigned long)numeroPersonasCirculo);//
+    
     
     //ordenadas
     NSSortDescriptor *byName = [NSSortDescriptor sortDescriptorWithKey:@"toAmigo.nombre" ascending:YES];

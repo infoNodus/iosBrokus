@@ -59,13 +59,20 @@
     
 }
 
-
 -(void)presentaPublicacionesInactivas{
     presentaInactivas=[[BUPublicacionesInactivasVC alloc]init];
     [self addChildViewController:presentaInactivas];
     presentaInactivas.view.frame=CGRectMake(0, 44, 320, 504);
     [self.view addSubview:presentaInactivas.view];
 }
+
+-(void)presentaPublicacionesInActivas{
+    [self addChildViewController:presentaInactivas];
+    presentaInactivas.view.frame=CGRectMake(0, 44, 320, 504);
+    [self.view addSubview:presentaInactivas.view];
+    
+}
+
 
 - (IBAction)canceltapped:(id)sender {
     self.perfil.delegate=(id)self;

@@ -91,11 +91,6 @@ NSString *userenterprise;
     NSArray *sortDescriptors = [NSArray arrayWithObjects:byName, byEmpresa, byPuesto, nil];
     self.listaPublicaciones = [self.listaPublicaciones sortedArrayUsingDescriptors:sortDescriptors];
     
-    
-    //contar amigos en el circulo
-    
-
-    
 }
 
 - (void)didReceiveMemoryWarning

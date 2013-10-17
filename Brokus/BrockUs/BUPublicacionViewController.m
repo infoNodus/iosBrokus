@@ -63,7 +63,7 @@
 
     self.muestrafecha =[[UILabel alloc] init];
     self.subSector.text=@"Edificacion Residencial";
-    //self.mostrarpublicacion = [[BUPublicacionViewController alloc]initWithNibName:@"BUPublicacionViewController" bundle:nil];
+    self.mostrarpublicacion = [[BUPublicacionViewController alloc]initWithNibName:@"BUPublicacionViewController" bundle:nil];
     self.perfil=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
  
     self.muro=[[BUMuroPublicacionesViewController alloc]initWithNibName:@"BUMuroPublicacionesViewController" bundle:nil];
@@ -263,22 +263,18 @@
     }
     return NO;
 }
-
+- (void) alertaerror:(NSString *)mensaje {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:mensaje delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    [alert show];
+}
 //Validacion de texto vacio
 -(BOOL)validar{
     if ([self entradasVacias]) {
-        self.mostrarpublicacion.delegate=(id)self;
-        UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.mostrarpublicacion];
-        navContr.title=@"mostrarpublicacion";
-        [self presentViewController:navContr animated:YES completion:nil];
-    }else{
-        self.perfil.delegate=(id)self;
-        UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.perfil];
-        navContr.title=@"Perfil";
-        [self presentViewController:navContr animated:YES completion:nil];
-    }
+        [self alertaerror:@" Cajas de texto no deben estar vacias"];
+        return NO;
 }
-
+}
+  
 - (IBAction)Aceptar:(id)sender{
     if ([self validar]) {
         BUConsultaPublicacion *consulta = [[BUConsultaPublicacion alloc] init];
@@ -383,6 +379,10 @@
         }
         
         //aki va el link
+        self.perfil.delegate=(id)self;
+        UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.perfil];
+        navContr.title=@"Perfil";
+        [self presentViewController:navContr animated:YES completion:nil];
         
     }
 

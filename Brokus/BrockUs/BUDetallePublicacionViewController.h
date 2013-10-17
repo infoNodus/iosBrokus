@@ -16,10 +16,13 @@
 @property (strong) Publicacion *publicacion;
 @property (weak, nonatomic) IBOutlet UIImageView *oImagen;
 @property (weak, nonatomic) IBOutlet UITextView *oDetalle;
-@property (weak, nonatomic) IBOutlet UILabel *oPersona;
+//@property (weak, nonatomic) IBOutlet UILabel *oPersona;
+@property (weak, nonatomic) IBOutlet UIButton *oPersona;
 @property (weak, nonatomic) IBOutlet UILabel *oEmpresa;
 @property (weak, nonatomic) IBOutlet UIButton *oEmail;
 @property (weak, nonatomic) IBOutlet UIButton *oDescarga;
 
+
 -(id) initWithPublicacion:(Publicacion *)publicacion;
+-(id) initWithPublicacion:(Publicacion *)publicacion navegacionAlPerfil:(BOOL)isNavegable;
 @end

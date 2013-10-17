@@ -4,7 +4,7 @@
 //
 //  Created by Nodus9 on 04/10/13.
 //  Copyright (c) 2013 Nodus. All rights reserved.
-//
+
 
 #import "BUPublicacionViewController.h"
 #import "BUPerfilEmpresaViewController.h"
@@ -140,7 +140,7 @@
     UIBarButtonItem* doneDateButton = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar"
                                                                        style:UIBarButtonItemStyleDone target:self
                                                                       action:@selector(doneClickedDate:)];
-    NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:0];//fecha actual
     [datePicker setMinimumDate:currentTime];
     [datePicker setMaximumDate:[currentTime dateByAddingTimeInterval:400000]];
     

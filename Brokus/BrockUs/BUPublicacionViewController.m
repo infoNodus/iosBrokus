@@ -350,8 +350,8 @@
         }
     }
 
-    self.mostrarpublicacion.delegate=(id)self;
-    UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.mostrarpublicacion];
+   self.perfil.delegate=(id)self;
+    UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.perfil];
     navContr.title=@"Perfil";
     [self presentViewController:navContr animated:YES completion:nil];
    

@@ -137,8 +137,6 @@
             return;
         }
         
-        
-        
         BUPerfilEmpresaDesconocidoViewController *perfil = [[BUPerfilEmpresaDesconocidoViewController alloc] initWithPersona:self.publicacion.toPersona];
         [self.navigationController pushViewController:perfil animated:YES];
     }

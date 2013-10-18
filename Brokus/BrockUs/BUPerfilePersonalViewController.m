@@ -41,11 +41,12 @@
     // Do any additional setup after loading the view from its nib.
     self.regresar=[[BUPerfilEmpresaViewController alloc]initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
     
+    
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
 
     
-   BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];
+    BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];
     NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
     self.userbrockus = [consulta recuperaPersona:userStr :context];
     //NSLog(@"%@",self.userbrockus);
@@ -105,6 +106,6 @@
     self.regresar.delegate =(id)self;
     UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.regresar];
     [self presentViewController:navContr animated:YES completion:nil];
-    NSLog(@"hdjfhdjf");
+    NSLog(@"regresar al perfil");
 }
 @end

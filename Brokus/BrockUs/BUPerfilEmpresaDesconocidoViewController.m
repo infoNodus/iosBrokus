@@ -67,11 +67,30 @@
     NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
     self.userbrockus = [consulta recuperaPersona:userStr :context];
     
-    self.personaTxt.text = self.persona.nombre;
-    self.puestoTxt.text = self.persona.puesto;
-    self.empresaTxt.text = self.persona.toEmpresa.nombre;
-    self.sectorTxt.text = self.persona.toEmpresa.toSubsector.toSector.nombre;
-    self.subsectorTxt.text = self.persona.toEmpresa.toSubsector.nombre;
+    if (self.persona.nombre) {
+        self.personaTxt.text = self.persona.nombre;
+    }
+    //self.personaTxt.text = self.persona.nombre;
+    if (self.persona.puesto != nil) {
+        self.puestoTxt.text = self.persona.puesto;
+    }
+    if (self.persona.puesto != nil) {
+        self.puestoTxt.text = self.persona.puesto;
+    }
+    //self.puestoTxt.text = self.persona.puesto;
+    if (self.persona.toEmpresa.nombre != nil) {
+        self.empresaTxt.text = self.persona.toEmpresa.nombre;
+    }
+    //self.empresaTxt.text = self.persona.toEmpresa.nombre;
+    if (self.persona.toEmpresa.toSubsector.toSector.nombre != nil) {
+        self.sectorTxt.text = self.persona.toEmpresa.toSubsector.toSector.nombre;
+    }
+    //self.sectorTxt.text = self.persona.toEmpresa.toSubsector.toSector.nombre;
+    if (self.persona.toEmpresa.toSubsector.nombre != nil) {
+        self.subsectorTxt.text = self.persona.toEmpresa.toSubsector.nombre;
+
+    }
+    //self.subsectorTxt.text = self.persona.toEmpresa.toSubsector.nombre;
     if(self.persona.img != nil) {
         self.oImagen.image = [[UIImage alloc] initWithData:self.persona.img];
     }

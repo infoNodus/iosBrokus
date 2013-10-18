@@ -17,6 +17,7 @@
 #import "BUPublicacionViewController.h"
 #import "BUMinVistaViewController.h"
 #import "BUDetallePublicacionViewController.h"
+#import "Circulo.h"
 
 @interface BUPerfilEmpresaDesconocidoViewController ()
 {
@@ -27,7 +28,7 @@
 @property (strong) BUPublicacionViewController *pub;
 @property (strong) BUDetallePublicacionViewController *detalle;
 @property (strong) NSArray *listaPublicaciones;
-
+@property (weak, nonatomic) IBOutlet UIButton *oInvitarOrEMail;
 
 
 @end
@@ -88,6 +89,14 @@
     NSSortDescriptor *byDescripcion = [NSSortDescriptor sortDescriptorWithKey:@"descripcion" ascending:NO];
     NSArray *sortDescriptors = [NSArray arrayWithObjects:byFechaIni, byFechaFin, byTitulo,byDescripcion, nil];
     self.listaPublicaciones = [self.listaPublicaciones sortedArrayUsingDescriptors:sortDescriptors];
+    
+    
+    // Si la persona es del circulo de confianza aparece el boton de enviar correo,
+    // si no aprace el boton de invitar.
+    // Para el metodo que implemente este boton self.oInvitarOrEmail se tiene que hacer la misma comparacion para saber cual es la accion que se va a tomar
+    if ([self personaEstaEnCirculo:self.persona]) {
+        [self.oInvitarOrEMail setTitle:@"Enviar correo" forState:UIControlStateNormal] ;
+    }
 
 }
 
@@ -95,6 +104,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL) personaEstaEnCirculo:(Persona*)persona {
+    for (Circulo *amigo in self.userbrockus.toCirculo) {
+        if([amigo.toAmigo.usuario isEqualToString:persona.usuario]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 #pragma mark - TableViewController methods
@@ -134,6 +152,33 @@
     //[cell setSelected:YES animated:YES];
     return cell;
 }
+- (IBAction)openCorreoOrInvitar:(id)sender {
+    if ([self personaEstaEnCirculo:self.persona]) {
+        // Enviar correo
+        if(![MFMailComposeViewController canSendMail]) {
+            NSLog(@"No se puede enviar email desde este dispositivo");
+            return;
+        }
+        
+        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+        mailer.mailComposeDelegate = self;
+        
+        // Asunto del mensaje
+        [mailer setSubject:@"Notificacion - BroukUs"];
+        NSArray *toRecipients = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@",self.persona.usuario], nil];
+        [mailer setToRecipients:toRecipients];
+        
+        // El cuerpo del mensaje
+        NSString *emailBody = @"Escribe tu mensaje.";
+        [mailer setMessageBody:emailBody isHTML:NO];
+        
+        // Mostramos la ventana para editar el mensaje.
+        [self presentViewController:mailer animated:YES completion:nil];
+    } else {
+        // Invitar
+    }
+    
+}
 
 #pragma mark - Table view delegate
 
@@ -143,6 +188,36 @@
     BUDetallePublicacionViewController *detalle = [[BUDetallePublicacionViewController alloc] initWithPublicacion:self.listaPublicaciones[indexPath.row] navegacionAlPerfil:NO];
     NSLog(@"%@", self.navigationController);
     [self.navigationController pushViewController:detalle animated:YES];
+}
+
+# pragma mark - Metodos del MFMailComposeViewController
+
+-(void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    UIAlertView *mensaje = nil;
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled: you cancelled the operation and no email message was queued.");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved: you saved the email message in the drafts folder.");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail send: the email message is queued in the outbox. It is ready to send.");
+            mensaje = [[UIAlertView alloc] initWithTitle:@"Información" message:@"Correo enviado" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail failed: the email message was not saved or queued, possibly due to an error.");
+            break;
+        default:
+            NSLog(@"Mail not sent.");
+            break;
+    }
+    if (mensaje != nil) {
+        [mensaje show];
+    }
+    // Quitamos la ventana del correo.
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

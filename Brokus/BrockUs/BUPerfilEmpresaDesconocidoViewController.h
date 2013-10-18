@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
 @class Persona;
 
-@interface BUPerfilEmpresaDesconocidoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface BUPerfilEmpresaDesconocidoViewController : UIViewController <MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 
 @property (strong) Persona *persona;

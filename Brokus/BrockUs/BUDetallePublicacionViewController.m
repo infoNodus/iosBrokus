@@ -12,8 +12,15 @@
 #import "Publicacion.h"
 #import "BUAnexloLinkVC.h"
 #import "BUPerfilEmpresaDesconocidoViewController.h"
+#import "BUPerfilePersonalViewController.h"
+#import "BUAppDelegate.h"
+#import "BUConsultaPublicacion.h"
 @interface BUDetallePublicacionViewController ()
+{
+    NSManagedObjectContext *context;
+}
 @property BOOL esNavegable;
+@property (strong) Persona *userbrockus;
 @end
 
 @implementation BUDetallePublicacionViewController
@@ -45,6 +52,22 @@
     if(self.publicacion.img != nil) {
         self.oImagen.image = [[UIImage alloc] initWithData:self.publicacion.img];
     }
+    
+    /*test*/
+    BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
+    context =[buappdelegate managedObjectContext];
+    //self.salir=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
+    
+    BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];
+    NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
+    self.userbrockus = [consulta recuperaPersona:userStr :context];
+    
+    if (self.publicacion.toPersona.nombre == self.userbrockus.nombre) {
+        NSLog(@"tu mismo");
+        
+    }
+    
+    
     [self.oPersona setTitle:self.publicacion.toPersona.nombre forState:UIControlStateNormal];
     self.oEmpresa.text = self.publicacion.toPersona.toEmpresa.nombre;
     //self.oEmail.textInputContextIdentifier = self.publicacion.toPersona.usuario;
@@ -79,21 +102,41 @@
     // El cuerpo del mensaje
     NSString *emailBody = @"Escribe tu mensaje.";
     [mailer setMessageBody:emailBody isHTML:NO];
-
+    
     // Mostramos la ventana para editar el mensaje.
     [self presentViewController:mailer animated:YES completion:nil];
 }
 
 - (IBAction)descargaTapped:(id)sender {
     BUAnexloLinkVC *anexo = [[BUAnexloLinkVC alloc] initWithURL:self
-                          .publicacion.linkAnexo];
+                             .publicacion.linkAnexo];
     [self.navigationController pushViewController:anexo animated:YES];
     
-//    NSURLConnection
+    //    NSURLConnection
     
 }
 - (IBAction)openPerfilPersona:(id)sender {
     if (self.esNavegable) {
+        
+        BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
+        context =[buappdelegate managedObjectContext];
+        //self.salir=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
+        
+        BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];
+        NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
+        self.userbrockus = [consulta recuperaPersona:userStr :context];
+        
+        if (self.publicacion.toPersona.nombre == self.userbrockus.nombre) {
+            NSLog(@"tu mismo");
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:1.5];
+            [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
+            [UIView commitAnimations];
+            BUPerfilePersonalViewController *perfil = [[BUPerfilePersonalViewController alloc] initWithNibName:@"BUPerfilePersonalViewController" bundle:nil];
+            [self.navigationController pushViewController:perfil animated:YES];
+            return;
+        }
+        
         BUPerfilEmpresaDesconocidoViewController *perfil = [[BUPerfilEmpresaDesconocidoViewController alloc] initWithPersona:self.publicacion.toPersona];
         [self.navigationController pushViewController:perfil animated:YES];
     }

@@ -10,7 +10,6 @@
 #import "BUAppDelegate.h"
 #import "Subsector.h"
 #import "Sector.h"
-#import "ComboSector.h"
 #import "BUPublicacionesActivasVC.h"
 #import "BUConsultaPublicacion.h"
 
@@ -59,25 +58,26 @@
     self.imagenPub.image=[[UIImage alloc] initWithData:publicacion.img];
     
     
-    //obtener subsector para la perosona
+    //obtener subsector para la publicacion
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSError *error;
     
-    //obtenemos la empresa para la que se hace la publicacion
-    NSEntityDescription *requestEmpresa=[NSEntityDescription entityForName:@"Subsector" inManagedObjectContext:context];
-    [fetchRequest setEntity:requestEmpresa];
-    //usamos la propiedad persona para obtener su empresa
+    //obtenemos el subsector para el que se hace la publicacion
+    NSEntityDescription *requestSubsector=[NSEntityDescription entityForName:@"Subsector" inManagedObjectContext:context];
+    [fetchRequest setEntity:requestSubsector];
     NSPredicate *predicate=[NSPredicate predicateWithFormat:@"nombre=%@",publicacion.toSubsector.nombre];
     [fetchRequest setPredicate:predicate];
     
     
     NSArray *fetchedSector=[context executeFetchRequest:fetchRequest error:&error];
-    //Creamos la variable empresa y en el for le asignamos la empresa obtenida
+    
     Subsector *subsector;
     for (int i=0; i<[fetchedSector count]; i++) {
         subsector=[fetchedSector objectAtIndex:i];
         //NSLog(@"Empresa: %@",[fetchedSubSector objectAtIndex:i]);
     }
+    
+    //asignamos el sector ligado al subsector al textview
     self.sectorTxt.text=subsector.toSector.nombre;
     
     
@@ -149,16 +149,7 @@
     self.sectorTxt.inputAccessoryView = toolbarSectores;
     
     
-    ///inicializamos el picker con los subsectores y se lo cargamos al textview
-    
-    NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
-    NSEntityDescription *selectSubSector = [NSEntityDescription
-                                            entityForName:@"Subsector" inManagedObjectContext:context];
-    
-    [fetch setEntity:selectSubSector];
-    
     arraySubsectores=[[NSArray alloc]init];
-    arraySubsectores=[context executeFetchRequest:fetch error:&error];
     
     self.subSectorTxt.delegate=self;
     pickerView = [[UIPickerView alloc] init];

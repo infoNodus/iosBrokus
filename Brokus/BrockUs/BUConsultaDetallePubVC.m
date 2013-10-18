@@ -256,6 +256,11 @@
         if (self.subSectorTxt.text.length<=0 || self.sectorTxt.text.length <=0) {
         self.sectorTxt.text=@"Construccion";
             self.subSectorTxt.text=@"Edificacion No Residencial";
+            
+            UIAlertView *alerta =[[UIAlertView alloc] initWithTitle:@"Error" message:@"Favor de Selecionar Sector o Subsector si no se Selecionaran sector y subsector por defailt" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+
+            [alerta show];
+        
         }
 
         

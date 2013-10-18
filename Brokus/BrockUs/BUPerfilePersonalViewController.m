@@ -49,7 +49,7 @@
     BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];
     NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
     self.userbrockus = [consulta recuperaPersona:userStr :context];
-    //NSLog(@"%@",self.userbrockus);
+//    NSLog(@"%@",self.userbrockus);
     if (self.userbrockus.usuario != nil) {
         self.NombrePersonaLabel.text =self.userbrockus.usuario;
     }
@@ -80,7 +80,8 @@
     self.title = self.userbrockus.nombre;
    // self.listaPublicaciones = [[NSArray alloc] init];
     //self.listaPublicaciones = [consulta recuperaPublicacionPorEmpresa:self.userbrockus.toEmpresa toContext:context];
-    //NSLog(@"Registros: %d",[self.listaPublicaciones count]);*/
+    //NSLog(@"Registros: %d",[self.listaPublicaciones count]);
+    //NSLog(@"testtttt");
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,13 +100,13 @@
 
 - (IBAction)salir:(id)sender {
     
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:1];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
-    [UIView commitAnimations];
-    self.regresar.delegate =(id)self;
-    UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.regresar];
-    [self presentViewController:navContr animated:YES completion:nil];
-    NSLog(@"regresar al perfil");
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:1];
+//    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
+//    [UIView commitAnimations];
+//    self.regresar.delegate =(id)self;
+//    UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.regresar];
+//    [self presentViewController:navContr animated:YES completion:nil];
+//    NSLog(@"regresar al perfil");
 }
 @end

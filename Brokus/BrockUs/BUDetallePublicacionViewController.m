@@ -15,12 +15,14 @@
 #import "BUPerfilePersonalViewController.h"
 #import "BUAppDelegate.h"
 #import "BUConsultaPublicacion.h"
+#import "BUPerfilEmpresaViewController.h"
 @interface BUDetallePublicacionViewController ()
 {
     NSManagedObjectContext *context;
 }
 @property BOOL esNavegable;
 @property (strong) Persona *userbrockus;
+@property (strong)BUPerfilEmpresaViewController *miperfil;
 @end
 
 @implementation BUDetallePublicacionViewController
@@ -128,8 +130,16 @@
         
         if (self.publicacion.toPersona.nombre == self.userbrockus.nombre) {
             NSLog(@"tu mismo");
-            BUPerfilePersonalViewController *perfil = [[BUPerfilePersonalViewController alloc] init];
-            [self.navigationController pushViewController:perfil animated:YES];
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:1.5];
+            [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
+            [UIView commitAnimations];
+            self.miperfil=[[BUPerfilePersonalViewController alloc]initWithNibName:@"BUPerfilePersonalViewController" bundle:nil];
+            self.miperfil.delegate =(id)self;
+            [self.navigationController pushViewController:self.miperfil animated:YES];
+            
+            return;
+            
         }
         
         

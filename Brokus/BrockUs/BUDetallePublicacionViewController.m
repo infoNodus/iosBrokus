@@ -15,14 +15,12 @@
 #import "BUPerfilePersonalViewController.h"
 #import "BUAppDelegate.h"
 #import "BUConsultaPublicacion.h"
-#import "BUPerfilEmpresaViewController.h"
 @interface BUDetallePublicacionViewController ()
 {
     NSManagedObjectContext *context;
 }
 @property BOOL esNavegable;
 @property (strong) Persona *userbrockus;
-@property (strong)BUPerfilEmpresaViewController *miperfil;
 @end
 
 @implementation BUDetallePublicacionViewController
@@ -104,17 +102,17 @@
     // El cuerpo del mensaje
     NSString *emailBody = @"Escribe tu mensaje.";
     [mailer setMessageBody:emailBody isHTML:NO];
-
+    
     // Mostramos la ventana para editar el mensaje.
     [self presentViewController:mailer animated:YES completion:nil];
 }
 
 - (IBAction)descargaTapped:(id)sender {
     BUAnexloLinkVC *anexo = [[BUAnexloLinkVC alloc] initWithURL:self
-                          .publicacion.linkAnexo];
+                             .publicacion.linkAnexo];
     [self.navigationController pushViewController:anexo animated:YES];
     
-//    NSURLConnection
+    //    NSURLConnection
     
 }
 - (IBAction)openPerfilPersona:(id)sender {
@@ -134,12 +132,9 @@
             [UIView setAnimationDuration:1.5];
             [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
             [UIView commitAnimations];
-            self.miperfil=[[BUPerfilePersonalViewController alloc]initWithNibName:@"BUPerfilePersonalViewController" bundle:nil];
-            self.miperfil.delegate =(id)self;
-            [self.navigationController pushViewController:self.miperfil animated:YES];
-            
+            BUPerfilePersonalViewController *perfil = [[BUPerfilePersonalViewController alloc] initWithNibName:@"BUPerfilePersonalViewController" bundle:nil];
+            [self.navigationController pushViewController:perfil animated:YES];
             return;
-            
         }
         
         

@@ -242,6 +242,7 @@
         else if(result==NSOrderedDescending){
             NSLog(@"Seleccionar una fecha superior");
         }
+      
         
         publicacion.titulo=self.tituloTxt.text;
         publicacion.descripcion=self.descripcionTxt.text;
@@ -252,7 +253,10 @@
         if (nombreSubSector!=nil) {
             publicacion.toSubsector=nombreSubSector;
         }
-        
+        if (self.subSectorTxt.text.length<=0 || self.sectorTxt.text.length <=0) {
+        self.sectorTxt.text=@"Construccion";
+            self.subSectorTxt.text=@"Edificacion No Residencial";
+        }
 
         
         

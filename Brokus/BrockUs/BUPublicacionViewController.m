@@ -38,7 +38,7 @@
 
 
 @implementation BUPublicacionViewController
-@synthesize selectedText;
+@synthesize selectedText; //que permite indicarle a Xcode que auto genere los get y set del texto seleccionado
 @synthesize subSector;
 @synthesize comboSector;
 @synthesize sectorSeleccionado;

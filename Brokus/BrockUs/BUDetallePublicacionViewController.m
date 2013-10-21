@@ -106,7 +106,7 @@
     mailer.mailComposeDelegate = self;
     
     // Asunto del mensaje
-    [mailer setSubject:@"Notificacion - BroukUs"];
+    [mailer setSubject:@"Notificacion - Brokus"];
     NSArray *toRecipients = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@",self.publicacion.toPersona.usuario], nil];
     [mailer setToRecipients:toRecipients];
     

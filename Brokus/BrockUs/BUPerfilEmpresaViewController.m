@@ -54,35 +54,29 @@ NSString *userenterprise;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Se especifica los botones y el titulo que
     self.navigationItem.leftBarButtonItem = self.btnSalir;
     self.navigationItem.rightBarButtonItem = self.btnCrearPublicacion;
     self.title = @"Perfil";
     
+    // se inicializa el contexto
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
     
-    
-    //[[self UserNameBrockus ] setDelegate:self];
-    //[[self PassInputText] setDelegate:self];
-    // Do any additional setup after loading the view from its nib.
-    
+    // Se inicializan las vistas
     self.registro=[[BULoginViewController alloc] initWithNibName:@"BULoginViewController" bundle:nil];
-    
     self.publicaciones =[[BURegistroViewController alloc] initWithNibName:@"BURegistroViewController" bundle:nil];
-
     self.miperfil=[[BUPerfilePersonalViewController alloc]initWithNibName:@"BUPerfilePersonalViewController" bundle:nil];
-    
     self.pub=[[BUPublicacionViewController alloc] initWithNibName:@"BUPublicacionViewController" bundle:nil];
-
-
-    
-    
     self.circulo=[[BUCirculoConfianzaViewController alloc] initWithNibName:@"BUCirculoConfianzaViewController" bundle:nil];
-
+    
+    
     BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];
     NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
+    // Se recupera el usuario logeado
     self.userbrockus = [consulta recuperaPersona:userStr :context];
-    //NSLog(@"%@",self.userbrockus);
+    
+    // Se inicializan las etiquetas de la ventana
     self.MailUser.text =self.userbrockus.usuario;
     self.EnterpriseUser.text = self.userbrockus.toEmpresa.nombre;
     self.PuestoUser.text = self.userbrockus.puesto;
@@ -91,40 +85,12 @@ NSString *userenterprise;
     if (self.userbrockus.img != nil) {
         self.ImageUser.image = [[UIImage alloc] initWithData:self.userbrockus.img];
     }
-
+    
+    // Recuperamos las publicaciones por el sector de la empresa del usuario logeado.
     self.listaPublicaciones = [[NSMutableArray alloc] init];
-    //self.listaPublicaciones = [consulta recuperaPublicacionPorEmpresa:self.userbrockus.toEmpresa toContext:context];
     self.listaPublicaciones = [consulta recuperaPublicacionPor:self.userbrockus.toEmpresa.toSubsector.toSector context:context];
-//    
-//    NSDate *today=[NSDate date];
-//    NSLog(@"######today#######: %@",today);
-//    NSMutableArray *discardedItems = [NSMutableArray array];
-//    Publicacion *pub;
-//    
-//    for (pub in self.listaPublicaciones) {
-//        NSComparisonResult result = [today compare:pub.fecha];
-//        
-//        if(result==NSOrderedAscending)
-//            NSLog(@"publicacion activa");
-//        else if(result==NSOrderedDescending){
-//            NSLog(@"publicacion inactiva");
-//            pub.status=[[NSNumber alloc]initWithInt:0];
-//            NSError
-//            
-//            
-//            *error = nil;
-//            // Save the object to persistent store
-//            if (![context save:&error]) {
-//                NSLog(@"Error al actualizar los datos: %@ %@", error, [error localizedDescription]);
-//            }
-//            
-//            NSLog(@"publicacion desactivada: %@",pub);
-//        }else
-//            NSLog(@"Both dates are the same");
-//    }
     
-//    self.listaPublicaciones = [consulta recuperaPublicacionPor:self.userbrockus.toEmpresa.toSubsector.toSector context:context];
-    
+    // Se ordena la informacion de la lista de publicaciones
     NSSortDescriptor *byFechaIni = [NSSortDescriptor sortDescriptorWithKey:@"fechaIni" ascending:NO];
     NSSortDescriptor *byFechaFin = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:NO];
     NSSortDescriptor *byTitulo = [NSSortDescriptor sortDescriptorWithKey:@"titulo" ascending:NO];
@@ -140,8 +106,7 @@ NSString *userenterprise;
 }
 
 
-
-
+// Cierra la sesion del usuario y se dirige al login
 - (IBAction)SalirTapped:(id)sender {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:1];
@@ -153,12 +118,8 @@ NSString *userenterprise;
     
 }
 
+// Se dirige a crear una publicacion.
 - (IBAction)CrearPublicacionBtn:(id)sender {
-   // self.publicaciones.delegate=self;
-    //[self presentViewController:self.publicaciones animated:YES completion:nil];
-    //BURealizaPublicacionViewController *pub=[[BURealizaPublicacionViewController alloc] init];
-    // [self presentViewController:pub animated:YES completion:nil];
-    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:1];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
@@ -170,43 +131,35 @@ NSString *userenterprise;
     [alertafecha show];
 }
 
-- (IBAction)Busqueda:(id)sender {
-}
-
+// Se direje al perfil del usuario logeado.
 - (IBAction)miperfil:(id)sender {
-   
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:1.5];
     [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
     [UIView commitAnimations];
-    
     self.miperfil.delegate =(id)self;
     [self.navigationController pushViewController:self.miperfil animated:YES];
-//    [self presentViewController:self.miperfil animated:YES completion:nil];
-    
     UIAlertView *alertafecha =[[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Recuerda que esto es una vista previa de como te ven los demas usuarios." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertafecha show];
     
 }
 
+// Se direje al circulo de confianza del usuario logeado.
 - (IBAction)CirculoConfianza:(id)sender {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:1];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
     [UIView commitAnimations];
-    
-    
     self.circulo.delegate=(id)self;
     UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.self.circulo];
     navContr.title=@"Perfil";
     [self.navigationController pushViewController:self.circulo animated:YES];
-//    [self presentViewController:self.circulo animated:YES completion:nil];
 }
 
+// Se direje a la administracion de las publicaciones del usuario logeado.
 - (IBAction)MisPublicacionesTapped:(id)sender {
     UIAlertView *eliminar = [[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Para desactivar (eliminar) una publicación, solamente debes dejar seleccionada la publicación y deslizar suavemente a la izquierda y a continuación aparecerá un botón con el cual podras desactivar la publicación." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [eliminar show];
-    
     BUSeccionPublicacionesViewController *secPub=[[BUSeccionPublicacionesViewController alloc]init];
     [self presentViewController:secPub animated:YES completion:nil];
 }
@@ -217,14 +170,11 @@ NSString *userenterprise;
     return [self.listaPublicaciones count];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //5
     static NSString *cellIdentifier = @"publicacionCell";
     
     BUMinVistaViewController *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -253,7 +203,6 @@ NSString *userenterprise;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     BUDetallePublicacionViewController *detalle = [[BUDetallePublicacionViewController alloc] initWithPublicacion:self.listaPublicaciones[indexPath.row]];
     NSLog(@"%@", self.navigationController);
     [self.navigationController pushViewController:detalle animated:YES];

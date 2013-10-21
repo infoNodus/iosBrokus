@@ -369,22 +369,6 @@
             NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
             NSError *error;
             
-            //obtenemos la empresa para la que se hace la publicacion
-            /*NSEntityDescription *requestEmpresa=[NSEntityDescription entityForName:@"Empresa" inManagedObjectContext:context];
-             [fetchRequest setEntity:requestEmpresa];
-             //usamos la propiedad persona para obtener su empresa
-             NSPredicate *predicate=[NSPredicate predicateWithFormat:@"ANY toPersona IN %@",[NSArray arrayWithObject:persona]];
-             [fetchRequest setPredicate:predicate];
-             
-             
-             NSArray *fetchedEmpresa=[context executeFetchRequest:fetchRequest error:&error];
-             //Creamos la variable empresa y en el for le asignamos la empresa obtenida
-             Empresa *empresa;
-             for (int i=0; i<[fetchedEmpresa count]; i++) {
-             empresa=[fetchedEmpresa objectAtIndex:i];
-             //NSLog(@"Empresa: %@",[fetchedSubSector objectAtIndex:i]);
-             }*/
-            
             
             //Obtenemos el subsector para el cual se realiza la publicacion
             NSEntityDescription *requestSubsector=[NSEntityDescription entityForName:@"Subsector" inManagedObjectContext:context];
@@ -395,7 +379,6 @@
                 Subsector *x=[fetchedSubSector objectAtIndex:i];
                 if ([subSector.text isEqualToString:x.nombre]) {
                     subsector=[fetchedSubSector objectAtIndex:i];
-                    //NSLog(@"Subsector: %@",[fetchedSubSector objectAtIndex:i]);
                 }
                 
             }
@@ -403,12 +386,11 @@
             if(![self.link isEqualToString:@""]) {
                 insertPublicacion.linkAnexo = self.link;
             }
-            
+            //insertamos el subsector para la publicacion
             insertPublicacion.toSubsector=subsector;
-            NSLog(@"Subsector Seleccionado: %@",subsector);
-            insertPublicacion.status = [[NSNumber alloc] initWithInt:1];
+            insertPublicacion.status = [[NSNumber alloc] initWithInt:1];//se guarda el status por default 1 para publicaciones nuevas
             insertPublicacion.fechaIni = [[NSDate alloc] init];
-            BOOL success=[context save:&error];
+            BOOL success=[context save:&error];// si no existen errores se guarda la informacion
             if(success==NO || error!=nil){
                 NSLog(@"Error al guardar consulta: %@", [error description]);
                 
@@ -572,9 +554,9 @@
     return YES;
 }
 - (IBAction)subsectorClicked:(id)sender {
-    isSector=NO;
+    isSector=NO;//booleano utilizado para saber si es sector o subsector
     //filtramos el picker de subsectores segun el sector seleccionado
-    dataArray=arraySubsectores;
+    dataArray=arraySubsectores;//data array es el array del cual se carga el picker (cambia segun la caja de texto que seleccionamos)
     [pickerView reloadAllComponents];
 }
 - (IBAction)sectorClicked:(id)sender {

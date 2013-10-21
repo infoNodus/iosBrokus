@@ -134,9 +134,25 @@
     }
     Circulo *personaCirculo = self.listaPersonas[indexPath.row];//asignamos un objeto a la celda
     NSLog(@"lista %@", personaCirculo.toAmigo.nombre);
-    cell.empresaTxt.text = personaCirculo.toAmigo.toEmpresa.nombre;//asignamos el nombre de la empresa de la persona que recuperamos de nuestra circulo
-    cell.usuarioTxt.text = personaCirculo.toAmigo.nombre;//asignamos el nombre de usuario de la persona que recuperamos de nuestra circulo
-    cell.cargoTxt.text = personaCirculo.toAmigo.puesto;//asignamos el puesto de la persona que recuperamos de nuestra circulo
+    
+    if (personaCirculo.toAmigo.toEmpresa.nombre != nil) {//asignamos el nombre de la empresa de la persona que recuperamos de nuestra circulo, si es nulo asignamos uno por default
+        cell.empresaTxt.text = personaCirculo.toAmigo.toEmpresa.nombre;
+    }else{
+        cell.empresaTxt.text = @"Empresa";
+    }
+    
+    if (personaCirculo.toAmigo.nombre != nil) {//asignamos el nombre de usuario de la persona que recuperamos de nuestra circulo, si es nulo asignamos uno por default
+        cell.usuarioTxt.text = personaCirculo.toAmigo.nombre;
+    }else{
+        cell.usuarioTxt.text = @"Nombre";
+    }
+    
+    if (personaCirculo.toAmigo.puesto != nil) {//asignamos el puesto de la persona que recuperamos de nuestra circulo, si es nulo asignamos por uno por default
+        cell.cargoTxt.text = personaCirculo.toAmigo.puesto;
+    }else{
+        cell.cargoTxt.text = @"Puesto";
+    }
+    
     
     if(personaCirculo.toAmigo.img != nil) {
         cell.imageView.image = [[UIImage alloc] initWithData:personaCirculo.toAmigo.img];//asignamos la imagen de la persona que recuperamos de nuestra circulo, si es nula asignamos una imagen por default

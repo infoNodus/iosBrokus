@@ -12,14 +12,14 @@
 #import "BUSeccionPublicacionesViewController.h"
 #import "BUPublicacionesInactivasVC.h"
 
-@protocol BUSeccionPublicacionesDelegate;
+@protocol BUSeccionPublicacionesDelegate;//asignamos una delegado para las publicaciones
 
 @interface BUSeccionPublicacionesViewController : UIViewController
-@property (strong, nonatomic) BUPublicacionesActivasVC *presentaActivas;
-@property (strong) BUPublicacionesInactivasVC *presentaInactivas;
-@property (strong, nonatomic) IBOutlet UIView *publicacionesActivas;
-@property (strong, nonatomic) IBOutlet UIView *publicacionesInactivas;
-@property (weak) id <BUSeccionPublicacionesDelegate> delegate;
+@property (strong, nonatomic) BUPublicacionesActivasVC *presentaActivas;//propiedad para acceder al controlador de publicaciones activas
+@property (strong) BUPublicacionesInactivasVC *presentaInactivas;//propiedad para acceder al controlador de publicaciones inactivas
+@property (strong, nonatomic) IBOutlet UIView *publicacionesActivas;//propiedad para acceder a las publicaciones activas
+@property (strong, nonatomic) IBOutlet UIView *publicacionesInactivas;//propiedad para acceder a las publicaciones inactivas
+@property (weak) id <BUSeccionPublicacionesDelegate> delegate;//propiedad para acceder a un delegado
 - (IBAction)canceltapped:(id)sender;
 
 - (IBAction)optionsTapped:(id)sender;

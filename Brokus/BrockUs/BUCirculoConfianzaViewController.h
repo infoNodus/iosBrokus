@@ -11,16 +11,15 @@
 @protocol BUCirculoConfianzaDelegate;
 
 @interface BUCirculoConfianzaViewController : UIViewController
-@property (weak) id <BUCirculoConfianzaDelegate> delegate;
 
-//test
+@property (weak) id <BUCirculoConfianzaDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIImageView *ImageUser;
 @property (weak, nonatomic) IBOutlet UILabel *EnterpriseUser;
 @property (weak, nonatomic) IBOutlet UILabel *UserNameBrockus;
 @property (weak, nonatomic) IBOutlet UILabel *PuestoUser;
 @property (weak, nonatomic) IBOutlet UILabel *MailUser;
 @property (weak, nonatomic) IBOutlet UILabel *Sector;
-//test
+
 - (IBAction)Salir:(id)sender;
 
 @end

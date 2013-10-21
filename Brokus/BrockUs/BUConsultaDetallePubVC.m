@@ -265,7 +265,6 @@
 
 - (IBAction)sectorTapped:(id)sender {
     isSector=YES;
-    self.subSectorTxt.text=@"";
     dataArray=arraySectores;
     [pickerView reloadAllComponents];
 }
@@ -273,6 +272,11 @@
 - (IBAction)subSectorTapped:(id)sender {
     isSector=NO;
     //filtramos el picker de subsectores segun el sector seleccionado
+    dataArray=arraySubsectores;
+    [pickerView reloadAllComponents];
+}
+
+-(void)cargaSubsector{
     Sector *seleccionado;
     for (int i=0; i<[arraySectores count]; i++) {
         Sector *forsector=[arraySectores objectAtIndex:i];
@@ -292,8 +296,8 @@
     [fetchRequest setPredicate:predicate];
     
     arraySubsectores= [context executeFetchRequest:fetchRequest error:&error];
-    dataArray=arraySubsectores;
-    [pickerView reloadAllComponents];
+    Subsector *s=[arraySubsectores objectAtIndex:0];
+    self.subSectorTxt.text=s.nombre;
 }
 
 
@@ -330,6 +334,7 @@
     if(isSector){
         nombreSector=[dataArray objectAtIndex:row];
         self.sectorTxt.text=nombreSector.nombre;
+        [self cargaSubsector];
     }else{
         nombreSubSector=[dataArray objectAtIndex:row];
         self.subSectorTxt.text =nombreSubSector.nombre;

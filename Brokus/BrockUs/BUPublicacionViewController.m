@@ -130,15 +130,15 @@
     NSEntityDescription *requestSubsector=[NSEntityDescription entityForName:@"Subsector" inManagedObjectContext:context];
     [fetchSubsector setEntity:requestSubsector]; //obtenemos el resultado de la consulta
     NSPredicate *predicatesubsector=[NSPredicate predicateWithFormat:@"toSector=%@",sect];
-    [fetchSubsector setPredicate:predicatesubsector];
+    [fetchSubsector setPredicate:predicatesubsector]; //La clase NSPredicate se utiliza para definir las condiciones lógicas utilizadas para restringir la busqueda del subsector o para hacer el filtrado.
     
     
-    arraySubsectores=[context executeFetchRequest:fetchSubsector error:&error];
+    arraySubsectores=[context executeFetchRequest:fetchSubsector error:&error];//se ejecuta la consulta y se almacena en un array
     subsect=[arraySubsectores objectAtIndex:0];
-    subSector.text=subsect.nombre;
+    subSector.text=subsect.nombre;//se coloca el nombre del subsector al textfield
     
-    subSector.delegate=self;
-    pickerView = [[UIPickerView alloc] init];
+    subSector.delegate=self;//se le asigna el valor del subsector al delegate
+    pickerView = [[UIPickerView alloc] init]; //se inicializa el picker para asignar los datos del subsector al picker
     pickerView.showsSelectionIndicator = YES;
     pickerView.dataSource = self;
     pickerView.delegate = self;
@@ -147,10 +147,10 @@
     toolbar.barStyle = UIBarStyleBlackTranslucent;
     [toolbar sizeToFit];
     
-    //to make the done button aligned to the right
+    //pone el boton done alineado a la derecha
     UIBarButtonItem *flexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    
+    //Se asigna etiqueta y metodo qu se ejucatara al dar click sobre el boton
     UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar"
                                                                    style:UIBarButtonItemStyleDone target:self
                                                                   action:@selector(doneClicked:)];
@@ -162,8 +162,6 @@
     
     subSector.inputView = pickerView;
     subSector.inputAccessoryView = toolbar;
-    
-    
     date.delegate=self;
     datePicker =[[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDate;
@@ -180,14 +178,14 @@
                                                                        style:UIBarButtonItemStyleDone target:self
                                                                       action:@selector(doneClickedDate:)];
     
-    NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:100000];//fecha actual
+    NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:100000];//se obtiene la fecha actual pero con un día mas para poner la fecha limite
     [datePicker setMinimumDate:currentTime];
     [datePicker setMaximumDate:[currentTime dateByAddingTimeInterval:400000]];//fecha maxima de publicacion(5 dias)
     
     
     [datetoolbar setItems:[NSArray arrayWithObjects:dateflexibleSpaceLeft, doneDateButton, nil]];
     
-    //custom input view
+
     
     date.inputView = datePicker;
     date.inputAccessoryView = datetoolbar;
@@ -196,10 +194,10 @@
 }
 -(void)doneClickedDate:(id) sender
 {
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"MM/dd/yyyy"];
-    date.text = [NSString stringWithFormat:@"%@",[df stringFromDate:datePicker.date]];
-    [date resignFirstResponder]; //hides the pickerView
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];//se inicializa el formato de la fecha
+    [df setDateFormat:@"MM/dd/yyyy"];//se declara el tipo de formato de la fecha
+    date.text = [NSString stringWithFormat:@"%@",[df stringFromDate:datePicker.date]];//se coloca la fecha obtenida al campo de texto de fecha
+    [date resignFirstResponder]; //Oculta el Pickerview de la fecha
     
 }
 
@@ -210,13 +208,13 @@
 -(void)doneClickedSectores:(id) sender
 {
     
-    [self.sector resignFirstResponder]; //hides the pickerView
+    [self.sector resignFirstResponder]; //oculta el pickerView del sector
     
 }
 -(void)doneClicked:(id) sender
 {
     
-    [self.subSector resignFirstResponder]; //hides the pickerView
+    [self.subSector resignFirstResponder]; //oculta el pickerView del subsector
     
 }
 
@@ -236,6 +234,7 @@
         [self cargarSubsector];
         
     }else{
+        //se obtiene el subsector del array y se asigna el nombre a la caja de texto
         nombreSubSector=[dataArray objectAtIndex:row];
         self.subSector.text =nombreSubSector.nombre;
     }
@@ -249,11 +248,11 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
 {
     if(isSector){
-        nombreSector=[dataArray objectAtIndex:row];
-        return nombreSector.nombre;
+        nombreSector=[dataArray objectAtIndex:row];//asigna el nombre del sector a la columna
+        return nombreSector.nombre;//regresa el nombre del sector
     }else{
-        nombreSubSector=[dataArray objectAtIndex:row];
-        return nombreSubSector.nombre;
+        nombreSubSector=[dataArray objectAtIndex:row];//asigna el nombre del subsector a la columna
+        return nombreSubSector.nombre; //regresa el nombre del subsector
     }
     
 }
@@ -261,7 +260,7 @@
 
 
 
-//ocultar teclado
+//ocultar teclado cuando estas escribiendo en un textfield
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if([textField.text length] == 0) {
         return NO;
@@ -295,11 +294,9 @@
 // Valida que las cajas de texto no esten vacias.
 - (BOOL) entradasVacias{
     if([self.tituloTxt.text isEqualToString:@""]) {
-        //[self.nombreEmpresaTxt becomeFirstResponder];
         return YES;
     }
     if([self.DescripcionTxt.text isEqualToString:@""]) {
-        //[self.nombrePersonaTxt becomeFirstResponder];
         return YES;
     }
     if([self.date.text isEqualToString:@""]) {
@@ -310,7 +307,8 @@
     }
     return NO;
 }
-- (void) alertaerror:(NSString *)mensaje {
+
+- (void) alertaerror:(NSString *)mensaje {//muestra un mensaje de error
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:mensaje delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [alert show];
 }
@@ -324,30 +322,31 @@
   
 - (IBAction)Aceptar:(id)sender{
     if ([self validar]) {
-        BUConsultaPublicacion *consulta = [[BUConsultaPublicacion alloc] init];//se recuperan datos de la persona que actualmente usa la app
-        Persona *persona = [consulta recuperaPersona:[[NSUserDefaults standardUserDefaults] objectForKey:@"UserBrockus"] :context];
-        Publicacion *insertPublicacion=[NSEntityDescription insertNewObjectForEntityForName:@"Publicacion" inManagedObjectContext:context];
+        BUConsultaPublicacion *consulta = [[BUConsultaPublicacion alloc] init];//selecciona la tabla de la cual se hará la consulta
+        Persona *persona = [consulta recuperaPersona:[[NSUserDefaults standardUserDefaults] objectForKey:@"UserBrockus"] :context];//se recuperan datos de la persona que actualmente usa la app
+        Publicacion *insertPublicacion=[NSEntityDescription insertNewObjectForEntityForName:@"Publicacion" inManagedObjectContext:context];//inserta una nueva publicación
         
-        
+        //Valida que el titulo y la descripción de la publicación no esten vacios
         if([_tituloTxt.text length]==0 || [_DescripcionTxt.text length]==0)
         {
-            UIAlertView *vacio=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Llene el titulo o la descripcion" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            UIAlertView *vacio=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Llene el título o la descripción" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [vacio show];
             self.tituloTxt.clearButtonMode=YES;
             
-            //self.DescripcionTxt.clearsOnBeginEditing=YES;
+        
+        //Valida que el titulo tenga como máximo 60 caracteres.
         }else if ([_tituloTxt.text length]>60)
         {
-            UIAlertView *descriplarga=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Titulo demasiado largo" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            UIAlertView *descriplarga=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Título demasiado largo" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [descriplarga show];
             self.tituloTxt.clearButtonMode=YES;
         }
        ///
         else{
-            insertPublicacion.descripcion=self.DescripcionTxt.text;
-            insertPublicacion.titulo=self.tituloTxt.text;
+            insertPublicacion.descripcion=self.DescripcionTxt.text;//se obtiene la descripción que escribio el usuario para guardarse en la tabla
+            insertPublicacion.titulo=self.tituloTxt.text;//se obtiene el título de la publicación que escribió el usuario para guardarse en la tabla
             
-            //inserta fecha
+            //inserta la fecha
             NSDate *termino=[datePicker date];
             insertPublicacion.fecha=termino;
             
@@ -360,15 +359,13 @@
             NSData *imageData = UIImageJPEGRepresentation(self.imagenPub.image, 1);
             NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
             path = [path stringByAppendingString:finalString];
-            insertPublicacion.urlPath = path; //getPath:fileName
-            //[persona setValue:[self getImageBinary:fileName] forKey:@"img"];
-            insertPublicacion.img = imageData;
-            //[persona setValue:fileName forKey:@"nameImg"];
-            insertPublicacion.nameImg = finalString;
+            insertPublicacion.urlPath = path; //inserta la url del archivo o anexo
+            insertPublicacion.img = imageData;//guarda la imagen en la tabla
+            insertPublicacion.nameImg = finalString;//inserta el nombre de la imagen
             [imageData writeToFile:path atomically:YES];
-            insertPublicacion.toPersona=persona;
+            insertPublicacion.toPersona=persona;//asigna la imagen al usuario
             
-            //obtener subsector para la perosona
+            //obtener subsector para la persona
             NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
             NSError *error;
             
@@ -392,8 +389,6 @@
             //Obtenemos el subsector para el cual se realiza la publicacion
             NSEntityDescription *requestSubsector=[NSEntityDescription entityForName:@"Subsector" inManagedObjectContext:context];
             [fetchRequest setEntity:requestSubsector];
-            
-            
             NSArray *fetchedSubSector=[context executeFetchRequest:fetchRequest error:&error];
             Subsector *subsector;
             for (int i=0; i<[fetchedSubSector count]; i++) {
@@ -404,7 +399,7 @@
                 }
                 
             }
-            
+            //guarda la url del anexo a la base de datos
             if(![self.link isEqualToString:@""]) {
                 insertPublicacion.linkAnexo = self.link;
             }
@@ -419,6 +414,7 @@
                 
                 
             }else{
+                //Mensage de datos correctos
                 NSLog(@"Datos guardados correctamente");
                 UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"INFORMACION" message:@"Publicación realizada satisfactoriamente" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alert show];
@@ -427,17 +423,16 @@
             }
         }
         
-        //aki va el link
         self.perfil.delegate=(id)self;
         UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.perfil];
-        navContr.title=@"Perfil";
+        navContr.title=@"Perfil";//se le asigna el título a la sección
         [self presentViewController:navContr animated:YES completion:nil];
         
     }
 
     }
     
-- (IBAction)cargarImagen:(id)sender {
+- (IBAction)cargarImagen:(id)sender {//se le asigna al botón de cargar imagen el código para guardar la imagen en la tabla
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
@@ -448,7 +443,7 @@
 
 
 
-- (IBAction)Recomendar:(id)sender {
+- (IBAction)Recomendar:(id)sender {//este botón aun no tiene ninguna acción
     NSError *error;
     if (![self.context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
@@ -480,7 +475,7 @@
 }
 
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {//se crea un input text dentro del alertview, asi como también válida que al principio comiencen todos los links con http://
     
     if(buttonIndex == 1) {
         UITextField *theTextField = [alertView textFieldAtIndex:0];
@@ -495,11 +490,11 @@
             [alert show];
             return;
         }
-        self.link = theTextField.text;
+        self.link = theTextField.text;//guarda la url del anexo en la tabla
     }
 }
 
-- (IBAction)CargarArchivo:(id)sender {
+- (IBAction)CargarArchivo:(id)sender {//Muestra un mensage de alerta antes de escribir la url del link
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Proporciona un link donde se encuentra tu archivo (Dropbox, Mega, etc). No Olvides poner al principio http:// "  delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"OK", nil];
             alert.alertViewStyle= UIAlertViewStylePlainTextInput;
     [alert textFieldAtIndex:0].text = @"http://";
@@ -507,7 +502,7 @@
 }
 
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {//escalación de la imagen, para ver el tamaño que sea correcto
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     CGSize newSize = CGSizeMake(100.0,100.0);
     UIGraphicsBeginImageContext(newSize);
@@ -549,7 +544,7 @@
 //    //NSString *direccion = [self getPath:fileName];
 //}
 
--(NSString *)getPath:(NSString *)fileName{
+-(NSString *)getPath:(NSString *)fileName{//implementación del método getpath
     NSString *root = [[NSBundle mainBundle] bundlePath];
     NSURL *imageURL = [[NSURL alloc] initFileURLWithPath:[root stringByAppendingString:[@"/" stringByAppendingString:fileName]]];
     [imageURL absoluteURL];
@@ -558,7 +553,7 @@
     return path;
 }
 
--(NSData *)getImageBinary:(NSString *)fileName{
+-(NSData *)getImageBinary:(NSString *)fileName{//implementación del método getImageBinary
     NSString *root = [[NSBundle mainBundle] bundlePath];
     NSString *filePath = [[NSString alloc] initWithString:[root stringByAppendingString:[@"/"stringByAppendingString:fileName]]];
     NSLog(@"%@",filePath);
@@ -584,11 +579,12 @@
 }
 - (IBAction)sectorClicked:(id)sender {
     isSector=YES;
+    //filtramos el picker de sectores segun el subsector seleccionado
     dataArray=arraySectores;
     [pickerView reloadAllComponents];
 }
 
--(void)cargarSubsector{
+-(void)cargarSubsector{//método para guardar el subsector en la base de datos
     Sector *seleccionado;
     for (int i=0; i<[arraySectores count]; i++) {
         Sector *forsector=[arraySectores objectAtIndex:i];
@@ -598,16 +594,16 @@
     }
     
     NSError *error;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];//seleccionamos la tabla
     NSEntityDescription *selectSubSector = [NSEntityDescription
-                                            entityForName:@"Subsector" inManagedObjectContext:context];
+                                            entityForName:@"Subsector" inManagedObjectContext:context];//realizamos el select de la tabla
     
-    [fetchRequest setEntity:selectSubSector];
+    [fetchRequest setEntity:selectSubSector];//se obtiene el resultado de la consulta
     
     NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toSector = %@",seleccionado];
     [fetchRequest setPredicate:predicate];
     
-    arraySubsectores= [context executeFetchRequest:fetchRequest error:&error];
+    arraySubsectores= [context executeFetchRequest:fetchRequest error:&error];//se selecciona y se guarda la consulta en un array
     Subsector *s=[arraySubsectores objectAtIndex:0];
     self.subSector.text=s.nombre;
     

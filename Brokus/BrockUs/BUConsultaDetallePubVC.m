@@ -57,7 +57,7 @@
     self.link = publicacion.linkAnexo;
     
     self.imagenPub.image=[[UIImage alloc] initWithData:publicacion.img];
-    self.subSectorTxt.text=@"Edificacion Residencial";
+  //  self.subSectorTxt.text=@"Edificacion Residencial";
     
     //obtener subsector para la perosona
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

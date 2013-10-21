@@ -15,9 +15,9 @@
 @interface BULoginViewController (){
     NSManagedObjectContext *context;
 }
-@property (strong) BUPerfilEmpresaViewController *perfil;
-@property (strong) BURegistroViewController *registro;
-@property (strong)BULoginViewController *log;
+@property (strong) BUPerfilEmpresaViewController *perfil; //propiedad para acceder al controlador del perfil de la empresa
+@property (strong) BURegistroViewController *registro; //propiedad para acceder al controlador del registro
+@property (strong)BULoginViewController *log; //propiedad para acceder al controlador de login
 
 @end 
  
@@ -39,15 +39,15 @@
     [[self PassInputText] setDelegate:self];
  
     
-    BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
-    context =[buappdelegate managedObjectContext];
+    BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];//Se inicializa una instancia del appdelegate
+    context =[buappdelegate managedObjectContext];//asignación del contexto actual
 
     BUConsultaPublicacion *consulta = [[BUConsultaPublicacion alloc] init];
     [consulta desactivaPublicacionesCaducadastoContext:context];
     
     self.perfil=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
     self.registro=[[BURegistroViewController alloc] initWithNibName:@"BURegistroViewController" bundle:nil];
-   // self.publicacion=[[BURealizarPublicacionViewController alloc] initWithNibName:@"BURealizarPublicacionViewController" bundle:nil];
+ 
 }
 
 //IMPORTANTE ES PARA OCULTAR EL TECLADO ANTES IR AL XIB Y PONER DID ON EXIT ADEMAS DE EN EL .H PONER EN TU INTERFAZ<UITextFieldDelegate>

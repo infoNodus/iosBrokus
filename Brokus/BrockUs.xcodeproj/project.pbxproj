@@ -14,7 +14,6 @@
 		762670E817F3458000B5E485 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 762670E717F3458000B5E485 /* main.m */; };
 		762670EC17F3458000B5E485 /* BUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 762670EB17F3458000B5E485 /* BUAppDelegate.m */; };
 		762670EE17F3458000B5E485 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 762670ED17F3458000B5E485 /* Default.png */; };
-		762670F017F3458000B5E485 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 762670EF17F3458000B5E485 /* Default@2x.png */; };
 		762670F217F3458000B5E485 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 762670F117F3458000B5E485 /* Default-568h@2x.png */; };
 		763CF16517F355BA00A67E61 /* BULoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 763CF15A17F355BA00A67E61 /* BULoginViewController.m */; };
 		763CF16617F355BA00A67E61 /* BULoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 763CF15B17F355BA00A67E61 /* BULoginViewController.xib */; };
@@ -37,10 +36,11 @@
 		D1AC73F017FDBC00003D0CE1 /* BUConsultaPublicacion.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AC73EF17FDBC00003D0CE1 /* BUConsultaPublicacion.m */; };
 		D1B2D0E5180711F20098B937 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B2D0E4180711F20098B937 /* MessageUI.framework */; };
 		D1F4FBAA180C359C002FC839 /* Publicacion.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F4FBA9180C359C002FC839 /* Publicacion.m */; };
-		D7093CED17FC60E40024B030 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D7093CEC17FC60E40024B030 /* Default~iphone.png */; };
-		D7093CEF17FC61C30024B030 /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D7093CEE17FC61C30024B030 /* Default-568h@2x~iphone.png */; };
 		D7093CF117FC70F60024B030 /* 765-default-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = D7093CF017FC70F60024B030 /* 765-default-avatar.png */; };
 		D7093CF317FC738B0024B030 /* 110x110.png in Resources */ = {isa = PBXBuildFile; fileRef = D7093CF217FC738B0024B030 /* 110x110.png */; };
+		D7198CDB18158593003751BA /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D7198CDA18158593003751BA /* Default~iphone.png */; };
+		D7198CDD181586F1003751BA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7198CDC181586F1003751BA /* Default@2x.png */; };
+		D7198CE0181587BF003751BA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7198CDF181587BF003751BA /* Images.xcassets */; };
 		D726B69717FF0B1D00C38CFF /* BUPublicacionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D726B69517FF0B1D00C38CFF /* BUPublicacionViewController.m */; };
 		D726B69817FF0B1D00C38CFF /* BUPublicacionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D726B69617FF0B1D00C38CFF /* BUPublicacionViewController.xib */; };
 		D726B69D17FF128500C38CFF /* BUMinVistaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D726B69B17FF128500C38CFF /* BUMinVistaViewController.m */; };
@@ -101,7 +101,6 @@
 		762670EA17F3458000B5E485 /* BUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BUAppDelegate.h; sourceTree = "<group>"; };
 		762670EB17F3458000B5E485 /* BUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BUAppDelegate.m; sourceTree = "<group>"; };
 		762670ED17F3458000B5E485 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		762670EF17F3458000B5E485 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		762670F117F3458000B5E485 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		763CF15917F355BA00A67E61 /* BULoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BULoginViewController.h; sourceTree = "<group>"; };
 		763CF15A17F355BA00A67E61 /* BULoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BULoginViewController.m; sourceTree = "<group>"; };
@@ -138,10 +137,12 @@
 		D1B2D0E4180711F20098B937 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D1F4FBA8180C359C002FC839 /* Publicacion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Publicacion.h; sourceTree = "<group>"; };
 		D1F4FBA9180C359C002FC839 /* Publicacion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Publicacion.m; sourceTree = "<group>"; };
-		D7093CEC17FC60E40024B030 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
-		D7093CEE17FC61C30024B030 /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		D7093CF017FC70F60024B030 /* 765-default-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "765-default-avatar.png"; sourceTree = "<group>"; };
 		D7093CF217FC738B0024B030 /* 110x110.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 110x110.png; sourceTree = "<group>"; };
+		D7198CDA18158593003751BA /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
+		D7198CDC181586F1003751BA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		D7198CDE18158756003751BA /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
+		D7198CDF181587BF003751BA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D726B69417FF0B1D00C38CFF /* BUPublicacionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUPublicacionViewController.h; sourceTree = "<group>"; };
 		D726B69517FF0B1D00C38CFF /* BUPublicacionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUPublicacionViewController.m; sourceTree = "<group>"; };
 		D726B69617FF0B1D00C38CFF /* BUPublicacionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BUPublicacionViewController.xib; sourceTree = "<group>"; };
@@ -194,7 +195,7 @@
 		DA1F6E8118085F690025D317 /* BUSeccionPublicacionesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BUSeccionPublicacionesViewController.xib; sourceTree = "<group>"; };
 		DA1F6E83180865850025D317 /* BUPublicacionesInactivasVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUPublicacionesInactivasVC.h; sourceTree = "<group>"; };
 		DA1F6E84180865850025D317 /* BUPublicacionesInactivasVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUPublicacionesInactivasVC.m; sourceTree = "<group>"; };
-		DA75902D18119D03000B2A02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = Base.lproj/BURegistroViewController.xib; sourceTree = "<group>"; };
+		DA75902D18119D03000B2A02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BURegistroViewController.xib; sourceTree = "<group>"; };
 		DF85A35917FB15840008D43A /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		DF8773E818083F6800806959 /* noimagen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimagen.png; sourceTree = "<group>"; };
 		DF8899D71806EA0300EE6F9D /* BUSeccionPublicacionesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUSeccionPublicacionesViewController.h; sourceTree = "<group>"; };
@@ -224,6 +225,7 @@
 		762670CD17F3458000B5E485 = {
 			isa = PBXGroup;
 			children = (
+				D7198CDE18158756003751BA /* Default~iphone.png */,
 				D7320C0B17FB15530038569E /* Default.png */,
 				D7837A6817F4A32E007BDD0A /* en.lproj */,
 				762670E117F3458000B5E485 /* BrockUs */,
@@ -257,11 +259,13 @@
 			isa = PBXGroup;
 			children = (
 				D152660E17FC7EB8008B6B7E /* BrockUs.sqlite */,
+				D7198CDC181586F1003751BA /* Default@2x.png */,
 				D186F4D917F5DA5900D13B66 /* BrockUs.xcdatamodeld */,
 				763CF16D17F355C300A67E61 /* VC */,
 				762670EA17F3458000B5E485 /* BUAppDelegate.h */,
 				762670EB17F3458000B5E485 /* BUAppDelegate.m */,
 				D1C4A43817F486630088BE96 /* Model */,
+				D7198CDF181587BF003751BA /* Images.xcassets */,
 				762670E217F3458000B5E485 /* Supporting Files */,
 			);
 			path = BrockUs;
@@ -274,7 +278,6 @@
 				762670E717F3458000B5E485 /* main.m */,
 				762670E917F3458000B5E485 /* BrockUs-Prefix.pch */,
 				762670ED17F3458000B5E485 /* Default.png */,
-				762670EF17F3458000B5E485 /* Default@2x.png */,
 				762670F117F3458000B5E485 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
@@ -535,14 +538,13 @@
 				D7875D4C1806EC59001871F8 /* black-textures_00244335.jpg */,
 				D7093CF017FC70F60024B030 /* 765-default-avatar.png */,
 				DF8773E818083F6800806959 /* noimagen.png */,
+				D7198CDA18158593003751BA /* Default~iphone.png */,
 				DF85A35917FB15840008D43A /* arrow.png */,
 				D76A881617FB2882002EFF5B /* background-textures-black-texture-paper.jpg */,
-				D7093CEE17FC61C30024B030 /* Default-568h@2x~iphone.png */,
 				D76A881417FB24B7002EFF5B /* LT_WhiteGrunge_06.jpg */,
 				D76A881217FB23DE002EFF5B /* fdd5d4d4842f9651382e0f74bb8d82be.jpg */,
 				D76A881017FB235F002EFF5B /* logo_nodus.png */,
 				D741418517FB4723008BF181 /* RHTexBW02.jpg */,
-				D7093CEC17FC60E40024B030 /* Default~iphone.png */,
 				D78379EA17F4861E007BDD0A /* 0star.png */,
 			);
 			name = Imagenes;
@@ -604,7 +606,6 @@
 				762670EE17F3458000B5E485 /* Default.png in Resources */,
 				D726B6A417FF2A8200C38CFF /* BUPerfilePersonalViewController.xib in Resources */,
 				D11797F017FF1EF9003A2097 /* BUDetallePublicacionViewController.xib in Resources */,
-				762670F017F3458000B5E485 /* Default@2x.png in Resources */,
 				D741418617FB4723008BF181 /* RHTexBW02.jpg in Resources */,
 				D7875D4F1806ECBD001871F8 /* textures-wallpapers-black-metal-texture-backgrounds-wallpaper.jpg in Resources */,
 				D7875D5B1806F4C4001871F8 /* wood-black-1440x900-21.jpg in Resources */,
@@ -622,8 +623,10 @@
 				D78379EB17F4861E007BDD0A /* 0star.png in Resources */,
 				D7875D4B1806EBD4001871F8 /* 1363744.jpg in Resources */,
 				D7837A5417F4A2EC007BDD0A /* BUMuroPublicacionesViewController.xib in Resources */,
+				D7198CDD181586F1003751BA /* Default@2x.png in Resources */,
 				D7837A7317F4A32E007BDD0A /* BUBusquedaEspecialViewController.xib in Resources */,
 				D152660F17FC7EB8008B6B7E /* BrockUs.sqlite in Resources */,
+				D7198CE0181587BF003751BA /* Images.xcassets in Resources */,
 				D726B69817FF0B1D00C38CFF /* BUPublicacionViewController.xib in Resources */,
 				D7875D511806EF04001871F8 /* Add-01.png in Resources */,
 				DF8899E01806F7AE00EE6F9D /* BUCirculoConfianzaViewController.xib in Resources */,
@@ -632,14 +635,13 @@
 				D73D883A180463F900DFD056 /* BrokusLogo.png in Resources */,
 				D7837A7717F4A32E007BDD0A /* BUPanelIzquierdoViewController.xib in Resources */,
 				D7837A7917F4A32E007BDD0A /* BUResultadoBusquedaViewController.xib in Resources */,
-				D7093CEF17FC61C30024B030 /* Default-568h@2x~iphone.png in Resources */,
 				D7320C0C17FB15530038569E /* Default.png in Resources */,
 				D7875D491806EB34001871F8 /* Textures_wallpapers_39.jpg in Resources */,
 				DF85A35A17FB15840008D43A /* arrow.png in Resources */,
 				D76A881117FB235F002EFF5B /* logo_nodus.png in Resources */,
-				D7093CED17FC60E40024B030 /* Default~iphone.png in Resources */,
 				D76A881317FB23DE002EFF5B /* fdd5d4d4842f9651382e0f74bb8d82be.jpg in Resources */,
 				DA1F6E8018085EB40025D317 /* BUConsultaDetallePubVC.xib in Resources */,
+				D7198CDB18158593003751BA /* Default~iphone.png in Resources */,
 				D76A881517FB24B7002EFF5B /* LT_WhiteGrunge_06.jpg in Resources */,
 				D76A881717FB2882002EFF5B /* background-textures-black-texture-paper.jpg in Resources */,
 				D726B69E17FF128500C38CFF /* BUMinVistaViewController.xib in Resources */,
@@ -760,9 +762,12 @@
 		762670F917F3458000B5E485 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BrockUs/BrockUs-Prefix.pch";
 				INFOPLIST_FILE = "BrockUs/BrockUs-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -771,9 +776,12 @@
 		762670FA17F3458000B5E485 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BrockUs/BrockUs-Prefix.pch";
 				INFOPLIST_FILE = "BrockUs/BrockUs-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

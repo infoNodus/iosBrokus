@@ -208,6 +208,8 @@
     if(isSector){
         nombreSector=[dataArray objectAtIndex:row];
         self.sector.text=nombreSector.nombre;
+        [self cargasSubsector];
+        
     }else{
         nombreSubSector=[dataArray objectAtIndex:row];
         self.subSector.text =nombreSubSector.nombre;
@@ -546,7 +548,6 @@
 
 - (IBAction)sectorClicked:(id)sender {
     isSector=YES;
-    self.subSector.text=@"";
     dataArray=arraySectores;
     [pickerView reloadAllComponents];
 }
@@ -554,10 +555,16 @@
 - (IBAction)subsectorClicked:(id)sender {
     isSector=NO;
     //filtramos el picker de subsectores segun el sector seleccionado
+    dataArray=arraySubsectores;
+    [pickerView reloadAllComponents];
+
+}
+
+-(void)cargasSubsector{
     Sector *seleccionado;
     for (int i=0; i<[arraySectores count]; i++) {
         Sector *forsector=[arraySectores objectAtIndex:i];
-        if([forsector.nombre isEqualToString:self.sector.text]){
+        if(forsector==nombreSector){
             seleccionado=[arraySectores objectAtIndex:i];
         }
     }
@@ -573,7 +580,8 @@
     [fetchRequest setPredicate:predicate];
     
     arraySubsectores= [context executeFetchRequest:fetchRequest error:&error];
-    dataArray=arraySubsectores;
-    [pickerView reloadAllComponents];
+    Subsector *s=[arraySubsectores objectAtIndex:0];
+    self.subSector.text=s.nombre;
+
 }
 @end

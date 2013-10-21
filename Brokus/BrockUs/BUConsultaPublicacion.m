@@ -166,6 +166,7 @@
     return [listaPersonasCirculo copy];
 }
 
+// Desactiva las publicaciones ya caducadas
 - (void) desactivaPublicacionesCaducadastoContext:(NSManagedObjectContext*) context{
     NSEntityDescription *entityDescription = [NSEntityDescription
                                               entityForName:@"Publicacion" inManagedObjectContext:context];
@@ -199,10 +200,12 @@
     }
 }
 
+// Recupera las publicaciones de una persona (Solamente las activas)
 - (NSArray*) recuperaConsultasPorPersona:(Persona*)toPersona {
     NSSet *listaCopia = [toPersona.toPublicacion copy];
     NSMutableSet *lista = [toPersona.toPublicacion copy];
     for (Publicacion *p in listaCopia) {
+        // Las publicaciones desactivas las elimina de la lista
         if([p.status isEqualToNumber:[[NSNumber alloc] initWithInt:0]]) {
             [lista removeObject:p];
         }

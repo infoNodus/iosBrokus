@@ -153,7 +153,6 @@
         cell.cargoTxt.text = @"Puesto";
     }
     
-    
     if(personaCirculo.toAmigo.img != nil) {
         cell.imageView.image = [[UIImage alloc] initWithData:personaCirculo.toAmigo.img];//asignamos la imagen de la persona que recuperamos de nuestra circulo, si es nula asignamos una imagen por default
     }
@@ -167,13 +166,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-//    BUDetallePublicacionViewController *detalle = [[BUDetallePublicacionViewController alloc] initWithPublicacion:self.listaPublicaciones[indexPath.row]];
-//    NSLog(@"%@", self.navigationController);
-//    [self.navigationController pushViewController:detalle animated:YES];
-    
     Circulo *personaCirculo = self.listaPersonas[indexPath.row];
-    BUPerfilEmpresaDesconocidoViewController *detalle = [[BUPerfilEmpresaDesconocidoViewController alloc] initWithPersona:personaCirculo.toAmigo ];
+    BUPerfilEmpresaDesconocidoViewController *detalle = [[BUPerfilEmpresaDesconocidoViewController alloc] initWithPersona:personaCirculo.toAmigo ];//cuando se selecciona una persona mandamos al perfil
     [self.navigationController pushViewController:detalle animated:YES];
 }
 

@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol BUCirculoConfianzaDelegate;
+@protocol BUCirculoConfianzaDelegate;//asignamos una delegado para el circulo de confianza
 
 @interface BUCirculoConfianzaViewController : UIViewController
 
-@property (weak) id <BUCirculoConfianzaDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UIImageView *ImageUser;
-@property (weak, nonatomic) IBOutlet UILabel *EnterpriseUser;
-@property (weak, nonatomic) IBOutlet UILabel *UserNameBrockus;
-@property (weak, nonatomic) IBOutlet UILabel *PuestoUser;
-@property (weak, nonatomic) IBOutlet UILabel *MailUser;
-@property (weak, nonatomic) IBOutlet UILabel *Sector;
+@property (weak) id <BUCirculoConfianzaDelegate> delegate;//propiedad para acceder a un delegado
+@property (weak, nonatomic) IBOutlet UIImageView *ImageUser;//propiedad para acceder a la imagen
+@property (weak, nonatomic) IBOutlet UILabel *EnterpriseUser;//propiedad para acceder a la empresa
+@property (weak, nonatomic) IBOutlet UILabel *UserNameBrockus;//propiedad para acceder al usuario
+@property (weak, nonatomic) IBOutlet UILabel *PuestoUser;//propiedad para acceder al puesto
+@property (weak, nonatomic) IBOutlet UILabel *MailUser;//propiedad para acceder al mail
+@property (weak, nonatomic) IBOutlet UILabel *Sector;//propiedad para acceder al sector
 
 - (IBAction)Salir:(id)sender;
 

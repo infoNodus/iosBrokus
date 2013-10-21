@@ -56,7 +56,7 @@
     self.link = publicacion.linkAnexo;
     
     self.imagenPub.image=[[UIImage alloc] initWithData:publicacion.img];
-    
+  //  self.subSectorTxt.text=@"Edificacion Residencial";
     
     //obtener subsector para la publicacion
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -233,6 +233,7 @@
         else if(result==NSOrderedDescending){
             NSLog(@"Seleccionar una fecha superior");
         }
+      
         
         publicacion.titulo=self.tituloTxt.text;
         publicacion.descripcion=self.descripcionTxt.text;
@@ -243,7 +244,15 @@
         if (nombreSubSector!=nil) {
             publicacion.toSubsector=nombreSubSector;
         }
+        if (self.subSectorTxt.text.length<=0 || self.sectorTxt.text.length <=0) {
+        self.sectorTxt.text=@"Construccion";
+            self.subSectorTxt.text=@"Edificacion No Residencial";
+            
+            UIAlertView *alerta =[[UIAlertView alloc] initWithTitle:@"Error" message:@"Favor de Selecionar Sector o Subsector si no se Selecionaran sector y subsector por defailt" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+
+            [alerta show];
         
+        }
 
         
         
@@ -395,5 +404,15 @@
     if(![self.link isEqualToString:@""]) {
         insertPublicacion.linkAnexo = self.link;
     }
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
 }
 @end

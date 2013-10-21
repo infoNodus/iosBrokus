@@ -560,6 +560,7 @@
 
 }
 
+//conn este metodo, cargamos el subsector para el sector que se selecciona en el picker del sector y al final lo asignamos a la caja de texto subsector.
 -(void)cargasSubsector{
     Sector *seleccionado;
     for (int i=0; i<[arraySectores count]; i++) {

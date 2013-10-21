@@ -13,9 +13,9 @@
 
 @interface BUMinVistaCirculoCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
-@property (strong, nonatomic) IBOutlet UILabel *empresaTxt;
-@property (strong, nonatomic) IBOutlet UILabel *usuarioTxt;
-@property (strong, nonatomic) IBOutlet UILabel *cargoTxt;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;//propiedad para acceder a la imagen
+@property (strong, nonatomic) IBOutlet UILabel *empresaTxt;//propiedad para acceder a empresaTxt
+@property (strong, nonatomic) IBOutlet UILabel *usuarioTxt;//propiedad para acceder a usuarioTxt
+@property (strong, nonatomic) IBOutlet UILabel *cargoTxt;//propiedad para acceder a cargoTxt
 
 @end

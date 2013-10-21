@@ -167,20 +167,20 @@
     switch (result)
     {
         case MFMailComposeResultCancelled:
-            NSLog(@"Mail cancelled: you cancelled the operation and no email message was queued.");
+            NSLog(@"Correo cancelado: cancela la operación y ningún mensaje de correo electrónico se puso en cola.");
             break;
         case MFMailComposeResultSaved:
-            NSLog(@"Mail saved: you saved the email message in the drafts folder.");
+            NSLog(@"Correo salvó: se guardó el mensaje de correo electrónico en la carpeta de borradores.");
             break;
         case MFMailComposeResultSent:
-            NSLog(@"Mail send: the email message is queued in the outbox. It is ready to send.");
+            NSLog(@"Mail Enviar: el mensaje de correo electrónico se pone en cola en el buzón de salida. Está listo para enviar.");
             mensaje = [[UIAlertView alloc] initWithTitle:@"Información" message:@"Correo enviado" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             break;
         case MFMailComposeResultFailed:
-            NSLog(@"Mail failed: the email message was not saved or queued, possibly due to an error.");
+            NSLog(@"Correo falló: el mensaje de correo electrónico no se ha guardado o en cola, posiblemente debido a un error.");
             break;
         default:
-            NSLog(@"Mail not sent.");
+            NSLog(@"Correo no enviado.");
             break;
     }
     if (mensaje != nil) {

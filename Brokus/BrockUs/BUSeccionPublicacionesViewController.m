@@ -54,7 +54,7 @@
 -(void)presentaPublicacionesActivas{
     presentaActivas=[[BUPublicacionesActivasVC alloc]init];
     [self addChildViewController:presentaActivas];
-    presentaActivas.view.frame=CGRectMake(0, 44, 320, 504);
+    presentaActivas.view.frame=CGRectMake(0, 60, 320, 504);
     [self.view addSubview:presentaActivas.view];
     
 }
@@ -62,16 +62,10 @@
 -(void)presentaPublicacionesInactivas{
     presentaInactivas=[[BUPublicacionesInactivasVC alloc]init];
     [self addChildViewController:presentaInactivas];
-    presentaInactivas.view.frame=CGRectMake(0, 44, 320, 504);
+    presentaInactivas.view.frame=CGRectMake(0, 60, 320, 504);
     [self.view addSubview:presentaInactivas.view];
 }
 
--(void)presentaPublicacionesInActivas{
-    [self addChildViewController:presentaInactivas];
-    presentaInactivas.view.frame=CGRectMake(0, 44, 320, 504);
-    [self.view addSubview:presentaInactivas.view];
-    
-}
 
 
 - (IBAction)canceltapped:(id)sender {

@@ -48,6 +48,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd/yyyy"];
     
+    //la variable publicacion contiene la informacion de la publicacion seleccionada en publicaciones activas, con esta cargamos todas las cajas de texto de nuestra vista.
     fechaTermino.text=[formatter stringFromDate:publicacion.fecha];
     self.tituloTxt.text=publicacion.titulo;
     self.descripcionTxt.text=publicacion.descripcion;
@@ -56,7 +57,6 @@
     self.link = publicacion.linkAnexo;
     
     self.imagenPub.image=[[UIImage alloc] initWithData:publicacion.img];
-  //  self.subSectorTxt.text=@"Edificacion Residencial";
     
     //obtener subsector para la perosona
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -74,13 +74,12 @@
     Subsector *subsector;
     for (int i=0; i<[fetchedSector count]; i++) {
         subsector=[fetchedSector objectAtIndex:i];
-        //NSLog(@"Empresa: %@",[fetchedSubSector objectAtIndex:i]);
     }
     
     //asignamos el sector ligado al subsector al textview
     self.sectorTxt.text=subsector.toSector.nombre;
     
-    
+    //se genera el datepicker para la caja de texto fecha de termino
     fechaTermino.delegate=self;
     datePicker =[[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDate;
@@ -98,7 +97,7 @@
                                                                       action:@selector(doneClickedDate:)];
     NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:100000];
     [datePicker setMinimumDate:currentTime];
-    [datePicker setMaximumDate:[currentTime dateByAddingTimeInterval:400000]];
+    [datePicker setMaximumDate:[currentTime dateByAddingTimeInterval:400000]];//se establece un limite de 5 dias máximo de vida de la pub
     
     
     [datetoolbar setItems:[NSArray arrayWithObjects:dateflexibleSpaceLeft, doneDateButton, nil]];
@@ -151,6 +150,9 @@
     
     arraySubsectores=[[NSArray alloc]init];
     
+    //se genera el picker para los subsectores
+    //
+    //
     self.subSectorTxt.delegate=self;
     pickerView = [[UIPickerView alloc] init];
     pickerView.showsSelectionIndicator = YES;
@@ -226,11 +228,11 @@
 - (IBAction)editarTapped:(id)sender {
     if (publicacion) {
         NSDate *today=[NSDate date];
-        NSComparisonResult result = [today compare:[datePicker date]];
+        NSComparisonResult result = [today compare:[datePicker date]];//contiene el resultado del a compracion de la fecha
         
-        if(result==NSOrderedAscending)
-            publicacion.fecha=[datePicker date];
-        else if(result==NSOrderedDescending){
+        if(result==NSOrderedAscending)//true cuando la fecha es mayor a la del dia en que se genera la modificacion
+            publicacion.fecha=[datePicker date];// se asigna la fecha seleccionada al textview
+        else if(result==NSOrderedDescending){//true cuando la fecha es menor o igual a la actual
             NSLog(@"Seleccionar una fecha superior");
         }
       
@@ -241,26 +243,27 @@
         publicacion.linkAnexo=self.link;
 
         
-        
+        //se obtiene el sector que selecciona el usuario
         for (int i=0; i<[arraySectores count]; i++) {
             Sector *forsector=[arraySectores objectAtIndex:i];
             if([forsector.nombre isEqualToString:self.sectorTxt.text]){
                 nombreSubSector=[arraySectores objectAtIndex:i];
             }
         }
+        //consulta sobre la tabla subsector
         NSError *error = nil;
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *selectSubSector = [NSEntityDescription
                                                 entityForName:@"Subsector" inManagedObjectContext:context];
         
         [fetchRequest setEntity:selectSubSector];
-        
+        //filtramos por sector para obtener el subsector seleccionado
         NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toSector = %@",nombreSubSector];
-        [fetchRequest setPredicate:predicate];
-        NSArray *savedSub=[context executeFetchRequest:fetchRequest error:&error];
+        [fetchRequest setPredicate:predicate];// se ejecuta la consulta
+        NSArray *savedSub=[context executeFetchRequest:fetchRequest error:&error];//se obtiene un array con un solo objeto,, que es el subsector seleccionado
         if (nombreSubSector!=nil) {
             NSLog(@"%@",nombreSubSector);
-            publicacion.toSubsector=[savedSub objectAtIndex:0];
+            publicacion.toSubsector=[savedSub objectAtIndex:0];// se asigna el subsector a la publicacion.
             
         }
 
@@ -281,11 +284,10 @@
         path = [path stringByAppendingString:publicacion.nameImg];
         publicacion.img = imageData;
         
-        NSLog(@"Publicacion editada:%@",publicacion);
     }
     
     NSError *error = nil;
-    // Save the object to persistent store
+    // Save the object to persistent store if doesn't exists errors
     if (![context save:&error]) {
         NSLog(@"Error al actualizar los datos: %@ %@", error, [error localizedDescription]);
     }
@@ -331,12 +333,12 @@
 
 
 
-
+//se ejecuta cuando seleccionamos la fecha y damos click en aceptar
 -(void)doneClickedDate:(id) sender
 {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"MM/dd/yyyy"];
-    fechaTermino.text = [NSString stringWithFormat:@"%@",[df stringFromDate:datePicker.date]];
+    [df setDateFormat:@"MM/dd/yyyy"];//tipo de formato que tendra la fecha
+    fechaTermino.text = [NSString stringWithFormat:@"%@",[df stringFromDate:datePicker.date]];//se asigna el formato de fecha al datepicker
     [fechaTermino resignFirstResponder]; //hides the pickerView
     
 }

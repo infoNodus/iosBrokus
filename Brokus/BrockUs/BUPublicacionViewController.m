@@ -38,11 +38,11 @@
 
 
 @implementation BUPublicacionViewController
-@synthesize selectedText; //que permite indicarle a Xcode que auto genere los get y set del texto seleccionado
-@synthesize subSector;
-@synthesize comboSector;
-@synthesize sectorSeleccionado;
-@synthesize date;
+@synthesize selectedText; //permite indicarle a Xcode que auto genere los get y set del texto seleccionado
+@synthesize subSector;  //permite indicarle a Xcode que auto genere los get y set del subsector
+@synthesize comboSector; //permite indicarle a Xcode que auto genere los get y set del sector
+@synthesize sectorSeleccionado; //permite indicarle a Xcode que auto genere los get y set del sector seleccionado
+@synthesize date; //permite indicarle a Xcode que auto genere los get y set de la fecha
 
 
 
@@ -51,7 +51,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"Nueva publicacón";
+        self.title = @"Nueva publicacón"; //Asigna el titulo a la sección
     }
     return self;
 }
@@ -63,16 +63,15 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.rightBarButtonItem = self.oAceptar;
     
-    BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
-    context =[buappdelegate managedObjectContext];
+    BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate]; //inicializa una instancia del appdelegate
+    context =[buappdelegate managedObjectContext]; //asigna el contexto actual
 
-    self.muestrafecha =[[UILabel alloc] init];
-    self.mostrarpublicacion = [[BUPublicacionViewController alloc]initWithNibName:@"BUPublicacionViewController" bundle:nil];
-    self.perfil=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
+    self.muestrafecha =[[UILabel alloc] init]; //inicializa la variable muestra fecha
+    self.mostrarpublicacion = [[BUPublicacionViewController alloc]initWithNibName:@"BUPublicacionViewController" bundle:nil];//asigna una instancia del controlador para mostrar las publicaciones
+    self.perfil=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];//asigna una instancia del controlador para mostrar el perfil de la empresa
  
-    self.muro=[[BUMuroPublicacionesViewController alloc]initWithNibName:@"BUMuroPublicacionesViewController" bundle:nil];
+    self.muro=[[BUMuroPublicacionesViewController alloc]initWithNibName:@"BUMuroPublicacionesViewController" bundle:nil];//asigna una instancia del controlador para mostrar el muro de las publicaciones
     
-   
     
     self.context = [self context];
     
@@ -82,13 +81,13 @@
     }
 
     
-    self.DescripcionTxt.text=@"";
+    self.DescripcionTxt.text=@"";//se utiliza para limpiar automáticamente el campo de la descripción de la publicación
     
     
     NSError *error;
     NSFetchRequest *requestSector = [[NSFetchRequest alloc] init];
     NSEntityDescription *selectSector = [NSEntityDescription
-                                         entityForName:@"Sector" inManagedObjectContext:self.context];//determinamos la tabla de la que obtendremos la info
+                                         entityForName:@"Sector" inManagedObjectContext:self.context];//determinamos la tabla de la que obtendremos la información
     
     [requestSector setEntity:selectSector];
     
@@ -108,7 +107,7 @@
     toolbarSectores.barStyle = UIBarStyleBlackTranslucent;
     [toolbarSectores sizeToFit];
     
-    //to make the done button aligned to the right
+    //Se hace el botón done alineado a la derecha
     UIBarButtonItem *flexibleSpaceLeftSectores = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     //Se asigna etiqueta y metodo qu se ejucatara al dar click sobre el boton
@@ -125,11 +124,11 @@
     self.sector.inputAccessoryView = toolbarSectores;
     
     
-    NSFetchRequest *fetchSubsector = [[NSFetchRequest alloc] init];
+    NSFetchRequest *fetchSubsector = [[NSFetchRequest alloc] init]; //seleccionamos la tabla de la base de datos.
     
     //obtenemos el subsector para el que se hace la publicacion
     NSEntityDescription *requestSubsector=[NSEntityDescription entityForName:@"Subsector" inManagedObjectContext:context];
-    [fetchSubsector setEntity:requestSubsector];
+    [fetchSubsector setEntity:requestSubsector]; //obtenemos el resultado de la consulta
     NSPredicate *predicatesubsector=[NSPredicate predicateWithFormat:@"toSector=%@",sect];
     [fetchSubsector setPredicate:predicatesubsector];
     

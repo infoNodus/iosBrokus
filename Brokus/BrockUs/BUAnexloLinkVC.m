@@ -48,7 +48,7 @@
         if (error.code == -1002) {
             mensajeError = [NSString stringWithFormat:@"Error de la peticion a la pagina: %@", self.urlStr];
         } else if (error.code == -1009) {
-            mensajeError = @"No existe conección a iternet";
+            mensajeError = @"No existe conección a internet";
         }
         NSLog(@"%@",error);
         NSString *titleError = [NSString stringWithFormat:@"Error %i",error.code];

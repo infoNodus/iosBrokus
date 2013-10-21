@@ -89,19 +89,22 @@
     NSError *error;
     NSFetchRequest *requestSector = [[NSFetchRequest alloc] init];
     NSEntityDescription *selectSector = [NSEntityDescription
-                                         entityForName:@"Sector" inManagedObjectContext:self.context];
+                                         entityForName:@"Sector" inManagedObjectContext:self.context];//determinamos la tabla de la que obtendremos la info
     
     [requestSector setEntity:selectSector];
     
-    arraySectores= [self.context executeFetchRequest:requestSector error:&error];
+    arraySectores= [self.context executeFetchRequest:requestSector error:&error];//se ejecuta la consulta y se guarda en un array
+    
+    
     Sector *sect=[arraySectores objectAtIndex:0];
-    self.sector.text=sect.nombre;
+    self.sector.text=sect.nombre;// se asigna el nombre del primer objeto del vector a la caja de texto
     self.sector.delegate=self;
     pickerSectores = [[UIPickerView alloc] init];
     pickerSectores.showsSelectionIndicator = YES;
     pickerSectores.dataSource = self;
     pickerSectores.delegate = self;
     
+    //se crea un boton para mostrar en la caja de texto de sectores
     UIToolbar* toolbarSectores = [[UIToolbar alloc] init];
     toolbarSectores.barStyle = UIBarStyleBlackTranslucent;
     [toolbarSectores sizeToFit];
@@ -109,7 +112,7 @@
     //to make the done button aligned to the right
     UIBarButtonItem *flexibleSpaceLeftSectores = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    
+    //Se asigna etiqueta y metodo qu se ejucatara al dar click sobre el boton
     UIBarButtonItem* aceptar = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar"
                                                                 style:UIBarButtonItemStyleDone target:self
                                                                action:@selector(doneClickedSectores:)];
@@ -157,7 +160,7 @@
     
     [toolbar setItems:[NSArray arrayWithObjects:flexibleSpaceLeft, doneButton, nil]];
     
-    //custom input view
+    //se agrega el picker y el boton al textview
     
     subSector.inputView = pickerView;
     subSector.inputAccessoryView = toolbar;
@@ -181,7 +184,7 @@
     
     NSDate *currentTime = [NSDate dateWithTimeIntervalSinceNow:100000];//fecha actual
     [datePicker setMinimumDate:currentTime];
-    [datePicker setMaximumDate:[currentTime dateByAddingTimeInterval:400000]];
+    [datePicker setMaximumDate:[currentTime dateByAddingTimeInterval:400000]];//fecha maxima de publicacion(5 dias)
     
     
     [datetoolbar setItems:[NSArray arrayWithObjects:dateflexibleSpaceLeft, doneDateButton, nil]];
@@ -229,6 +232,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if(isSector){
+        //se obtiene el sector del array y se asigna el nombre a la caja de texto
         nombreSector=[dataArray objectAtIndex:row];
         self.sector.text=nombreSector.nombre;
         [self cargarSubsector];
@@ -322,7 +326,7 @@
   
 - (IBAction)Aceptar:(id)sender{
     if ([self validar]) {
-        BUConsultaPublicacion *consulta = [[BUConsultaPublicacion alloc] init];
+        BUConsultaPublicacion *consulta = [[BUConsultaPublicacion alloc] init];//se recuperan datos de la persona que actualmente usa la app
         Persona *persona = [consulta recuperaPersona:[[NSUserDefaults standardUserDefaults] objectForKey:@"UserBrockus"] :context];
         Publicacion *insertPublicacion=[NSEntityDescription insertNewObjectForEntityForName:@"Publicacion" inManagedObjectContext:context];
         
@@ -339,7 +343,9 @@
             UIAlertView *descriplarga=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Titulo demasiado largo" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [descriplarga show];
             self.tituloTxt.clearButtonMode=YES;
-        }else{
+        }
+       ///
+        else{
             insertPublicacion.descripcion=self.DescripcionTxt.text;
             insertPublicacion.titulo=self.tituloTxt.text;
             

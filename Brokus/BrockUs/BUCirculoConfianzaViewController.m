@@ -36,7 +36,7 @@
 @property (strong) BUPerfilEmpresaViewController *salir;//propiedad para acceder al controlador de perfil de empresa
 @end
 
-NSString *userenterprise;
+//NSString *userenterprise;
 
 @implementation BUCirculoConfianzaViewController
 
@@ -53,54 +53,53 @@ NSString *userenterprise;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Circulo de Confianza";
-    BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
-    context =[buappdelegate managedObjectContext];
-     self.salir=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
-    BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];
-    NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
-    self.userbrockus = [consulta recuperaPersona:userStr :context];
-    if (self.userbrockus.usuario != nil) {
+    self.title = @"Circulo de Confianza";//asigana titulo a la seccion
+    BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];//inicializamos una instancia del appdelegate
+    context =[buappdelegate managedObjectContext];//asiganamos el contexto actual
+    self.salir=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];//asignamos una instancia del controlador para el perfil de una empresa
+    BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];//asignamos una instancia del controlador para hacer una consulta
+    NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];//inicializamos una variable donde guardaremos el usuario actual
+    self.userbrockus = [consulta recuperaPersona:userStr :context];//recuperamos el usuario actual
+    if (self.userbrockus.usuario != nil) {//asignamos el correo del usuario que acabamos de recuperar, si el correo es nulo asignamos un texto por default
         self.MailUser.text =self.userbrockus.usuario;
     }else{
         self.UserNameBrockus.text = @"Mail";
     }
-    if (self.userbrockus.toEmpresa.nombre != nil) {
+    if (self.userbrockus.toEmpresa.nombre != nil) {//asignamos el nombre de la empresa del usuario que acabamos de recuperar, si la empresa es nula asignamos un texto por default
         self.EnterpriseUser.text = self.userbrockus.toEmpresa.nombre;
     }else{
         self.UserNameBrockus.text = @"Empresa";
     }
-    if (self.userbrockus.puesto != nil) {
+    if (self.userbrockus.puesto != nil) {//asignamos el puesto del usuario que acabamos de recuperar, si el puesto es nulo asignamos un texto por default
         self.PuestoUser.text = self.userbrockus.puesto;
     }else{
         self.UserNameBrockus.text = @"Puesto";
     }
-    if (self.userbrockus.nombre != nil) {
+    if (self.userbrockus.nombre != nil) {//asignamos el nombre del usuario que acabamos de recuperar, si el nombre es nulo asignamos un texto por default
         self.UserNameBrockus.text = self.userbrockus.nombre;
     }else{
         self.UserNameBrockus.text = @"Nombre";
     }
-    if (self.userbrockus.toEmpresa.toSubsector.toSector.nombre != nil) {
+    if (self.userbrockus.toEmpresa.toSubsector.toSector.nombre != nil) {//asignamos el sector del usuario que acabamos de recuperar, si el sector es nulo asignamos un texto por default
         self.Sector.text = self.userbrockus.toEmpresa.toSubsector.toSector.nombre;
     }else{
         self.UserNameBrockus.text = @"Sector";
     }
-    if (self.userbrockus.img != nil) {
+    if (self.userbrockus.img != nil) {//asignamos la imagen del usuario que acabamos de recuperar, si la imagen es nulo asignamos una imagen por default
         self.ImageUser.image = [[UIImage alloc] initWithData:self.userbrockus.img];
     }
 
-    self.listaPersonas = [[NSArray alloc] init];
-    self.listaPersonas = [self.userbrockus.toCirculo allObjects];
-    NSUInteger numeroPersonasCirculo = [self.userbrockus.toCirculo count];
-    NSLog(@"numero de personas %lu", (unsigned long)numeroPersonasCirculo);
+    self.listaPersonas = [[NSArray alloc] init];//inicializamos el arreglo donde guardaremos las personas del circulo de confianza
+    self.listaPersonas = [self.userbrockus.toCirculo allObjects];//recuperamos las personas de nuestro circulo
+    NSUInteger numeroPersonasCirculo = [self.userbrockus.toCirculo count];//contamos las personas del circulo
+    NSLog(@"numero de personas %lu", (unsigned long)numeroPersonasCirculo);//imprimimos el numero de personas en el circulo
     
     
-    NSSortDescriptor *byName = [NSSortDescriptor sortDescriptorWithKey:@"toAmigo.nombre" ascending:YES];
-    NSSortDescriptor *byEmpresa = [NSSortDescriptor sortDescriptorWithKey:@"toAmigo.toEmpresa.nombre" ascending:YES];
-    NSSortDescriptor *byPuesto = [NSSortDescriptor sortDescriptorWithKey:@"toAmigo.puesto" ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:byName, byEmpresa, byPuesto, nil];
-    self.listaPersonas = [self.listaPersonas sortedArrayUsingDescriptors:sortDescriptors];
-    
+    NSSortDescriptor *byName = [NSSortDescriptor sortDescriptorWithKey:@"toAmigo.nombre" ascending:YES];//creamos una regla para ordenar las personas de nuetro circulo segun el nombre
+    NSSortDescriptor *byEmpresa = [NSSortDescriptor sortDescriptorWithKey:@"toAmigo.toEmpresa.nombre" ascending:YES];//creamos una regla para ordenar las personas de nuetro circulo segun la empresa
+    NSSortDescriptor *byPuesto = [NSSortDescriptor sortDescriptorWithKey:@"toAmigo.puesto" ascending:YES];//creamos una regla para ordenar las personas de nuetro circulo segun el puesto
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:byName, byEmpresa, byPuesto, nil];//escogemos el orden de las reglas
+    self.listaPersonas = [self.listaPersonas sortedArrayUsingDescriptors:sortDescriptors];//reordenamos el arreglo aplicando las reglas
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,12 +112,11 @@ NSString *userenterprise;
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if ([self.listaPersonas count] <= 10) {
+    if ([self.listaPersonas count] <= 10) {//si en nuestro circulo de confiansa hay menos de 10 personas las mostramos todas
         return [self.listaPersonas count];
     }else{
-        return 10;
+        return 10;//si hay mas solo mostramos 10
     }
-    
     return [self.listaPersonas count];
 }
 
@@ -128,28 +126,22 @@ NSString *userenterprise;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"circuloCell";
+    static NSString *cellIdentifier = @"circuloCell";//donamos un identificador a las celdas
     
-    BUMinVistaCirculoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    BUMinVistaCirculoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];//inicializamos una celda costumizada
     if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"BUMinVistaCirculoCell" owner:self
-                                            options:nil] lastObject];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"BUMinVistaCirculoCell" owner:self options:nil] lastObject];
     }
-    //Circulo *personaCirculo = self.listaPublicaciones[indexPath.row];
-    Circulo *personaCirculo = self.listaPersonas[indexPath.row];
+    Circulo *personaCirculo = self.listaPersonas[indexPath.row];//asignamos un objeto a la celda
     NSLog(@"lista %@", personaCirculo.toAmigo.nombre);
-    cell.empresaTxt.text = personaCirculo.toAmigo.toEmpresa.nombre;
-    cell.usuarioTxt.text = personaCirculo.toAmigo.nombre;
-    cell.cargoTxt.text = personaCirculo.toAmigo.puesto;
+    cell.empresaTxt.text = personaCirculo.toAmigo.toEmpresa.nombre;//asignamos el nombre de la empresa de la persona que recuperamos de nuestra circulo
+    cell.usuarioTxt.text = personaCirculo.toAmigo.nombre;//asignamos el nombre de usuario de la persona que recuperamos de nuestra circulo
+    cell.cargoTxt.text = personaCirculo.toAmigo.puesto;//asignamos el puesto de la persona que recuperamos de nuestra circulo
     
     if(personaCirculo.toAmigo.img != nil) {
-        cell.imageView.image = [[UIImage alloc] initWithData:personaCirculo.toAmigo.img];
+        cell.imageView.image = [[UIImage alloc] initWithData:personaCirculo.toAmigo.img];//asignamos la imagen de la persona que recuperamos de nuestra circulo, si es nula asignamos una imagen por default
     }
     
-//    //[cell setSelected:YES animated:YES];
-//    return cell;
-//    
-//  
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
     

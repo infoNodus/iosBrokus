@@ -12,15 +12,17 @@
 #import "BUMuroPublicacionesViewController.h"
 #import "BUAppDelegate.h"
 #import "Publicacion.h"
-#import "ComboSector.h"
 #import "Subsector.h"
 #import "BUConsultaPublicacion.h"
+#import "Sector.h"
 
 @interface BUPublicacionViewController(){
     
     NSManagedObjectContext *context;
-    NSString *cadena;
-    NSArray* sub;
+    Subsector *subsect;
+    BOOL *isSector;
+    Sector *nombreSector;
+    Subsector *nombreSubSector;
 
 }
 
@@ -66,7 +68,6 @@
     context =[buappdelegate managedObjectContext];
 
     self.muestrafecha =[[UILabel alloc] init];
-    self.subSector.text=@"Edificacion Residencial";
     self.mostrarpublicacion = [[BUPublicacionViewController alloc]initWithNibName:@"BUPublicacionViewController" bundle:nil];
     self.perfil=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
  
@@ -92,13 +93,48 @@
     
     [requestSector setEntity:selectSector];
     
-    NSArray *fetchedSector= [self.context executeFetchRequest:requestSector error:&error];
+    arraySectores= [self.context executeFetchRequest:requestSector error:&error];
+    Sector *sect=[arraySectores objectAtIndex:0];
+    self.sector.text=sect.nombre;
+    self.sector.delegate=self;
+    pickerSectores = [[UIPickerView alloc] init];
+    pickerSectores.showsSelectionIndicator = YES;
+    pickerSectores.dataSource = self;
+    pickerSectores.delegate = self;
     
-    sectorSeleccionado = [[ComboSector alloc] init];
-    [sectorSeleccionado setComboData:fetchedSector];
-    [self.view addSubview:sectorSeleccionado.view];
-    sectorSeleccionado.view.frame = CGRectMake(20, 390, 280, 31);
+    UIToolbar* toolbarSectores = [[UIToolbar alloc] init];
+    toolbarSectores.barStyle = UIBarStyleBlackTranslucent;
+    [toolbarSectores sizeToFit];
     
+    //to make the done button aligned to the right
+    UIBarButtonItem *flexibleSpaceLeftSectores = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    
+    UIBarButtonItem* aceptar = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar"
+                                                                style:UIBarButtonItemStyleDone target:self
+                                                               action:@selector(doneClickedSectores:)];
+    
+    
+    [toolbarSectores setItems:[NSArray arrayWithObjects:flexibleSpaceLeftSectores, aceptar, nil]];
+    
+    //custom input view
+    
+    self.sector.inputView = pickerSectores;
+    self.sector.inputAccessoryView = toolbarSectores;
+    
+    
+    NSFetchRequest *fetchSubsector = [[NSFetchRequest alloc] init];
+    
+    //obtenemos el subsector para el que se hace la publicacion
+    NSEntityDescription *requestSubsector=[NSEntityDescription entityForName:@"Subsector" inManagedObjectContext:context];
+    [fetchSubsector setEntity:requestSubsector];
+    NSPredicate *predicatesubsector=[NSPredicate predicateWithFormat:@"toSector=%@",sect];
+    [fetchSubsector setPredicate:predicatesubsector];
+    
+    
+    arraySubsectores=[context executeFetchRequest:fetchSubsector error:&error];
+    subsect=[arraySubsectores objectAtIndex:0];
+    subSector.text=subsect.nombre;
     
     subSector.delegate=self;
     pickerView = [[UIPickerView alloc] init];
@@ -125,7 +161,8 @@
     
     subSector.inputView = pickerView;
     subSector.inputAccessoryView = toolbar;
-    //subSector.hidden=YES;
+    
+    
     date.delegate=self;
     datePicker =[[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDate;
@@ -165,19 +202,24 @@
     
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)aTextField
-{
-    
-    sub=[[NSArray alloc]init];
-    cadena=sectorSeleccionado.selectedText;
-    sub=[sectorSeleccionado loadSubsector:cadena];
-    [self setComboData:sub];
-    [pickerView reloadAllComponents];
-    return YES;
-}
 
 
 //-- UIPickerViewDelegate, UIPickerViewDataSource
+
+-(void)doneClickedSectores:(id) sender
+{
+    
+    [self.sector resignFirstResponder]; //hides the pickerView
+    
+}
+-(void)doneClicked:(id) sender
+{
+    
+    [self.subSector resignFirstResponder]; //hides the pickerView
+    
+}
+
+
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView;
 {
@@ -186,9 +228,15 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    Subsector *nombreSubSector=[dataArray objectAtIndex:row];
-    subSector.text =nombreSubSector.nombre;
-    selectedText = subSector.text;
+    if(isSector){
+        nombreSector=[dataArray objectAtIndex:row];
+        self.sector.text=nombreSector.nombre;
+        [self cargarSubsector];
+        
+    }else{
+        nombreSubSector=[dataArray objectAtIndex:row];
+        self.subSector.text =nombreSubSector.nombre;
+    }
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
@@ -198,25 +246,17 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
 {
-    Subsector *nombreSubSector=[dataArray objectAtIndex:row];
-    
-    return nombreSubSector.nombre;
-}
-
-//-- ComboBox
-
-
--(void) setComboData:(NSArray*) data
-{
-    dataArray = data;
-}
-
-
--(void)doneClicked:(id) sender
-{
-    [subSector resignFirstResponder]; //hides the pickerView
+    if(isSector){
+        nombreSector=[dataArray objectAtIndex:row];
+        return nombreSector.nombre;
+    }else{
+        nombreSubSector=[dataArray objectAtIndex:row];
+        return nombreSubSector.nombre;
+    }
     
 }
+
+
 
 
 //ocultar teclado
@@ -531,5 +571,41 @@
     }
     
     return YES;
+}
+- (IBAction)subsectorClicked:(id)sender {
+    isSector=NO;
+    //filtramos el picker de subsectores segun el sector seleccionado
+    dataArray=arraySubsectores;
+    [pickerView reloadAllComponents];
+}
+- (IBAction)sectorClicked:(id)sender {
+    isSector=YES;
+    dataArray=arraySectores;
+    [pickerView reloadAllComponents];
+}
+
+-(void)cargarSubsector{
+    Sector *seleccionado;
+    for (int i=0; i<[arraySectores count]; i++) {
+        Sector *forsector=[arraySectores objectAtIndex:i];
+        if([forsector.nombre isEqualToString:self.sector.text]){
+            seleccionado=[arraySectores objectAtIndex:i];
+        }
+    }
+    
+    NSError *error;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *selectSubSector = [NSEntityDescription
+                                            entityForName:@"Subsector" inManagedObjectContext:context];
+    
+    [fetchRequest setEntity:selectSubSector];
+    
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toSector = %@",seleccionado];
+    [fetchRequest setPredicate:predicate];
+    
+    arraySubsectores= [context executeFetchRequest:fetchRequest error:&error];
+    Subsector *s=[arraySubsectores objectAtIndex:0];
+    self.subSector.text=s.nombre;
+    
 }
 @end

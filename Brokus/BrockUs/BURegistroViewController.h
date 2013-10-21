@@ -12,13 +12,17 @@
 //#import "Sector.h"
 //#import "Persona.h"
 
-@class ComboSector;
+
 
 @protocol BURegistroViewControllerDelegate;
 @interface BURegistroViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
     IBOutlet  UIScrollView *scroll;
     UIPickerView* pickerView;
+    UIPickerView *pickerSectores;
     NSArray *dataArray;
+    NSArray *arraySectores;
+    NSArray *arraySubsectores;
+
     
     
 }
@@ -40,14 +44,20 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *subSector;
 @property (retain, nonatomic) NSString* selectedText; //the UITextField text
-@property (strong) IBOutlet UITextField *comboSector;
 
-@property (strong,nonatomic) ComboSector *sectorSeleccionado;
+@property (strong, nonatomic) IBOutlet UITextField *sector;
+
+
 - (IBAction)SelecImg:(id)sender;
 
 
 - (IBAction)registrarTapped:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *Imagen;
+
+- (IBAction)sectorClicked:(id)sender;
+- (IBAction)subsectorClicked:(id)sender;
+
+
 
 
 

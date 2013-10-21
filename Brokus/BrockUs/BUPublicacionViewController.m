@@ -18,8 +18,8 @@
 
 @interface BUPublicacionViewController(){
     
-    NSManagedObjectContext *context;
-    Subsector *subsect;
+    NSManagedObjectContext *context; //asigna el contexto para usarlo posteriormente
+    Subsector *subsect; //se declara
     BOOL *isSector;
     Sector *nombreSector;
     Subsector *nombreSubSector;

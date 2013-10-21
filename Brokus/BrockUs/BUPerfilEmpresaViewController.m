@@ -204,6 +204,9 @@ NSString *userenterprise;
 }
 
 - (IBAction)MisPublicacionesTapped:(id)sender {
+    UIAlertView *eliminar = [[UIAlertView alloc]initWithTitle:@"IMPORTANTE" message:@"Para desactivar (eliminar) una publicación, solamente debes dejar seleccionada la publicación y deslizar suavemente a la izquierda y a continuación aparecerá un botón con el cual podras desactivar la publicación." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [eliminar show];
+    
     BUSeccionPublicacionesViewController *secPub=[[BUSeccionPublicacionesViewController alloc]init];
     [self presentViewController:secPub animated:YES completion:nil];
 }

@@ -12,15 +12,17 @@
 #import "Subsector.h"
 #import "BUAppDelegate.h"
 #import "BUPerfilEmpresaViewController.h"
-#import "ComboSector.h"
+#import "Sector.h"
 
 
 //#import "BUValidaciones.h"
 
 @interface BURegistroViewController (){
     NSManagedObjectContext *context;
-    NSString *cadena;
-    NSArray* sub;
+    Subsector *subsect;
+    BOOL *isSector;
+    Sector *nombreSector;
+    Subsector *nombreSubSector;
 }
 @property (strong)BULoginViewController *log;
 @property (strong)BUPerfilEmpresaViewController * perfil;
@@ -29,8 +31,6 @@
 @implementation BURegistroViewController
 @synthesize selectedText;
 @synthesize subSector;
-@synthesize comboSector;
-@synthesize sectorSeleccionado;
 
 
 
@@ -96,8 +96,6 @@
     
     self.log=[[BULoginViewController alloc] initWithNibName:@"BULoginViewController" bundle:nil];
     self.perfil=[[BUPerfilEmpresaViewController alloc]initWithNibName:@"BUPerfilEmpresaViewController " bundle:nil];
-    self.sectorSeleccionado.textField.text=@"Contruccion";
-self.subSector.text=@"Edificacion Residencial";
     
     
     NSError *error;
@@ -107,13 +105,50 @@ self.subSector.text=@"Edificacion Residencial";
     
     [requestSector setEntity:selectSector];
     
-    NSArray *fetchedSector= [context executeFetchRequest:requestSector error:&error];
+    arraySectores= [context executeFetchRequest:requestSector error:&error];
     
-    sectorSeleccionado = [[ComboSector alloc] init];
-    [sectorSeleccionado setComboData:fetchedSector];
-    [self.view addSubview:sectorSeleccionado.view];
-    sectorSeleccionado.view.frame = CGRectMake(10, 440, 302, 31);
+    Sector *sect=[arraySectores objectAtIndex:0];
     
+    self.sector.text=sect.nombre;
+    self.sector.delegate=self;
+    pickerSectores = [[UIPickerView alloc] init];
+    pickerSectores.showsSelectionIndicator = YES;
+    pickerSectores.dataSource = self;
+    pickerSectores.delegate = self;
+    
+    UIToolbar* toolbarSectores = [[UIToolbar alloc] init];
+    toolbarSectores.barStyle = UIBarStyleBlackTranslucent;
+    [toolbarSectores sizeToFit];
+    
+    //to make the done button aligned to the right
+    UIBarButtonItem *flexibleSpaceLeftSectores = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    
+    UIBarButtonItem* aceptar = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar"
+                                                                style:UIBarButtonItemStyleDone target:self
+                                                               action:@selector(doneClickedSectores:)];
+    
+    
+    [toolbarSectores setItems:[NSArray arrayWithObjects:flexibleSpaceLeftSectores, aceptar, nil]];
+    
+    //custom input view
+    
+    self.sector.inputView = pickerSectores;
+    self.sector.inputAccessoryView = toolbarSectores;
+    
+    NSFetchRequest *fetchSubsector = [[NSFetchRequest alloc] init];
+    
+    //obtenemos el subsector para el que se hace la publicacion
+    NSEntityDescription *requestSubsector=[NSEntityDescription entityForName:@"Subsector" inManagedObjectContext:context];
+    [fetchSubsector setEntity:requestSubsector];
+    NSPredicate *predicatesubsector=[NSPredicate predicateWithFormat:@"toSector=%@",sect];
+    [fetchSubsector setPredicate:predicatesubsector];
+    
+    
+    arraySubsectores=[context executeFetchRequest:fetchSubsector error:&error];
+    
+    subsect=[arraySubsectores objectAtIndex:0];
+    subSector.text=subsect.nombre;
     subSector.delegate=self;
     pickerView = [[UIPickerView alloc] init];
     pickerView.showsSelectionIndicator = YES;
@@ -144,19 +179,24 @@ self.subSector.text=@"Edificacion Residencial";
     
     }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)aTextField
-{
-    
-    sub=[[NSArray alloc]init];
-    cadena=sectorSeleccionado.selectedText;
-    sub=[sectorSeleccionado loadSubsector:cadena];
-    [self setComboData:sub];
-    [pickerView reloadAllComponents];
-    return YES;
-}
 
 
 //-- UIPickerViewDelegate, UIPickerViewDataSource
+
+-(void)doneClickedSectores:(id) sender
+{
+    
+    [self.sector resignFirstResponder]; //hides the pickerView
+    
+}
+-(void)doneClicked:(id) sender
+{
+    
+    [self.subSector resignFirstResponder]; //hides the pickerView
+    
+}
+
+
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView;
 {
@@ -165,9 +205,13 @@ self.subSector.text=@"Edificacion Residencial";
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    Subsector *nombreSubSector=[dataArray objectAtIndex:row];
-    subSector.text =nombreSubSector.nombre;
-    selectedText = subSector.text;
+    if(isSector){
+        nombreSector=[dataArray objectAtIndex:row];
+        self.sector.text=nombreSector.nombre;
+    }else{
+        nombreSubSector=[dataArray objectAtIndex:row];
+        self.subSector.text =nombreSubSector.nombre;
+    }
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
@@ -177,25 +221,18 @@ self.subSector.text=@"Edificacion Residencial";
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
 {
-    Subsector *nombreSubSector=[dataArray objectAtIndex:row];
-    
-    return nombreSubSector.nombre;
-}
-
-//-- ComboBox
-
-
--(void) setComboData:(NSArray*) data
-{
-    dataArray = data;
-}
-
-
--(void)doneClicked:(id) sender
-{
-    [subSector resignFirstResponder]; //hides the pickerView
+    if(isSector){
+        nombreSector=[dataArray objectAtIndex:row];
+        return nombreSector.nombre;
+    }else{
+        nombreSubSector=[dataArray objectAtIndex:row];
+        return nombreSubSector.nombre;
+    }
     
 }
+
+
+
 
 
 
@@ -299,11 +336,13 @@ self.subSector.text=@"Edificacion Residencial";
             NSLog(@"Subsector %@",sector.nombre);
             if([sector.nombre isEqualToString:subSector.text]){
                 seleccionado=[fetchedSector objectAtIndex:i];
-                NSLog(@"SELECCIONADO: %@",seleccionado.nombre);
             }
         }
         
-        insertaEmpresa.toSubsector=seleccionado;
+        
+            insertaEmpresa.toSubsector=seleccionado;
+        
+        
         
         
         
@@ -449,7 +488,7 @@ self.subSector.text=@"Edificacion Residencial";
     }
     if ([self.subSector.text isEqualToString:@""]) {
         return YES;
-        self.subSector.text=@"Edificacion Residencial";
+        self.subSector.text=subsect.nombre;
     }
     return NO;
 }
@@ -502,5 +541,39 @@ self.subSector.text=@"Edificacion Residencial";
   self.log.delegate=(id)self;
     [self presentViewController:self.log animated:YES completion:nil ];
     
+}
+
+
+- (IBAction)sectorClicked:(id)sender {
+    isSector=YES;
+    self.subSector.text=@"";
+    dataArray=arraySectores;
+    [pickerView reloadAllComponents];
+}
+
+- (IBAction)subsectorClicked:(id)sender {
+    isSector=NO;
+    //filtramos el picker de subsectores segun el sector seleccionado
+    Sector *seleccionado;
+    for (int i=0; i<[arraySectores count]; i++) {
+        Sector *forsector=[arraySectores objectAtIndex:i];
+        if([forsector.nombre isEqualToString:self.sector.text]){
+            seleccionado=[arraySectores objectAtIndex:i];
+        }
+    }
+    
+    NSError *error;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *selectSubSector = [NSEntityDescription
+                                            entityForName:@"Subsector" inManagedObjectContext:context];
+    
+    [fetchRequest setEntity:selectSubSector];
+    
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toSector = %@",seleccionado];
+    [fetchRequest setPredicate:predicate];
+    
+    arraySubsectores= [context executeFetchRequest:fetchRequest error:&error];
+    dataArray=arraySubsectores;
+    [pickerView reloadAllComponents];
 }
 @end

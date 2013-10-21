@@ -16,8 +16,10 @@
 @interface BUPublicacionViewController : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
     UIDatePicker *datePicker;
     UIPickerView* pickerView;
+    UIPickerView *pickerSectores;
     NSArray *dataArray;
-  //  IBOutlet UILabel *muestrafecha;
+    NSArray *arraySectores;
+    NSArray *arraySubsectores;
 
 }
 
@@ -59,5 +61,9 @@
 -(NSString *)getPath:(NSString *)fileName;
 -(NSData *)getImageBinary:(NSString *)fileName;
 /*metodos para cargar anexos, test*/
+- (IBAction)subsectorClicked:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UITextField *sector;
+- (IBAction)sectorClicked:(id)sender;
 
 @end

@@ -343,7 +343,9 @@
             UIAlertView *descriplarga=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Titulo demasiado largo" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [descriplarga show];
             self.tituloTxt.clearButtonMode=YES;
-        }else{
+        }
+       ///
+        else{
             insertPublicacion.descripcion=self.DescripcionTxt.text;
             insertPublicacion.titulo=self.tituloTxt.text;
             

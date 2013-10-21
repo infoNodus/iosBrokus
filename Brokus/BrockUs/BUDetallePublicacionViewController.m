@@ -25,6 +25,7 @@
 
 @implementation BUDetallePublicacionViewController
 
+// Contructor que inicializa la ventana con una publicacion
 -(id) initWithPublicacion:(Publicacion *)publicacion {
     self = [super initWithNibName:@"BUDetallePublicacionViewController" bundle:nil];
     if (self) {
@@ -36,6 +37,8 @@
     }
     return self;
 }
+
+// Contructor que inicializa la ventana con una publicacion y el parametro BOOL es para saber si es navegable hacia el perfil de la persona que realizo la publicación
 -(id) initWithPublicacion:(Publicacion *)publicacion navegacionAlPerfil:(BOOL)isNavegable
 {
     self = [self initWithPublicacion:publicacion];
@@ -53,25 +56,31 @@
         self.oImagen.image = [[UIImage alloc] initWithData:self.publicacion.img];
     }
     
-    /*test*/
+    // Se inicializa el contexto para core data
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
     //self.salir=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
     
+    // Objeto para realizar cunsultas a core data
     BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];
+    
+    // Se obtiene el nombre del usuario que esta en logeado
     NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
+    
+    // Recuperamos el usuario  a partir del nombre del usuario
     self.userbrockus = [consulta recuperaPersona:userStr :context];
     
-    if (self.publicacion.toPersona.nombre == self.userbrockus.nombre) {
-        NSLog(@"tu mismo");
-        
-    }
+//    if (self.publicacion.toPersona.nombre == self.userbrockus.nombre) {
+//        NSLog(@"tu mismo");
+//        
+//    }
     
-    
+
+    // Se establece el titulo del boton
     [self.oPersona setTitle:self.publicacion.toPersona.nombre forState:UIControlStateNormal];
+    [self.oEmail setTitle:self.publicacion.toPersona.usuario forState:UIControlStateNormal];
     self.oEmpresa.text = self.publicacion.toPersona.toEmpresa.nombre;
-    //self.oEmail.textInputContextIdentifier = self.publicacion.toPersona.usuario;
-    [self.oEmail setTitle:self.publicacion.toPersona.usuario forState:UIControlStateNormal] ;
+    
     
     // Si la publicacion no tiene anexos se desahabilita la opcion de descargar anexos.
     if(self.publicacion.linkAnexo == nil) {
@@ -85,7 +94,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+// Metodo para poder utilizar el servicio de los correos de iOS
 - (IBAction)openMail:(id)sender {
+    // Verifica si el dispositivo puede enviar correos
     if(![MFMailComposeViewController canSendMail]) {
         NSLog(@"No se puede enviar email desde este dispositivo");
         return;
@@ -107,25 +118,30 @@
     [self presentViewController:mailer animated:YES completion:nil];
 }
 
+// Se muestran los anexos...
 - (IBAction)descargaTapped:(id)sender {
+
     BUAnexloLinkVC *anexo = [[BUAnexloLinkVC alloc] initWithURL:self
                              .publicacion.linkAnexo];
     [self.navigationController pushViewController:anexo animated:YES];
-    
-    //    NSURLConnection
-    
 }
+
+// Se muestra el perfil de la persona que realiza la publicacion.
 - (IBAction)openPerfilPersona:(id)sender {
+    // Solamente hace la navegacion si esta es permitida
     if (self.esNavegable) {
         
+        // Contexto
         BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
         context =[buappdelegate managedObjectContext];
-        //self.salir=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
         
         BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];
         NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
+        
+        // Se recupera el usuario logeado
         self.userbrockus = [consulta recuperaPersona:userStr :context];
         
+        // Si la publicacion la realizo el usuario logeado lo manda a su perfil.
         if (self.publicacion.toPersona.nombre == self.userbrockus.nombre) {
             NSLog(@"tu mismo");
             [UIView beginAnimations:nil context:NULL];
@@ -137,6 +153,7 @@
             return;
         }
         
+        // Si la publicacion la realiza otro usuario nos muestra su perfil con sus demas publicaciones
         BUPerfilEmpresaDesconocidoViewController *perfil = [[BUPerfilEmpresaDesconocidoViewController alloc] initWithPersona:self.publicacion.toPersona];
         [self.navigationController pushViewController:perfil animated:YES];
     }
@@ -144,6 +161,7 @@
 
 # pragma mark - Metodos del MFMailComposeViewController
 
+// Nos retorna la respuesta de la accion del envio de correo.
 -(void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     UIAlertView *mensaje = nil;
     switch (result)

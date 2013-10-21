@@ -15,6 +15,7 @@
 
 @implementation BUAnexloLinkVC
 
+// Se inicializa con una url
 - (id)initWithURL:(NSString *)urlStr;
 {
     self = [super initWithNibName:@"BUAnexloLinkVC" bundle:nil];
@@ -30,14 +31,18 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    // Se crea la peticion
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]];
     
     NSHTTPURLResponse *response;
     NSError *error;
+    
+    // Se realiza la peticion
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request
                                                  returningResponse:&response
                                                              error:&error];
     NSString *mensajeError = @"";
+    // Verificamos si ocurrio un error al momento de la peticion. si es asi mostramos el mensaje del error.
     if(error) {
         mensajeError = error.description;
         if (error.code == -1002) {
@@ -52,6 +57,7 @@
     }
     
 
+    // Mostramos contenido de la peticion.
     [self.oAnexo loadData:responseData MIMEType:[response MIMEType]
           textEncodingName:[response textEncodingName]
                    baseURL:[response URL]];

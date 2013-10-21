@@ -23,23 +23,21 @@
 
 @interface BUCirculoConfianzaViewController ()
 {
-    NSManagedObjectContext *context;
+    NSManagedObjectContext *context;//asigna el contexto para usarlo posteriormente
 }
-//test
-@property (strong) BULoginViewController *registro;
-@property (strong) BURegistroViewController*publicaciones;
-@property (strong) Persona *userbrockus;
-@property (strong) BUPublicacionViewController *pub;
-@property (strong) NSArray *listaPublicaciones;
-@property (strong) NSOrderedSet *listaCirculo;
-@property (strong) BUPerfilEmpresaViewController *miperfil;
-@property (strong) BUCirculoConfianzaViewController *circulo;
-@property (strong) BUPerfilEmpresaViewController *salir;
-//test
+@property (strong) BULoginViewController *registro; //propiedad para acceder al controlador de login
+@property (strong) BURegistroViewController*publicaciones;//propiedad para acceder al controlador de publicaciones
+@property (strong) Persona *userbrockus;//propiedad para acceder a la persona actual (loggeada)
+@property (strong) BUPublicacionViewController *pub;//propiedad para acceder al controlador de una publicacion
+@property (strong) NSArray *listaPersonas;//propiedad para acceder a la lista de personas en tu circulo de amigos
+@property (strong) NSOrderedSet *listaCirculo;//propiedad para acceder a tu circulo
+@property (strong) BUPerfilEmpresaViewController *miperfil;//propiedad para acceder al controlador de perfil
+@property (strong) BUCirculoConfianzaViewController *circulo;//propiedad para acceder al controlador de circulo
+@property (strong) BUPerfilEmpresaViewController *salir;//propiedad para acceder al controlador de perfil de empresa
 @end
-//test
+
 NSString *userenterprise;
-//test
+
 @implementation BUCirculoConfianzaViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -59,52 +57,49 @@ NSString *userenterprise;
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
      self.salir=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
-    
     BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];
     NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
     self.userbrockus = [consulta recuperaPersona:userStr :context];
-    //NSLog(@"%@",self.userbrockus);
     if (self.userbrockus.usuario != nil) {
         self.MailUser.text =self.userbrockus.usuario;
+    }else{
+        self.UserNameBrockus.text = @"Mail";
     }
-    //self.MailUser.text =self.userbrockus.usuario;
     if (self.userbrockus.toEmpresa.nombre != nil) {
         self.EnterpriseUser.text = self.userbrockus.toEmpresa.nombre;
+    }else{
+        self.UserNameBrockus.text = @"Empresa";
     }
-    //self.EnterpriseUser.text = self.userbrockus.toEmpresa.nombre;
     if (self.userbrockus.puesto != nil) {
         self.PuestoUser.text = self.userbrockus.puesto;
-    }//else cambiar el texto en caso de q exista un campo vacio para q pongo la etiqueta "puesto"
-    //self.PuestoUser.text = self.userbrockus.puesto;
+    }else{
+        self.UserNameBrockus.text = @"Puesto";
+    }
     if (self.userbrockus.nombre != nil) {
         self.UserNameBrockus.text = self.userbrockus.nombre;
+    }else{
+        self.UserNameBrockus.text = @"Nombre";
     }
-    //self.UserNameBrockus.text = self.userbrockus.nombre;
     if (self.userbrockus.toEmpresa.toSubsector.toSector.nombre != nil) {
         self.Sector.text = self.userbrockus.toEmpresa.toSubsector.toSector.nombre;
+    }else{
+        self.UserNameBrockus.text = @"Sector";
     }
-    //self.Sector.text = self.userbrockus.toEmpresa.toSubsector.toSector.nombre;
     if (self.userbrockus.img != nil) {
         self.ImageUser.image = [[UIImage alloc] initWithData:self.userbrockus.img];
     }
-//    ordenar como estan en base de datos
-//    self.listaCirculo = [[NSOrderedSet alloc] initWithSet:self.userbrockus.toCirculo];
-//    self.listaPublicaciones = [[NSArray alloc] init];
-//    self.listaPublicaciones = [self.listaCirculo copy];
-//    ordenar como estan en base de datos
 
-    self.listaPublicaciones = [[NSArray alloc] init];
-    self.listaPublicaciones = [self.userbrockus.toCirculo allObjects];
+    self.listaPersonas = [[NSArray alloc] init];
+    self.listaPersonas = [self.userbrockus.toCirculo allObjects];
     NSUInteger numeroPersonasCirculo = [self.userbrockus.toCirculo count];
-    NSLog(@"numero de personas %lu", (unsigned long)numeroPersonasCirculo);//contar personas en el circulo de amigos
+    NSLog(@"numero de personas %lu", (unsigned long)numeroPersonasCirculo);
     
     
-    //ordenadas
     NSSortDescriptor *byName = [NSSortDescriptor sortDescriptorWithKey:@"toAmigo.nombre" ascending:YES];
     NSSortDescriptor *byEmpresa = [NSSortDescriptor sortDescriptorWithKey:@"toAmigo.toEmpresa.nombre" ascending:YES];
     NSSortDescriptor *byPuesto = [NSSortDescriptor sortDescriptorWithKey:@"toAmigo.puesto" ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObjects:byName, byEmpresa, byPuesto, nil];
-    self.listaPublicaciones = [self.listaPublicaciones sortedArrayUsingDescriptors:sortDescriptors];
+    self.listaPersonas = [self.listaPersonas sortedArrayUsingDescriptors:sortDescriptors];
     
 }
 
@@ -118,13 +113,13 @@ NSString *userenterprise;
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if ([self.listaPublicaciones count] <= 10) {
-        return [self.listaPublicaciones count];
+    if ([self.listaPersonas count] <= 10) {
+        return [self.listaPersonas count];
     }else{
         return 10;
     }
     
-    return [self.listaPublicaciones count];
+    return [self.listaPersonas count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -141,7 +136,7 @@ NSString *userenterprise;
                                             options:nil] lastObject];
     }
     //Circulo *personaCirculo = self.listaPublicaciones[indexPath.row];
-    Circulo *personaCirculo = self.listaPublicaciones[indexPath.row];
+    Circulo *personaCirculo = self.listaPersonas[indexPath.row];
     NSLog(@"lista %@", personaCirculo.toAmigo.nombre);
     cell.empresaTxt.text = personaCirculo.toAmigo.toEmpresa.nombre;
     cell.usuarioTxt.text = personaCirculo.toAmigo.nombre;
@@ -169,7 +164,7 @@ NSString *userenterprise;
 //    NSLog(@"%@", self.navigationController);
 //    [self.navigationController pushViewController:detalle animated:YES];
     
-    Circulo *personaCirculo = self.listaPublicaciones[indexPath.row];
+    Circulo *personaCirculo = self.listaPersonas[indexPath.row];
     BUPerfilEmpresaDesconocidoViewController *detalle = [[BUPerfilEmpresaDesconocidoViewController alloc] initWithPersona:personaCirculo.toAmigo ];
     [self.navigationController pushViewController:detalle animated:YES];
 }

@@ -47,7 +47,6 @@
     
     self.perfil=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
     self.registro=[[BURegistroViewController alloc] initWithNibName:@"BURegistroViewController" bundle:nil];
-    
 }
 
 //IMPORTANTE ES PARA OCULTAR EL TECLADO ANTES IR AL XIB Y PONER DID ON EXIT ADEMAS DE EN EL .H PONER EN TU INTERFAZ<UITextFieldDelegate>
@@ -132,24 +131,14 @@
         {
             self.UsertInputText.clearButtonMode=YES;
             self.UsertInputText.clearsOnBeginEditing=YES;
-            
-            //     self.registro.delegate=self;
-            //   [self presentViewController:self.registro animated:YES completion:nil];
-            
-            
             self.ErrrorLabel.text =@"Espere Un Momento Por Favor";
             self.UsertInputText.clearButtonMode=NO;
             self.UsertInputText.clearsOnBeginEditing=NO;
-            
             NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Persona" inManagedObjectContext:context];
             NSFetchRequest *request =[[NSFetchRequest alloc]init];
             [request setEntity:entityDesc];
-            
-            
             NSPredicate *predicate=[NSPredicate predicateWithFormat:@"usuario like %@ and contrasena like %@",self.UsertInputText.text, self.PassInputText.text];
-            //NSPredicate *predicate=[NSPredicate predicateWithFormat:@"usuario = %@", self.UsertInputText.text];
             [request setPredicate:predicate];
-            
             NSError *error;
             NSArray *matchinData=[context executeFetchRequest:request error:&error];
             
@@ -157,12 +146,6 @@
             {
                 self.ErrrorLabel.hidden=NO;
                 self.ErrrorLabel.text=@"Error en Usuario o Contraseña";
-                // UIAlertView *usermal = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Usuario ò Passowrd  Incorrecta" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-                //[usermal show];
-                //UIAlertView *ise=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Al Parecer no Estas Registrado, Espera..." delegate:self cancelButtonTitle:@"Registrarme" otherButtonTitles:@"Reintentar", nil];
-                
-                //[ise show];
-                
                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Mensaje" message:@"Al Parecer no estas Registrado o Introduciste mal los Datos" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"Registrarse",nil];
                 [alert setTag:1];
                 [alert show];
@@ -174,10 +157,7 @@
                 for (NSManagedObject *obj in matchinData) {
                     usuario=[obj valueForKey:@"usuario"];
                     contrasena=[obj valueForKey:@"contrasena"];
-                    
-                    
-                    
-                    if (_PassInputText.text ==contrasena) {
+                     if (_PassInputText.text ==contrasena) {
                         self.ErrrorLabel.hidden=NO;
                         self.ErrrorLabel.text=@"Password Incorrecta";
                     }
@@ -210,25 +190,19 @@
             [usermal show];
             self.UsertInputText.clearButtonMode=YES;
             self.UsertInputText.clearsOnBeginEditing=YES;
-            
         }
         else  if (([self validateEmail:[_UsertInputText.self text]] ==1) && [self validaPass:[_PassInputText.self text]]==1) //Si todo es correcto aki se envia la validacion a
         {
             self.ErrrorLabel.text =@"Espere Un Momento Por Favor";
             self.UsertInputText.clearButtonMode=NO;
             self.UsertInputText.clearsOnBeginEditing=NO;
-            
-            NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Persona" inManagedObjectContext:context];
+           NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Persona" inManagedObjectContext:context];
             NSFetchRequest *request =[[NSFetchRequest alloc]init];
             [request setEntity:entityDesc];
-            
-            
             NSPredicate *predicate=[NSPredicate predicateWithFormat:@"usuario like %@ and contrasena like %@",self.UsertInputText.text, self.PassInputText.text];
             [request setPredicate:predicate];
-            
             NSError *error;
             NSArray *matchinData=[context executeFetchRequest:request error:&error];
-            
             if (matchinData.count <= 0)
             {
                 self.ErrrorLabel.hidden=NO;
@@ -244,42 +218,24 @@
                 for (NSManagedObject *obj in matchinData) {
                     usuario=[obj valueForKey:@"usuario"];
                     contrasena=[obj valueForKey:@"contrasena"];
-                    
-                    
-                    
                     if (_PassInputText.text ==contrasena) {
-                        
-                        
                         self.ErrrorLabel.hidden=NO;
                     }
                     else{
-                        
-                        // self.ErrrorLabel.text=[NSString stringWithFormat:@"user: %@, password:%@",usuario,contrasena];
-                        
-                        //  user=usuario;
                         self.ErrrorLabel.hidden=NO;
                         self.ErrrorLabel.text=@"Usuario Correcto Iniciando";
                         UIAlertView *usermal = [[UIAlertView alloc] initWithTitle:@"Correcto" message:@"Iniciando..." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
                         [usermal show];
                         
                         [[NSUserDefaults standardUserDefaults] setValue:self.UsertInputText.text forKey:@"UserBrockus"];
-                        
-                        
                         [UIView beginAnimations:nil context:NULL];
                         [UIView setAnimationDuration:1];
                         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
                         [UIView commitAnimations];
-                        
-                        
                         self.perfil.delegate=(id)self;
                         UINavigationController *navContr = [[UINavigationController alloc] initWithRootViewController:self.perfil];
                         navContr.title=@"Perfil";
-                        
-                        // self.navigationItem.leftBarButtonItem = self.btnSalir;
-                        // self.navigationItem.rightBarButtonItem = self.btnCrearPublicacion;
                         self.title = @"Perfil";
-                        
-                        
                         [self presentViewController:navContr animated:YES completion:nil];
                         
                     }
@@ -289,13 +245,7 @@
         
     }
        //Termina validacion de email correcto y datos llenos enlos textfield
-    
 }
-
-
-
-
-
 //objeto ke se comunica cuando un usuario no esta registrado o a introducido mal su password
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 
@@ -325,9 +275,7 @@
     ////Estas Lineas de codigo especifican una animacion al acer cambio de xib
     //cabe señalar ke la linea mas siginificativa es    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
     //en la propiedad setAnimationTransicition: y los sig son los tipos de animacion ke se pueden escoger ke son de uivviewtransitionanimation-animacion a selecionar
-    
-    
-    self.registro.delegate=(id)self;//mediante el delegate ya declarado en el .m del xib del registro
+     self.registro.delegate=(id)self;//mediante el delegate ya declarado en el .m del xib del registro
     [self presentViewController:self.registro animated:YES completion:nil]; //y con esto procedemos a pasar al sig xib con transicion animada al .xib BURegistroViewController
     
     

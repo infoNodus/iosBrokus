@@ -14,6 +14,7 @@
                 <outlet property="puestoPersonaTxt" destination="21" id="114"/>
                 <outlet property="repetirContrasenaTxt" destination="49" id="117"/>
                 <outlet property="scroll" destination="444" id="P4k-5Y-uT5"/>
+                <outlet property="sector" destination="SQu-7k-SXF" id="tZs-HR-7x6"/>
                 <outlet property="subSector" destination="bPz-Ao-48C" id="wOe-Pb-08h"/>
                 <outlet property="usuarioTxt" destination="27" id="115"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -126,6 +127,9 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="subsectorClicked:" destination="-1" eventType="editingDidBegin" id="mNv-uB-LHg"/>
+                            </connections>
                         </textField>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="LbZ-go-Zgt">
                             <rect key="frame" x="80" y="7" width="161" height="102"/>
@@ -141,6 +145,15 @@
                                 <action selector="SelecImg:" destination="-1" eventType="touchUpInside" id="IfH-zy-Jh5"/>
                             </connections>
                         </button>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="SQu-7k-SXF">
+                            <rect key="frame" x="10" y="389" width="302" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="sectorClicked:" destination="-1" eventType="editingDidBegin" id="aB4-5R-zfD"/>
+                            </connections>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

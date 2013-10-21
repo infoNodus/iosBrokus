@@ -37,7 +37,6 @@
 		D1AC73F017FDBC00003D0CE1 /* BUConsultaPublicacion.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AC73EF17FDBC00003D0CE1 /* BUConsultaPublicacion.m */; };
 		D1B2D0E5180711F20098B937 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B2D0E4180711F20098B937 /* MessageUI.framework */; };
 		D1F4FBAA180C359C002FC839 /* Publicacion.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F4FBA9180C359C002FC839 /* Publicacion.m */; };
-		D1F8DCB617FF3C3E00133E01 /* BURegistroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1F8DCB517FF3C3E00133E01 /* BURegistroViewController.xib */; };
 		D7093CED17FC60E40024B030 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D7093CEC17FC60E40024B030 /* Default~iphone.png */; };
 		D7093CEF17FC61C30024B030 /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D7093CEE17FC61C30024B030 /* Default-568h@2x~iphone.png */; };
 		D7093CF117FC70F60024B030 /* 765-default-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = D7093CF017FC70F60024B030 /* 765-default-avatar.png */; };
@@ -82,9 +81,7 @@
 		DA1F6E8018085EB40025D317 /* BUConsultaDetallePubVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA1F6E7F18085EB40025D317 /* BUConsultaDetallePubVC.xib */; };
 		DA1F6E8218085F690025D317 /* BUSeccionPublicacionesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA1F6E8118085F690025D317 /* BUSeccionPublicacionesViewController.xib */; };
 		DA1F6E85180865850025D317 /* BUPublicacionesInactivasVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1F6E84180865850025D317 /* BUPublicacionesInactivasVC.m */; };
-		DAEB4E8817FF40D100E2BFFA /* ComboSector.h in Sources */ = {isa = PBXBuildFile; fileRef = DAEB4E8517FF3F8F00E2BFFA /* ComboSector.h */; };
-		DAEB4E8917FF40D100E2BFFA /* ComboSector.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB4E8617FF3F8F00E2BFFA /* ComboSector.m */; };
-		DAEB4E8A17FF40D100E2BFFA /* ComboSector.xib in Sources */ = {isa = PBXBuildFile; fileRef = DAEB4E8717FF3F8F00E2BFFA /* ComboSector.xib */; };
+		DA75902C18119D03000B2A02 /* BURegistroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA75902E18119D03000B2A02 /* BURegistroViewController.xib */; };
 		DF85A35A17FB15840008D43A /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DF85A35917FB15840008D43A /* arrow.png */; };
 		DF8773E918083F6800806959 /* noimagen.png in Resources */ = {isa = PBXBuildFile; fileRef = DF8773E818083F6800806959 /* noimagen.png */; };
 		DF8899DA1806EA0300EE6F9D /* BUSeccionPublicacionesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8899D81806EA0300EE6F9D /* BUSeccionPublicacionesViewController.m */; };
@@ -141,7 +138,6 @@
 		D1B2D0E4180711F20098B937 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D1F4FBA8180C359C002FC839 /* Publicacion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Publicacion.h; sourceTree = "<group>"; };
 		D1F4FBA9180C359C002FC839 /* Publicacion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Publicacion.m; sourceTree = "<group>"; };
-		D1F8DCB517FF3C3E00133E01 /* BURegistroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BURegistroViewController.xib; sourceTree = "<group>"; };
 		D7093CEC17FC60E40024B030 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
 		D7093CEE17FC61C30024B030 /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		D7093CF017FC70F60024B030 /* 765-default-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "765-default-avatar.png"; sourceTree = "<group>"; };
@@ -198,9 +194,7 @@
 		DA1F6E8118085F690025D317 /* BUSeccionPublicacionesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BUSeccionPublicacionesViewController.xib; sourceTree = "<group>"; };
 		DA1F6E83180865850025D317 /* BUPublicacionesInactivasVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUPublicacionesInactivasVC.h; sourceTree = "<group>"; };
 		DA1F6E84180865850025D317 /* BUPublicacionesInactivasVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUPublicacionesInactivasVC.m; sourceTree = "<group>"; };
-		DAEB4E8517FF3F8F00E2BFFA /* ComboSector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComboSector.h; sourceTree = "<group>"; };
-		DAEB4E8617FF3F8F00E2BFFA /* ComboSector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComboSector.m; sourceTree = "<group>"; };
-		DAEB4E8717FF3F8F00E2BFFA /* ComboSector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComboSector.xib; sourceTree = "<group>"; };
+		DA75902D18119D03000B2A02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = Base.lproj/BURegistroViewController.xib; sourceTree = "<group>"; };
 		DF85A35917FB15840008D43A /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		DF8773E818083F6800806959 /* noimagen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimagen.png; sourceTree = "<group>"; };
 		DF8899D71806EA0300EE6F9D /* BUSeccionPublicacionesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUSeccionPublicacionesViewController.h; sourceTree = "<group>"; };
@@ -413,16 +407,6 @@
 			name = ConsultaDetallePub;
 			sourceTree = "<group>";
 		};
-		DAEB4E8417FF3F7000E2BFFA /* ComboBox */ = {
-			isa = PBXGroup;
-			children = (
-				DAEB4E8517FF3F8F00E2BFFA /* ComboSector.h */,
-				DAEB4E8617FF3F8F00E2BFFA /* ComboSector.m */,
-				DAEB4E8717FF3F8F00E2BFFA /* ComboSector.xib */,
-			);
-			name = ComboBox;
-			sourceTree = "<group>";
-		};
 		DF8782CD1805C86100AF256F /* Circulo de Confianza */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,10 +452,9 @@
 		DF91C68517FC791C000DFA4E /* Registro */ = {
 			isa = PBXGroup;
 			children = (
-				DAEB4E8417FF3F7000E2BFFA /* ComboBox */,
 				763CF16217F355BA00A67E61 /* BURegistroViewController.h */,
 				763CF16317F355BA00A67E61 /* BURegistroViewController.m */,
-				D1F8DCB517FF3C3E00133E01 /* BURegistroViewController.xib */,
+				DA75902E18119D03000B2A02 /* BURegistroViewController.xib */,
 			);
 			name = Registro;
 			sourceTree = "<group>";
@@ -635,7 +618,7 @@
 				D7875D4D1806EC59001871F8 /* black-textures_00244335.jpg in Resources */,
 				D7093CF317FC738B0024B030 /* 110x110.png in Resources */,
 				D788513C180859E000FDDA4D /* BUMinVistaCirculoCell.xib in Resources */,
-				D1F8DCB617FF3C3E00133E01 /* BURegistroViewController.xib in Resources */,
+				DA75902C18119D03000B2A02 /* BURegistroViewController.xib in Resources */,
 				D78379EB17F4861E007BDD0A /* 0star.png in Resources */,
 				D7875D4B1806EBD4001871F8 /* 1363744.jpg in Resources */,
 				D7837A5417F4A2EC007BDD0A /* BUMuroPublicacionesViewController.xib in Resources */,
@@ -670,9 +653,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAEB4E8817FF40D100E2BFFA /* ComboSector.h in Sources */,
-				DAEB4E8917FF40D100E2BFFA /* ComboSector.m in Sources */,
-				DAEB4E8A17FF40D100E2BFFA /* ComboSector.xib in Sources */,
 				762670E817F3458000B5E485 /* main.m in Sources */,
 				762670EC17F3458000B5E485 /* BUAppDelegate.m in Sources */,
 				D1AC73F017FDBC00003D0CE1 /* BUConsultaPublicacion.m in Sources */,
@@ -708,6 +688,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DA75902E18119D03000B2A02 /* BURegistroViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA75902D18119D03000B2A02 /* Base */,
+			);
+			name = BURegistroViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		762670F617F3458000B5E485 /* Debug */ = {

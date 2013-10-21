@@ -18,28 +18,27 @@
 
 @interface BUPublicacionViewController(){
     
-    NSManagedObjectContext *context;
-    Subsector *subsect;
-    BOOL *isSector;
-    Sector *nombreSector;
-    Subsector *nombreSubSector;
+    NSManagedObjectContext *context; //asigna el contexto para usarlo posteriormente
+    Subsector *subsect; //se declara la variable del subsector para utilizarla posteriormente
+    BOOL *isSector; //se declara la variable booleana del subsector para utilizarla posteriormente y con esta poder saber de que tipo de sector es
+    Sector *nombreSector; //se declara la variable sector para utilizarla posteriormente
+    Subsector *nombreSubSector; //se declara la variable subsector para utilizarla posteriormente
 
 }
 
-@property (strong) BUPublicacionViewController *mostrarpublicacion;
-@property (nonatomic, retain) NSManagedObjectContext *context;
-@property (strong) BUPerfilEmpresaViewController *pub;
-@property (strong) BUPerfilEmpresaViewController *perfil;
-@property (strong) BUMuroPublicacionesViewController *muro;
-//@property (nonatomic, retain) NSManagedObjectContext *context;
-@property (strong) NSString* link;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *oAceptar;
+@property (strong) BUPublicacionViewController *mostrarpublicacion; //propiedad para acceder al controlador de mostrar las publicaciones.
+@property (nonatomic, retain) NSManagedObjectContext *context; //asigna el contexto para usarlo posteriormente
+@property (strong) BUPerfilEmpresaViewController *pub; //propiedad para acceder al controlador del perfil de la empresa donde se muestran las publicaciones realizadas
+@property (strong) BUPerfilEmpresaViewController *perfil; //propiedad para acceder al controlador del perfil de la empresa
+@property (strong) BUMuroPublicacionesViewController *muro;//propiedad para acceder al controlador del muro de publicaciones
+@property (strong) NSString* link; //propiedad para almacenar los datos del link para los anexos
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *oAceptar; //propiedad para declarar el botón de aceptar
 
 @end
 
 
 @implementation BUPublicacionViewController
-@synthesize selectedText;
+@synthesize selectedText; //que permite indicarle a Xcode que auto genere los get y set del texto seleccionado
 @synthesize subSector;
 @synthesize comboSector;
 @synthesize sectorSeleccionado;

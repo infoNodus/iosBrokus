@@ -166,26 +166,6 @@
                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Mensaje" message:@"Al Parecer no estas Registrado o Introduciste mal los Datos" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"Registrarse",nil];
                 [alert setTag:1];
                 [alert show];
-                //   [alert release];
-                
-                
-                //self..delegate=self;
-                
-                //[self presentViewController:self.elegirCiudad animated:YES completion:nil];
-                
-                // self.registro.delegate=self;
-                //[self presentViewController:self.registro animated:YES completion:nil];
-                
-                //para regresar     [self dismissViewControllerAnimated:YES completion:nil];
-                
-                
-                //BUPerfilEmpresaViewController *lista=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
-                // [self presentViewController:self.registro animated:YES completion:nil];
-                
-                
-                // self.window.rootViewController = lista;
-                
-                //[self.window makeKeyAndVisible];
             }
             else
             {
@@ -198,19 +178,10 @@
                     
                     
                     if (_PassInputText.text ==contrasena) {
-                        
-                        
                         self.ErrrorLabel.hidden=NO;
                         self.ErrrorLabel.text=@"Password Incorrecta";
-                        
-                        
-                        
                     }
                     else{
-                        
-                        // self.ErrrorLabel.text=[NSString stringWithFormat:@"user: %@, password:%@",usuario,contrasena];
-                        
-                        //  user=usuario;
                         self.ErrrorLabel.hidden=NO;
                         self.ErrrorLabel.text=@"Usuario Correcto Iniciando";
                         UIAlertView *usermal = [[UIAlertView alloc] initWithTitle:@"Correcto" message:@"Iniciando..." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
@@ -232,10 +203,7 @@
                 }
             }
             
-            
-            
-            
-        }
+  }
         else if (([self validateEmail:[_UsertInputText.self text]] ==0) && [self validaPass:[_PassInputText.self text]]==1)
         {
             UIAlertView *usermal = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Formato de Email Invalido" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
@@ -245,12 +213,7 @@
             
         }
         else  if (([self validateEmail:[_UsertInputText.self text]] ==1) && [self validaPass:[_PassInputText.self text]]==1) //Si todo es correcto aki se envia la validacion a
-            //la base de  datos y logeamos y acemos todo el proceso de loggin y posinle registro
         {
-            
-            
-            //(UIAlertView *usermal = [[UIAlertView alloc] initWithTitle:@"Correcto" message:@"Iniciando" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-            //[usermal show];
             self.ErrrorLabel.text =@"Espere Un Momento Por Favor";
             self.UsertInputText.clearButtonMode=NO;
             self.UsertInputText.clearsOnBeginEditing=NO;
@@ -270,36 +233,10 @@
             {
                 self.ErrrorLabel.hidden=NO;
                 self.ErrrorLabel.text=@"Error en Usuario o Contraseña";
-                // UIAlertView *usermal = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Usuario ò Passowrd  Incorrecta" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-                //[usermal show];
-                //UIAlertView *ise=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Al Parecer no Estas Registrado, Espera..." delegate:self cancelButtonTitle:@"Registrarme" otherButtonTitles:@"Reintentar", nil];
-                
-                //[ise show];
-                
                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Mensaje" message:@"Al Parecer no estas Registrado o Introduciste mal los Datos" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"Registrarse",nil];
                 [alert setTag:1];
                 [alert show];
-                //   [alert release];
-                
-                
-                //self..delegate=self;
-                
-                //[self presentViewController:self.elegirCiudad animated:YES completion:nil];
-                
-                // self.registro.delegate=self;
-                //[self presentViewController:self.registro animated:YES completion:nil];
-                
-                //para regresar     [self dismissViewControllerAnimated:YES completion:nil];
-                
-                
-                //BUPerfilEmpresaViewController *lista=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];
-                // [self presentViewController:self.registro animated:YES completion:nil];
-                
-                
-                // self.window.rootViewController = lista;
-                
-                //[self.window makeKeyAndVisible];
-            }
+                }
             else
             {
                 NSString *usuario;
@@ -314,10 +251,6 @@
                         
                         
                         self.ErrrorLabel.hidden=NO;
-                        self.ErrrorLabel.text=@"Password Incorrecta";
-                        
-                        
-                        
                     }
                     else{
                         
@@ -355,14 +288,7 @@
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    //Termina validacion de email correcto y datos llenos enlos textfield
+       //Termina validacion de email correcto y datos llenos enlos textfield
     
 }
 

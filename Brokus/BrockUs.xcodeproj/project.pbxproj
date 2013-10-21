@@ -38,6 +38,8 @@
 		D1F4FBAA180C359C002FC839 /* Publicacion.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F4FBA9180C359C002FC839 /* Publicacion.m */; };
 		D7093CF117FC70F60024B030 /* 765-default-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = D7093CF017FC70F60024B030 /* 765-default-avatar.png */; };
 		D7093CF317FC738B0024B030 /* 110x110.png in Resources */ = {isa = PBXBuildFile; fileRef = D7093CF217FC738B0024B030 /* 110x110.png */; };
+		D7109CC018158A7B003A004F /* 114X114.png in Resources */ = {isa = PBXBuildFile; fileRef = D7109CBF18158A7B003A004F /* 114X114.png */; };
+		D7109CC218158A7F003A004F /* 57X57.png in Resources */ = {isa = PBXBuildFile; fileRef = D7109CC118158A7F003A004F /* 57X57.png */; };
 		D7198CDB18158593003751BA /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D7198CDA18158593003751BA /* Default~iphone.png */; };
 		D7198CDD181586F1003751BA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7198CDC181586F1003751BA /* Default@2x.png */; };
 		D7198CE0181587BF003751BA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7198CDF181587BF003751BA /* Images.xcassets */; };
@@ -139,6 +141,8 @@
 		D1F4FBA9180C359C002FC839 /* Publicacion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Publicacion.m; sourceTree = "<group>"; };
 		D7093CF017FC70F60024B030 /* 765-default-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "765-default-avatar.png"; sourceTree = "<group>"; };
 		D7093CF217FC738B0024B030 /* 110x110.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 110x110.png; sourceTree = "<group>"; };
+		D7109CBF18158A7B003A004F /* 114X114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114X114.png; sourceTree = "<group>"; };
+		D7109CC118158A7F003A004F /* 57X57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57X57.png; sourceTree = "<group>"; };
 		D7198CDA18158593003751BA /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
 		D7198CDC181586F1003751BA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D7198CDE18158756003751BA /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
@@ -259,6 +263,8 @@
 			isa = PBXGroup;
 			children = (
 				D152660E17FC7EB8008B6B7E /* BrockUs.sqlite */,
+				D7109CC118158A7F003A004F /* 57X57.png */,
+				D7109CBF18158A7B003A004F /* 114X114.png */,
 				D7198CDC181586F1003751BA /* Default@2x.png */,
 				D186F4D917F5DA5900D13B66 /* BrockUs.xcdatamodeld */,
 				763CF16D17F355C300A67E61 /* VC */,
@@ -636,6 +642,8 @@
 				D7837A7717F4A32E007BDD0A /* BUPanelIzquierdoViewController.xib in Resources */,
 				D7837A7917F4A32E007BDD0A /* BUResultadoBusquedaViewController.xib in Resources */,
 				D7320C0C17FB15530038569E /* Default.png in Resources */,
+				D7109CC218158A7F003A004F /* 57X57.png in Resources */,
+				D7109CC018158A7B003A004F /* 114X114.png in Resources */,
 				D7875D491806EB34001871F8 /* Textures_wallpapers_39.jpg in Resources */,
 				DF85A35A17FB15840008D43A /* arrow.png in Resources */,
 				D76A881117FB235F002EFF5B /* logo_nodus.png in Resources */,

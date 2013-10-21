@@ -241,9 +241,29 @@
         publicacion.linkAnexo=self.link;
 
         
-        if (nombreSubSector!=nil) {
-            publicacion.toSubsector=nombreSubSector;
+        
+        for (int i=0; i<[arraySectores count]; i++) {
+            Sector *forsector=[arraySectores objectAtIndex:i];
+            if([forsector.nombre isEqualToString:self.sectorTxt.text]){
+                nombreSubSector=[arraySectores objectAtIndex:i];
+            }
         }
+        NSError *error = nil;
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *selectSubSector = [NSEntityDescription
+                                                entityForName:@"Subsector" inManagedObjectContext:context];
+        
+        [fetchRequest setEntity:selectSubSector];
+        
+        NSPredicate *predicate=[NSPredicate predicateWithFormat:@"toSector = %@",nombreSubSector];
+        [fetchRequest setPredicate:predicate];
+        NSArray *savedSub=[context executeFetchRequest:fetchRequest error:&error];
+        if (nombreSubSector!=nil) {
+            NSLog(@"%@",nombreSubSector);
+            publicacion.toSubsector=[savedSub objectAtIndex:0];
+            
+        }
+
         if (self.subSectorTxt.text.length<=0 || self.sectorTxt.text.length <=0) {
         self.sectorTxt.text=@"Construccion";
             self.subSectorTxt.text=@"Edificacion No Residencial";

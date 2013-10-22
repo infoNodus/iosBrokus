@@ -21,7 +21,6 @@
     NSManagedObjectContext *context;
     Subsector *subsect;
     BOOL isSector;
-    BOOL didSelect;
     Sector *nombreSector;
     Subsector *nombreSubSector;
 }
@@ -94,7 +93,7 @@
     // Do any additional setup after loading the view from its nib.
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
     context =[buappdelegate managedObjectContext];
-    didSelect=NO;
+
     self.log=[[BULoginViewController alloc] initWithNibName:@"BULoginViewController" bundle:nil];
     self.perfil=[[BUPerfilEmpresaViewController alloc]initWithNibName:@"BUPerfilEmpresaViewController " bundle:nil];
     
@@ -175,7 +174,6 @@
     
     subSector.inputView = pickerView;
     subSector.inputAccessoryView = toolbar;
-    subSector.enabled=NO;
 
     
     }
@@ -186,11 +184,6 @@
 
 -(void)doneClickedSectores:(id) sender
 {
-    if(!didSelect){
-        Sector *s=[arraySectores objectAtIndex:0];
-        self.sector.text=s.nombre;
-        [self cargasSubsector];
-    }
     
     [self.sector resignFirstResponder]; //hides the pickerView
     
@@ -215,7 +208,6 @@
         nombreSector=[dataArray objectAtIndex:row];
         self.sector.text=nombreSector.nombre;
         [self cargasSubsector];
-        subSector.enabled=YES;
         
     }else{
         nombreSubSector=[dataArray objectAtIndex:row];

@@ -21,7 +21,7 @@
     NSManagedObjectContext *context; //asigna el contexto para usarlo posteriormente
     Subsector *subsect; //se declara la variable del subsector para utilizarla posteriormente
     BOOL isSector; //se declara la variable booleana del subsector para utilizarla posteriormente y con esta poder saber de que tipo de sector es
-    BOOL didSelect;//nos permite saber si se realizo un movimiento en el picker sectores
+
     Sector *nombreSector; //se declara la variable sector para utilizarla posteriormente
     Subsector *nombreSubSector; //se declara la variable subsector para utilizarla posteriormente
 
@@ -66,7 +66,6 @@
     
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate]; //inicializa una instancia del appdelegate
     context =[buappdelegate managedObjectContext]; //asigna el contexto actual
-    didSelect=NO;//inicializamos false ya que es el primer estado del picker
     self.muestrafecha =[[UILabel alloc] init]; //inicializa la variable muestra fecha
     self.mostrarpublicacion = [[BUPublicacionViewController alloc]initWithNibName:@"BUPublicacionViewController" bundle:nil];//asigna una instancia del controlador para mostrar las publicaciones
     self.perfil=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];//asigna una instancia del controlador para mostrar el perfil de la empresa
@@ -108,6 +107,7 @@
     UIToolbar* toolbarSectores = [[UIToolbar alloc] init];
     toolbarSectores.barStyle = UIBarStyleBlackTranslucent;
     [toolbarSectores sizeToFit];
+    
     
     //Se hace el botón done alineado a la derecha
     UIBarButtonItem *flexibleSpaceLeftSectores = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -209,11 +209,6 @@
 
 -(void)doneClickedSectores:(id) sender
 {
-    if(!didSelect){
-        Sector *s=[arraySectores objectAtIndex:0];
-        self.sector.text=s.nombre;
-        [self cargarSubsector];
-    }
     
     [self.sector resignFirstResponder]; //oculta el pickerView del sector
     

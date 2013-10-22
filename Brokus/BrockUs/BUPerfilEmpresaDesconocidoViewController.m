@@ -128,7 +128,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL) personaEstaEnCirculo:(Persona*)persona {
+- (BOOL) personaEstaEnCirculo:(Persona*)persona {//averiguar si una persona pertenece a tu circulo
     for (Circulo *amigo in self.userbrockus.toCirculo) {
         if([amigo.toAmigo.usuario isEqualToString:persona.usuario]) {
             return YES;
@@ -151,24 +151,37 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //5
-    static NSString *cellIdentifier = @"publicacionCell";
+    static NSString *cellIdentifier = @"publicacionCell";//donamos un identificador a las celdas
     
-    BUMinVistaViewController *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    BUMinVistaViewController *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];//inicializamos una celda costumizada
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"BUMinVistaViewController" owner:self
                                             options:nil] lastObject];
     }
-    Publicacion *publicacion = self.listaPublicaciones[indexPath.row];
+    Publicacion *publicacion = self.listaPublicaciones[indexPath.row];//asignamos un objeto a la celda
     
-    cell.txtDescripcion.text = publicacion.descripcion;
-    cell.txtTitulo.text = publicacion.titulo;
-    cell.txtSector.text = publicacion.toSubsector.toSector.nombre;
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"MM/dd/yyyy"];
+    if (publicacion.descripcion != nil) {//asignamos la descripcion de la publicacion que recuperamos, si es nulo asignamos uno por default
+        cell.txtDescripcion.text = publicacion.descripcion;
+    }else{
+        cell.txtDescripcion.text = @"Descripcion";
+    }
+    if (publicacion.titulo != nil) {//asignamos el titulo de la publicacion que recuperamos, si es nulo asignamos uno por default
+        cell.txtTitulo.text = publicacion.titulo;
+    }else{
+        cell.txtTitulo.text = @"Titulo";
+    }
+    if (publicacion.toSubsector.toSector.nombre != nil) {//asignamos el sector de la publicacion que recuperamos, si es nulo asignamos uno por default
+        cell.txtSector.text = publicacion.toSubsector.toSector.nombre;
+    }else{
+        cell.txtSector.text = @"Sector";
+    }
+    //cell.txtSector.text = publicacion.toSubsector.toSector.nombre;
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];//inicializamos un obejeto fecha
+    [df setDateFormat:@"MM/dd/yyyy"];//seteamos un formato para la fecha
     cell.txtFechaInicio.text = [df stringFromDate:publicacion.fechaIni];
     cell.txtFechaFin.text = [df stringFromDate:publicacion.fecha];
-    cell.txtSector.text = publicacion.toSubsector.toSector.nombre;
-    if(publicacion.img != nil) {
+    //cell.txtSector.text = publicacion.toSubsector.toSector.nombre;
+    if(publicacion.img != nil) {//asignamos la imagen de la publicacion que recuperamos, si es nulo asignamos uno por default
         cell.imgImagen.image = [[UIImage alloc] initWithData:publicacion.img];
     }
     //[cell setSelected:YES animated:YES];

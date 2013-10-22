@@ -69,28 +69,30 @@
     
     if (self.persona.nombre) {
         self.personaTxt.text = self.persona.nombre;
-    }
-    //self.personaTxt.text = self.persona.nombre;
-    if (self.persona.puesto != nil) {
-        self.puestoTxt.text = self.persona.puesto;
+    }else{
+        self.personaTxt.text = @"Nombre";
     }
     if (self.persona.puesto != nil) {
         self.puestoTxt.text = self.persona.puesto;
+    }else{
+        self.puestoTxt.text = @"Puesto";
     }
-    //self.puestoTxt.text = self.persona.puesto;
+    
     if (self.persona.toEmpresa.nombre != nil) {
         self.empresaTxt.text = self.persona.toEmpresa.nombre;
+    }else{
+        self.empresaTxt.text = @"Empresa";
     }
-    //self.empresaTxt.text = self.persona.toEmpresa.nombre;
     if (self.persona.toEmpresa.toSubsector.toSector.nombre != nil) {
         self.sectorTxt.text = self.persona.toEmpresa.toSubsector.toSector.nombre;
+    }else{
+        self.sectorTxt.text = @"Sector";
     }
-    //self.sectorTxt.text = self.persona.toEmpresa.toSubsector.toSector.nombre;
     if (self.persona.toEmpresa.toSubsector.nombre != nil) {
         self.subsectorTxt.text = self.persona.toEmpresa.toSubsector.nombre;
-
+    }else{
+        self.subsectorTxt.text = @"Subsector";
     }
-    //self.subsectorTxt.text = self.persona.toEmpresa.toSubsector.nombre;
     if(self.persona.img != nil) {
         self.oImagen.image = [[UIImage alloc] initWithData:self.persona.img];
     }
@@ -183,7 +185,7 @@
         mailer.mailComposeDelegate = self;
         
         // Asunto del mensaje
-        [mailer setSubject:@"Notificacion - BroukUs"];
+        [mailer setSubject:@"Notificacion - Brokus"];
         NSArray *toRecipients = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@",self.persona.usuario], nil];
         [mailer setToRecipients:toRecipients];
         

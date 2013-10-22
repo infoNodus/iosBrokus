@@ -52,6 +52,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.oDetalle.text = self.publicacion.descripcion;
+    // Si la imagen es diferente de nula hay que asignarla al UIImageView oImagen
     if(self.publicacion.img != nil) {
         self.oImagen.image = [[UIImage alloc] initWithData:self.publicacion.img];
     }
@@ -70,19 +71,13 @@
     // Recuperamos el usuario  a partir del nombre del usuario
     self.userbrockus = [consulta recuperaPersona:userStr :context];
     
-//    if (self.publicacion.toPersona.nombre == self.userbrockus.nombre) {
-//        NSLog(@"tu mismo");
-//        
-//    }
-    
-
     // Se establece el titulo del boton
     [self.oPersona setTitle:self.publicacion.toPersona.nombre forState:UIControlStateNormal];
     [self.oEmail setTitle:self.publicacion.toPersona.usuario forState:UIControlStateNormal];
     self.oEmpresa.text = self.publicacion.toPersona.toEmpresa.nombre;
     
     
-    // Si la publicacion no tiene anexos se desahabilita la opcion de descargar anexos.
+    // Si la publicacion no tiene anexos se desahabilita la opcion de ver anexos.
     if(self.publicacion.linkAnexo == nil) {
         [self.oDescarga setEnabled:NO];
     }
@@ -120,9 +115,7 @@
 
 // Se muestran los anexos...
 - (IBAction)descargaTapped:(id)sender {
-
-    BUAnexloLinkVC *anexo = [[BUAnexloLinkVC alloc] initWithURL:self
-                             .publicacion.linkAnexo];
+    BUAnexloLinkVC *anexo = [[BUAnexloLinkVC alloc] initWithURL:self.publicacion.linkAnexo];
     [self.navigationController pushViewController:anexo animated:YES];
 }
 
@@ -183,6 +176,7 @@
             NSLog(@"Correo no enviado.");
             break;
     }
+    
     if (mensaje != nil) {
         [mensaje show];
     }

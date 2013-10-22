@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 
-@class Persona;
+@class Persona;//incluimos la clase persona
 
 @interface BUPerfilEmpresaDesconocidoViewController : UIViewController <MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 

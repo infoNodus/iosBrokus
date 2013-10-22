@@ -21,15 +21,14 @@
 
 @interface BUPerfilEmpresaDesconocidoViewController ()
 {
-    NSManagedObjectContext *context;
+    NSManagedObjectContext *context;//asigna el contexto para usarlo posteriormente
 }
 
-@property (strong) Persona *userbrockus;
-@property (strong) BUPublicacionViewController *pub;
-@property (strong) BUDetallePublicacionViewController *detalle;
-@property (strong) NSArray *listaPublicaciones;
-@property (weak, nonatomic) IBOutlet UIButton *oInvitarOrEMail;
-
+@property (strong) Persona *userbrockus;//implementamoms una propiedad para acceder a un objeto persona
+@property (strong) BUPublicacionViewController *pub;//implementamoms una propiedad para acceder al controlador de publicacion
+@property (strong) BUDetallePublicacionViewController *detalle;//implementamoms una propiedad para acceder al controlador de detalle
+@property (strong) NSArray *listaPublicaciones;//implementamos una lista de publicaciones
+@property (weak, nonatomic) IBOutlet UIButton *oInvitarOrEMail;//implementamos una propiedad para acceder al boton de enviar un mail
 
 @end
 

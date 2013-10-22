@@ -14,7 +14,8 @@
 #import "BUConsultaPublicacion.h"
 
 @interface BUConsultaDetallePubVC (){
-    BOOL *isSector;
+    BOOL isSector;
+    BOOL didSelect;
     Sector *nombreSector;
     Subsector *nombreSubSector;
 }
@@ -47,7 +48,7 @@
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd/yyyy"];
-    
+    didSelect=NO;
     //la variable publicacion contiene la informacion de la publicacion seleccionada en publicaciones activas, con esta cargamos todas las cajas de texto de nuestra vista.
     fechaTermino.text=[formatter stringFromDate:publicacion.fecha];
     self.tituloTxt.text=publicacion.titulo;
@@ -344,7 +345,11 @@
 }
 -(void)doneClickedSectores:(id) sender
 {
-
+    if (!didSelect) {
+        Sector *s=[arraySectores objectAtIndex:0];
+        self.sectorTxt.text=s.nombre;
+        [self cargaSubsector];
+    }
     [self.sectorTxt resignFirstResponder]; //hides the pickerView
     
 }
@@ -366,6 +371,7 @@
         nombreSector=[dataArray objectAtIndex:row];
         self.sectorTxt.text=nombreSector.nombre;
         [self cargaSubsector];
+        didSelect=YES;
     }else{
         nombreSubSector=[dataArray objectAtIndex:row];
         self.subSectorTxt.text =nombreSubSector.nombre;

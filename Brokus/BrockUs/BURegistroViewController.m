@@ -174,7 +174,7 @@
     
     subSector.inputView = pickerView;
     subSector.inputAccessoryView = toolbar;
-    //subSector.hidden=YES;
+    subSector.enabled=NO;
 
     
     }
@@ -209,6 +209,7 @@
         nombreSector=[dataArray objectAtIndex:row];
         self.sector.text=nombreSector.nombre;
         [self cargasSubsector];
+        subSector.enabled=YES;
         
     }else{
         nombreSubSector=[dataArray objectAtIndex:row];

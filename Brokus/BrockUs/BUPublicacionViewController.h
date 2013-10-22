@@ -55,9 +55,4 @@
 -(NSString *)getPath:(NSString *)fileName; //Declaración del método getpath para la imagen
 -(NSData *)getImageBinary:(NSString *)fileName; //Declaración del método getImageBinary para la imagen
 
-
-
-
-
-
 @end

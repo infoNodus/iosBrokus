@@ -19,11 +19,11 @@
 @interface BUPublicacionViewController(){
     
     NSManagedObjectContext *context; //asigna el contexto para usarlo posteriormente
-    Subsector *subsect; //se declara la variable del subsector para utilizarla posteriormente
-    BOOL isSector; //se declara la variable booleana del subsector para utilizarla posteriormente y con esta poder saber de que tipo de sector es
+    BOOL isSector; //se declara la variable booleana del subsector para utilizarla posteriormente y con esta poder saber el  tipo de sector
     BOOL didSelect;
     Sector *nombreSector; //se declara la variable sector para utilizarla posteriormente
     Subsector *nombreSubSector; //se declara la variable subsector para utilizarla posteriormente
+    Subsector *subsect; //se declara la variable del subsector para utilizarla posteriormente
 
 }
 

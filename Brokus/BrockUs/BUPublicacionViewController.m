@@ -24,7 +24,6 @@
     BOOL didSelect;//nos permite saber si se realizo un movimiento en el picker sectores
     Sector *nombreSector; //se declara la variable sector para utilizarla posteriormente
     Subsector *nombreSubSector; //se declara la variable subsector para utilizarla posteriormente
-    Subsector *subsect; //se declara la variable del subsector para utilizarla posteriormente
 
 }
 

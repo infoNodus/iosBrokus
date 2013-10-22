@@ -43,7 +43,7 @@
     return self;
 }
 
--(id) initWithPersona:(Persona *)persona {
+-(id) initWithPersona:(Persona *)persona {//inicializador custom para iniciar con una persona
     self = [super initWithNibName:@"BUPerfilEmpresaDesconocidoViewController" bundle:nil];
     if (self) {
         // Custom initialization
@@ -59,56 +59,58 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];
-    context =[buappdelegate managedObjectContext];
-//
-    BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];
-    NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];
-    self.userbrockus = [consulta recuperaPersona:userStr :context];
+    BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate];//inicializamos una instancia del appdelegate
+    context =[buappdelegate managedObjectContext];//asiganamos el contexto actual
+
+    BUConsultaPublicacion *consulta=[[BUConsultaPublicacion alloc] init];//asignamos una instancia del controlador para hacer una consulta
+
+    NSString *userStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"UserBrockus"];//inicializamos una variable donde guardaremos el usuario actual
+
+    self.userbrockus = [consulta recuperaPersona:userStr :context];//recuperamos el usuario actual
     
-    if (self.persona.nombre) {
+    if (self.persona.nombre) {//asignamos el nombre del usuario que acabamos de recuperar, si el correo es nulo asignamos un texto por default
         self.personaTxt.text = self.persona.nombre;
     }else{
         self.personaTxt.text = @"Nombre";
     }
-    if (self.persona.puesto != nil) {
+    if (self.persona.puesto != nil) {//asignamos el puesto del usuario que acabamos de recuperar, si el correo es nulo asignamos un texto por default
         self.puestoTxt.text = self.persona.puesto;
     }else{
         self.puestoTxt.text = @"Puesto";
     }
     
-    if (self.persona.toEmpresa.nombre != nil) {
+    if (self.persona.toEmpresa.nombre != nil) {//asignamos el nombre de la empresa del usuario que acabamos de recuperar, si el correo es nulo asignamos un texto por default
         self.empresaTxt.text = self.persona.toEmpresa.nombre;
     }else{
         self.empresaTxt.text = @"Empresa";
     }
-    if (self.persona.toEmpresa.toSubsector.toSector.nombre != nil) {
+    if (self.persona.toEmpresa.toSubsector.toSector.nombre != nil) {//asignamos el sector del usuario que acabamos de recuperar, si el correo es nulo asignamos un texto por default
         self.sectorTxt.text = self.persona.toEmpresa.toSubsector.toSector.nombre;
     }else{
         self.sectorTxt.text = @"Sector";
     }
-    if (self.persona.toEmpresa.toSubsector.nombre != nil) {
+    if (self.persona.toEmpresa.toSubsector.nombre != nil) {//asignamos el subsector del usuario que acabamos de recuperar, si el correo es nulo asignamos un texto por default
         self.subsectorTxt.text = self.persona.toEmpresa.toSubsector.nombre;
     }else{
         self.subsectorTxt.text = @"Subsector";
     }
-    if(self.persona.img != nil) {
+    if(self.persona.img != nil) {//asignamos la imagen del usuario que acabamos de recuperar, si el correo es nulo asignamos un texto por default
         self.oImagen.image = [[UIImage alloc] initWithData:self.persona.img];
     }
     //self.oEmail.textInputContextIdentifier = self.publicacion.toPersona.usuario;
     
     
-    self.listaPublicaciones = [[NSArray alloc] init];
-    self.listaPublicaciones = [consulta recuperaConsultasPorPersona:self.persona];
+    self.listaPublicaciones = [[NSArray alloc] init];//inicializamos el arreglo donde guardaremos las publicaciones
+    self.listaPublicaciones = [consulta recuperaConsultasPorPersona:self.persona];//recuperamos las publicaciones
     
     
     //ordenadas
-    NSSortDescriptor *byFechaIni = [NSSortDescriptor sortDescriptorWithKey:@"fechaIni" ascending:NO];
-    NSSortDescriptor *byFechaFin = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:NO];
-    NSSortDescriptor *byTitulo = [NSSortDescriptor sortDescriptorWithKey:@"titulo" ascending:NO];
-    NSSortDescriptor *byDescripcion = [NSSortDescriptor sortDescriptorWithKey:@"descripcion" ascending:NO];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:byFechaIni, byFechaFin, byTitulo,byDescripcion, nil];
-    self.listaPublicaciones = [self.listaPublicaciones sortedArrayUsingDescriptors:sortDescriptors];
+    NSSortDescriptor *byFechaIni = [NSSortDescriptor sortDescriptorWithKey:@"fechaIni" ascending:NO];//creamos una regla para ordenar las publicaciones de nuetro circulo segun la fecha de inicio
+    NSSortDescriptor *byFechaFin = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:NO];//creamos una regla para ordenar las publicaciones de nuetro circulo segun la fecha de fin
+    NSSortDescriptor *byTitulo = [NSSortDescriptor sortDescriptorWithKey:@"titulo" ascending:NO];//creamos una regla para ordenar las publicaciones de nuetro circulo segun el titulo
+    NSSortDescriptor *byDescripcion = [NSSortDescriptor sortDescriptorWithKey:@"descripcion" ascending:NO];//creamos una regla para ordenar las publicaciones de nuetro circulo segun la descripcion
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:byFechaIni, byFechaFin, byTitulo,byDescripcion, nil];//asignamos el orden de las reglas
+    self.listaPublicaciones = [self.listaPublicaciones sortedArrayUsingDescriptors:sortDescriptors];//reordenamos el arreglo aplicando las reglas
     
     
     // Si la persona es del circulo de confianza aparece el boton de enviar correo,
@@ -179,7 +181,6 @@
             NSLog(@"No se puede enviar email desde este dispositivo");
             return;
         }
-        
         MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
         mailer.mailComposeDelegate = self;
         
@@ -204,7 +205,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     BUDetallePublicacionViewController *detalle = [[BUDetallePublicacionViewController alloc] initWithPublicacion:self.listaPublicaciones[indexPath.row] navegacionAlPerfil:NO];
     NSLog(@"%@", self.navigationController);
     [self.navigationController pushViewController:detalle animated:YES];
@@ -214,6 +214,7 @@
 
 -(void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     UIAlertView *mensaje = nil;
+    // Resultados de las acciones del correo
     switch (result)
     {
         case MFMailComposeResultCancelled:

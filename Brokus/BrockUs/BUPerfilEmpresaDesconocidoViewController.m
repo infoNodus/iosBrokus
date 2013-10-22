@@ -180,7 +180,6 @@
             NSLog(@"No se puede enviar email desde este dispositivo");
             return;
         }
-        
         MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
         mailer.mailComposeDelegate = self;
         
@@ -205,7 +204,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     BUDetallePublicacionViewController *detalle = [[BUDetallePublicacionViewController alloc] initWithPublicacion:self.listaPublicaciones[indexPath.row] navegacionAlPerfil:NO];
     NSLog(@"%@", self.navigationController);
     [self.navigationController pushViewController:detalle animated:YES];
@@ -215,6 +213,7 @@
 
 -(void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     UIAlertView *mensaje = nil;
+    // Resultados de las acciones del correo
     switch (result)
     {
         case MFMailComposeResultCancelled:

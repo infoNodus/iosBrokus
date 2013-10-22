@@ -21,7 +21,7 @@
     NSManagedObjectContext *context; //asigna el contexto para usarlo posteriormente
     Subsector *subsect; //se declara la variable del subsector para utilizarla posteriormente
     BOOL isSector; //se declara la variable booleana del subsector para utilizarla posteriormente y con esta poder saber de que tipo de sector es
-    BOOL didSelect;
+    BOOL didSelect;//nos permite saber si se realizo un movimiento en el picker sectores
     Sector *nombreSector; //se declara la variable sector para utilizarla posteriormente
     Subsector *nombreSubSector; //se declara la variable subsector para utilizarla posteriormente
 
@@ -66,7 +66,7 @@
     
     BUAppDelegate * buappdelegate=[[UIApplication sharedApplication]delegate]; //inicializa una instancia del appdelegate
     context =[buappdelegate managedObjectContext]; //asigna el contexto actual
-    didSelect=NO;
+    didSelect=NO;//inicializamos false ya que es el primer estado del picker
     self.muestrafecha =[[UILabel alloc] init]; //inicializa la variable muestra fecha
     self.mostrarpublicacion = [[BUPublicacionViewController alloc]initWithNibName:@"BUPublicacionViewController" bundle:nil];//asigna una instancia del controlador para mostrar las publicaciones
     self.perfil=[[BUPerfilEmpresaViewController alloc] initWithNibName:@"BUPerfilEmpresaViewController" bundle:nil];//asigna una instancia del controlador para mostrar el perfil de la empresa
@@ -98,6 +98,7 @@
     Sector *sect=[arraySectores objectAtIndex:0];
     self.sector.text=sect.nombre;// se asigna el nombre del primer objeto del vector a la caja de texto
     self.sector.delegate=self;
+    //se crea el picker para sectores
     pickerSectores = [[UIPickerView alloc] init];
     pickerSectores.showsSelectionIndicator = YES;
     pickerSectores.dataSource = self;
